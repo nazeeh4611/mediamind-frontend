@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import FloatingOrbs from '../components/Floatingorbs';
-import ServicesOverview from '../components/ServicesOverview';
-import CTABanner from '../components/CTABanner';
+import ServicesOverview from '../components/Servicesoverview';
+import CTABanner from '../components/Ctabanner';
 
 export default function Services() {
   const heroRef = useRef(null);

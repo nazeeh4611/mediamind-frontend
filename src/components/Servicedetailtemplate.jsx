@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import FloatingOrbs from './Floatingorbs';
-import CTABanner from './CTABanner';
+import CTABanner from './Ctabanner';
 
 export default function ServiceDetailTemplate({
   icon, title, metric, metricLabel, heroDesc,

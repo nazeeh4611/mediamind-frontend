@@ -1,5 +1,5 @@
 import React from 'react';
-import ServiceDetailTemplate from '../components/ServiceDetailTemplate';
+import ServiceDetailTemplate from '../components/Servicedetailtemplate';
 
 export default function HighConversionDesign() {
   return (

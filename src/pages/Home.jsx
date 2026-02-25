@@ -4,9 +4,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import FloatingOrbs from '../components/Floatingorbs';
 import StatsSection from '../components/Statssection';
-import ServicesOverview from '../components/ServicesOverview';
+import ServicesOverview from '../components/Servicesoverview';
 import Testimonials from '../components/Testimonials';
-import CTABanner from '../components/CTABanner';
+import CTABanner from '../components/Ctabanner';
 
 gsap.registerPlugin(ScrollTrigger);
 
