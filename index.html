@@ -2,12 +2,166 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/mmfav.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Media Mind </title>
+    <meta name="title" content="Media Mind | Data-Driven Digital Marketing Agency">
+    <meta name="description" content="Media Mind is a performance marketing agency specializing in Meta Ads, Google Ads, CRM optimization, and high-conversion design. We turn clicks into revenue for 200+ brands worldwide.">
+    <meta name="keywords" content="digital marketing agency, performance marketing, Meta Ads, Google Ads, CRM optimization, content creation, conversion design, marketing agency Dubai">
+    <meta name="author" content="Media Mind">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mediamind.io/">
+    <meta property="og:title" content="Media Mind | Data-Driven Digital Marketing Agency">
+    <meta property="og:description" content="Media Mind is a performance marketing agency specializing in Meta Ads, Google Ads, CRM optimization, and high-conversion design. We turn clicks into revenue for 200+ brands worldwide.">
+    <meta property="og:image" content="https://mediamind.io/og-image.jpg">
+    <meta property="og:site_name" content="Media Mind">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mediamind.io/">
+    <meta property="twitter:title" content="Media Mind | Data-Driven Digital Marketing Agency">
+    <meta property="twitter:description" content="Media Mind is a performance marketing agency specializing in Meta Ads, Google Ads, CRM optimization, and high-conversion design. We turn clicks into revenue for 200+ brands worldwide.">
+    <meta property="twitter:image" content="https://mediamind.io/twitter-image.jpg">
+    
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://mediamind.io/">
+    <meta name="theme-color" content="#B2278C">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Media Mind",
+        "url": "https://mediamind.io",
+        "logo": "https://mediamind.io/logo.png",
+        "description": "Performance marketing agency specializing in Meta Ads, Google Ads, CRM optimization, and high-conversion design.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Dubai",
+          "addressCountry": "UAE"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-555-000-0000",
+          "contactType": "customer service",
+          "email": "hello@mediamind.io"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/mediamind",
+          "https://twitter.com/mediamind",
+          "https://www.instagram.com/mediamind"
+        ]
+      }
+    </script>
+    
+    <!-- Service Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "Service",
+            "position": 1,
+            "name": "Performance Marketing",
+            "description": "Meta Ads, Google Ads, and data-driven campaigns that actually convert.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Media Mind"
+            }
+          },
+          {
+            "@type": "Service",
+            "position": 2,
+            "name": "CRM Optimization",
+            "description": "Turn your HubSpot or Salesforce into a revenue-generating machine.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Media Mind"
+            }
+          },
+          {
+            "@type": "Service",
+            "position": 3,
+            "name": "High-Conversion Design",
+            "description": "Landing pages and funnels designed to maximize ROI.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Media Mind"
+            }
+          },
+          {
+            "@type": "Service",
+            "position": 4,
+            "name": "Content Creation",
+            "description": "Video editing, social media content, and brand storytelling.",
+            "provider": {
+              "@type": "Organization",
+              "name": "Media Mind"
+            }
+          }
+        ]
+      }
+    </script>
+    
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Media Mind",
+        "image": "https://mediamind.io/logo.png",
+        "@id": "https://mediamind.io",
+        "url": "https://mediamind.io",
+        "telephone": "+1-555-000-0000",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Dubai Internet City",
+          "addressLocality": "Dubai",
+          "postalCode": "00000",
+          "addressCountry": "AE"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        ]
+      }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Google Analytics (replace with your tracking ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
   </body>
 </html>
