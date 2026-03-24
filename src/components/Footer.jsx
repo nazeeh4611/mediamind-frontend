@@ -2,6 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleLinkClick = () => {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
   return (
     <footer style={{
       background: 'transparent',
@@ -16,12 +26,14 @@ export default function Footer() {
           marginBottom: '3rem',
         }}>
           <div>
-          <img
-  src="/dn.png"
-  alt="logo"
-  className="h-12 md:h-16 w-auto object-contain"
-/>
-            <p style={{ color: '#e0e0e0', fontSize: '0.9rem', lineHeight: 1.7, maxWidth: 240 }}>
+            <Link to="/" onClick={handleLinkClick} style={{ display: 'inline-block' }}>
+              <img
+                src="/dn.png"
+                alt="logo"
+                style={{ height: 'auto', width: '120px', objectFit: 'contain' }}
+              />
+            </Link>
+            <p style={{ color: '#e0e0e0', fontSize: '0.9rem', lineHeight: 1.7, maxWidth: 240, marginTop: '1rem' }}>
               Comprehensive solutions to accelerate your growth through data-driven digital marketing.
             </p>
           </div>
@@ -29,14 +41,20 @@ export default function Footer() {
           <div>
             <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, marginBottom: '1rem', fontSize: '0.9rem', letterSpacing: '0.05em', textTransform: 'uppercase', color: '#B2278C' }}>Services</h4>
             {[
-              ['Performance Marketing', '/services/performance-marketing'],
-              ['CRM Optimization', '/services/crm-optimization'],
-              ['High-Conversion Design', '/services/design'],
-              ['Content Creation', '/services/content'],
+              ['Social Media Marketing', '/services/social-media-marketing'],
+              ['Website Development', '/services/website-development'],
+              ['SEO & Google Ads', '/services/seo-google-ads'],
+              ['Branding & Graphic Design', '/services/branding-graphic-design'],
+              ['Logo Design', '/services/logo-design'],
+              ['NFC Solutions', '/services/nfc-solutions'],
+              ['Email Marketing', '/services/email-marketing'],
             ].map(([label, to]) => (
               <div key={to} style={{ marginBottom: '0.6rem' }}>
-                <Link to={to} style={{ color: '#e0e0e0', fontSize: '0.9rem', transition: 'color 0.2s' }}
-                  onMouseEnter={e => e.target.style.color = '#ffffff'}
+                <Link 
+                  to={to} 
+                  onClick={handleLinkClick}
+                  style={{ color: '#e0e0e0', fontSize: '0.9rem', transition: 'color 0.2s', textDecoration: 'none' }}
+                  onMouseEnter={e => e.target.style.color = '#B2278C'}
                   onMouseLeave={e => e.target.style.color = '#e0e0e0'}
                 >{label}</Link>
               </div>
@@ -45,10 +63,17 @@ export default function Footer() {
 
           <div>
             <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, marginBottom: '1rem', fontSize: '0.9rem', letterSpacing: '0.05em', textTransform: 'uppercase', color: '#B2278C' }}>Company</h4>
-            {[['About', '/about'], ['Contact', '/contact']].map(([label, to]) => (
+            {[
+              ['About Us', '/about'], 
+              ['Our Work', '/works'],
+              ['Contact', '/contact']
+            ].map(([label, to]) => (
               <div key={to} style={{ marginBottom: '0.6rem' }}>
-                <Link to={to} style={{ color: '#e0e0e0', fontSize: '0.9rem', transition: 'color 0.2s' }}
-                  onMouseEnter={e => e.target.style.color = '#ffffff'}
+                <Link 
+                  to={to} 
+                  onClick={handleLinkClick}
+                  style={{ color: '#e0e0e0', fontSize: '0.9rem', transition: 'color 0.2s', textDecoration: 'none' }}
+                  onMouseEnter={e => e.target.style.color = '#B2278C'}
                   onMouseLeave={e => e.target.style.color = '#e0e0e0'}
                 >{label}</Link>
               </div>
@@ -59,9 +84,27 @@ export default function Footer() {
             <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, marginBottom: '1rem', fontSize: '0.9rem', letterSpacing: '0.05em', textTransform: 'uppercase', color: '#B2278C' }}>Contact</h4>
             <p style={{ color: '#e0e0e0', fontSize: '0.9rem', lineHeight: 1.8 }}>
               hello@mediamind.io<br />
-              +1 (555) 000-0000<br />
+              +971 50 123 4567<br />
               Dubai, UAE
             </p>
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ color: '#e0e0e0', fontSize: '1.2rem', transition: 'color 0.2s' }}
+                onMouseEnter={e => e.target.style.color = '#B2278C'}
+                onMouseLeave={e => e.target.style.color = '#e0e0e0'}
+              >📷</a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: '#e0e0e0', fontSize: '1.2rem', transition: 'color 0.2s' }}
+                onMouseEnter={e => e.target.style.color = '#B2278C'}
+                onMouseLeave={e => e.target.style.color = '#e0e0e0'}
+              >📘</a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: '#e0e0e0', fontSize: '1.2rem', transition: 'color 0.2s' }}
+                onMouseEnter={e => e.target.style.color = '#B2278C'}
+                onMouseLeave={e => e.target.style.color = '#e0e0e0'}
+              >🔗</a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" style={{ color: '#e0e0e0', fontSize: '1.2rem', transition: 'color 0.2s' }}
+                onMouseEnter={e => e.target.style.color = '#B2278C'}
+                onMouseLeave={e => e.target.style.color = '#e0e0e0'}
+              >🐦</a>
+            </div>
           </div>
         </div>
 
@@ -72,11 +115,16 @@ export default function Footer() {
           justifyContent: 'space-between', alignItems: 'center',
         }}>
           <p style={{ color: '#e0e0e0', fontSize: '0.85rem' }}>
-            © 2026 MediaMind. All rights reserved.
+            © 2026 MediaMind Digital. All rights reserved.
           </p>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             {['Privacy Policy', 'Terms of Service'].map(t => (
-              <span key={t} style={{ color: '#e0e0e0', fontSize: '0.85rem', cursor: 'pointer' }}>{t}</span>
+              <span 
+                key={t} 
+                style={{ color: '#e0e0e0', fontSize: '0.85rem', cursor: 'pointer', transition: 'color 0.2s' }}
+                onMouseEnter={e => e.target.style.color = '#B2278C'}
+                onMouseLeave={e => e.target.style.color = '#e0e0e0'}
+              >{t}</span>
             ))}
           </div>
         </div>

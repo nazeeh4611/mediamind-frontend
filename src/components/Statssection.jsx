@@ -14,7 +14,7 @@ const stats = [
 export default function StatsSection() {
   const containerRef = useRef(null);
   const numRefs = useRef([]);
-  const cardsRef = useRef([]);
+const cardsRef = useRef([]);
 
   useEffect(() => {
     numRefs.current.forEach((el, i) => {

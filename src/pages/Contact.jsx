@@ -39,6 +39,13 @@ export default function Contact() {
 
   return (
     <div>
+      <style>{`
+        @media (max-width: 768px) {
+          .contact-grid { grid-template-columns: 1fr !important; }
+          .form-row { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+
       <section style={{
         minHeight: '40vh', display: 'flex', alignItems: 'center',
         paddingTop: '120px', paddingBottom: '2rem', position: 'relative', overflow: 'hidden',
@@ -53,7 +60,7 @@ export default function Contact() {
               <span style={{ color: '#B2278C' }}>business?</span>
             </h1>
             <p className="section-desc" style={{ margin: '0 auto', textAlign: 'center', color: '#e0e0e0' }}>
-              Book a free 30-minute strategy call and we'll show you exactly how we'd approach your growth.
+              Book a free 30-minute growth call and we'll show you exactly how we'd grow your UAE business.
             </p>
           </div>
         </div>
@@ -65,14 +72,14 @@ export default function Contact() {
             display: 'grid',
             gridTemplateColumns: 'minmax(280px, 400px) 1fr',
             gap: '3rem', alignItems: 'start',
-          }}>
+          }} className="contact-grid">
             <div>
               <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.5rem', marginBottom: '2rem', color: '#ffffff' }}>
                 Contact Information
               </h2>
               {[
-                { icon: '📧', label: 'Email', value: 'hello@mediamind.io' },
-                { icon: '📞', label: 'Phone', value: '+1 (555) 000-0000' },
+                { icon: '📧', label: 'Email', value: 'hello@mediaminddigital.com' },
+                { icon: '📞', label: 'Phone', value: '+971 50 123 4567' },
                 { icon: '📍', label: 'Location', value: 'Dubai, UAE' },
                 { icon: '⏰', label: 'Response Time', value: 'Within 24 hours' },
               ].map((c, i) => (
@@ -93,10 +100,24 @@ export default function Contact() {
               ))}
 
               <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.3)', border: '1px solid #B2278C', borderRadius: '14px', backdropFilter: 'blur(10px)' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, marginBottom: '0.5rem', color: '#B2278C' }}>🎁 Free Strategy Call</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, marginBottom: '0.5rem', color: '#B2278C' }}>🎁 Free Growth Call</div>
                 <p style={{ color: '#e0e0e0', fontSize: '0.85rem', lineHeight: 1.7 }}>
-                  Every new inquiry gets a free 30-minute strategy session with one of our senior team members. No sales pressure, just genuine value.
+                  Every new inquiry gets a free 30-minute strategy session. No sales pressure — just genuine advice on how to grow your UAE business online.
                 </p>
+              </div>
+
+              <div style={{ marginTop: '1.5rem', padding: '1.5rem', background: 'rgba(178,39,140,0.06)', border: '1px solid rgba(178,39,140,0.2)', borderRadius: '14px', backdropFilter: 'blur(10px)' }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, marginBottom: '1rem', color: '#ffffff', fontSize: '0.9rem' }}>Trusted by 15+ UAE Brands</div>
+                {[
+                  'AED 500K+ ROI Delivered',
+                  'Social Media, Ads, Web & NFC',
+                  'Dubai-based, worldwide reach',
+                ].map((t, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                    <span style={{ color: '#B2278C', fontSize: '0.75rem' }}>✓</span>
+                    <span style={{ color: '#aaa', fontSize: '0.82rem' }}>{t}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -113,7 +134,7 @@ export default function Contact() {
                     Message sent!
                   </h3>
                   <p style={{ color: '#e0e0e0', lineHeight: 1.7 }}>
-                    Thanks for reaching out. We'll be in touch within 24 hours to schedule your free strategy call.
+                    Thanks for reaching out. We'll be in touch within 24 hours to schedule your free growth call.
                   </p>
                 </div>
               ) : (
@@ -122,7 +143,7 @@ export default function Contact() {
                     Tell us about your project
                   </h3>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }} className="form-row">
                     <div>
                       <label style={labelStyle}>Name *</label>
                       <input required style={inputStyle} placeholder="John Smith" value={form.name}
@@ -154,30 +175,27 @@ export default function Contact() {
                     <div>
                       <label style={labelStyle}>Service Needed</label>
                       <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.service}
-                        onChange={e => setForm(f => ({ ...f, service: e.target.value }))}
-                        onFocus={e => e.target.style.borderColor = '#B2278C'}
-                        onBlur={e => e.target.style.borderColor = '#185EA7'}
-                      >
+                        onChange={e => setForm(f => ({ ...f, service: e.target.value }))}>
                         <option value="">Select service</option>
-                        <option>Performance Marketing</option>
-                        <option>CRM Optimization</option>
-                        <option>High-Conversion Design</option>
-                        <option>Content Creation</option>
-                        <option>Full Growth Package</option>
+                        <option>Social Media Marketing</option>
+                        <option>Website Design & Development</option>
+                        <option>SEO & Google Ads</option>
+                        <option>Branding & Graphic Design</option>
+                        <option>Logo Design</option>
+                        <option>Email Marketing</option>
+                        <option>NFC Digital Business Cards</option>
+                        <option>Full Package</option>
                       </select>
                     </div>
                     <div>
                       <label style={labelStyle}>Monthly Budget</label>
                       <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.budget}
-                        onChange={e => setForm(f => ({ ...f, budget: e.target.value }))}
-                        onFocus={e => e.target.style.borderColor = '#B2278C'}
-                        onBlur={e => e.target.style.borderColor = '#185EA7'}
-                      >
+                        onChange={e => setForm(f => ({ ...f, budget: e.target.value }))}>
                         <option value="">Select budget</option>
-                        <option>$1k – $5k</option>
-                        <option>$5k – $15k</option>
-                        <option>$15k – $50k</option>
-                        <option>$50k+</option>
+                        <option>AED 1k – 5k</option>
+                        <option>AED 5k – 15k</option>
+                        <option>AED 15k – 50k</option>
+                        <option>AED 50k+</option>
                       </select>
                     </div>
                   </div>
@@ -188,25 +206,17 @@ export default function Contact() {
                       placeholder="Tell us about your business, goals, and challenges..."
                       value={form.message}
                       onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                      onFocus={e => e.target.style.borderColor = '#B2278C'}
-                      onBlur={e => e.target.style.borderColor = '#185EA7'}
                     />
                   </div>
 
-                  <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', background: '#B2278C', border: 'none' }}>
-                    Send Message & Book Call →
+                  <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', background: '#B2278C', border: 'none', padding: '1rem' }}>
+                    Send Message & Book Free Call →
                   </button>
                 </form>
               )}
             </div>
           </div>
         </div>
-        <style>{`
-          @media (max-width: 768px) {
-            .contact-grid { grid-template-columns: 1fr !important; }
-            .form-row { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
       </section>
     </div>
   );

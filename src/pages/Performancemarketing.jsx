@@ -1,35 +1,1067 @@
-import React from 'react';
-import ServiceDetailTemplate from '../components/Servicedetailtemplate';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import axios from 'axios';
+import baseurl from '../../base/Base';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const api = axios.create({
+  baseURL: baseurl,
+  timeout: 10000,
+  headers: { 'Content-Type': 'application/json' },
+});
+
+api.interceptors.response.use(
+  res => res.data,
+  err => Promise.reject(new Error(err.response?.data?.message || err.message || 'Request failed'))
+);
+
+const performanceData = {
+  hero: {
+    badge: "PERFORMANCE MARKETING",
+    title: "Turn Your Marketing Budget Into",
+    titleGradient: "Measurable Revenue",
+    description: "Stop wasting money on ads that don't convert. Our data-driven performance marketing strategies deliver real ROI through Meta Ads, Google Ads, and full-funnel campaigns optimized for UAE and GCC markets.",
+    ctaText: "Get Free Growth Audit",
+    ctaLink: "/contact",
+    secondaryText: "View Case Studies",
+    secondaryLink: "/works"
+  },
+  stats: [
+    { number: "AED 500K+", label: "ROI Delivered" },
+    { number: "-35%", label: "Cost Per Lead" },
+    { number: "2.8x", label: "Avg. ROAS" },
+    { number: "15+", label: "UAE Brands" }
+  ],
+  whatIsPerformance: {
+    title: "Performance Marketing That Drives Real Growth",
+    description: "Performance marketing is a data-driven approach where every dirham is accountable. We only succeed when your business grows. Through rigorous testing, optimization, and full-funnel strategies, we maximize your ROI across all digital channels.",
+    points: [
+      "Pay only for measurable results—clicks, leads, or sales",
+      "Data-driven decisions with real-time optimization",
+      "Full-funnel strategies from awareness to conversion",
+      "Multi-channel campaigns across Meta, Google, and more",
+      "Transparent reporting with clear attribution"
+    ]
+  },
+  channels: [
+    {
+      name: "Meta Ads",
+      icon: "📱",
+      color: "#1877F2",
+      description: "Facebook & Instagram campaigns with precise targeting, creative testing, and budget optimization."
+    },
+    {
+      name: "Google Ads",
+      icon: "🔍",
+      color: "#EA4335",
+      description: "Search, Shopping, Display, and YouTube campaigns that capture high-intent traffic."
+    },
+    {
+      name: "TikTok Ads",
+      icon: "🎵",
+      color: "#000000",
+      description: "Reach younger audiences with engaging video content and viral campaign strategies."
+    },
+    {
+      name: "LinkedIn Ads",
+      icon: "💼",
+      color: "#0A66C2",
+      description: "B2B targeting and professional audience engagement for high-value leads."
+    }
+  ],
+  services: [
+    {
+      title: "Meta Ads Management",
+      icon: "🎯",
+      description: "End-to-end Facebook and Instagram campaigns including audience research, creative testing, and budget optimisation for UAE and GCC markets.",
+      features: ["Audience Research", "Creative Testing", "Budget Optimization", "Retargeting Campaigns", "Lookalike Audiences", "Performance Tracking"]
+    },
+    {
+      title: "Google Ads Management",
+      icon: "🔍",
+      description: "Search, Shopping, Display, and YouTube campaigns combined with SEO to dominate both paid and organic rankings.",
+      features: ["Search Campaigns", "Shopping Ads", "Display Network", "YouTube Ads", "Remarketing", "Performance Max"]
+    },
+    {
+      title: "Retargeting Funnels",
+      icon: "🔄",
+      description: "Multi-touch retargeting sequences that bring back lost visitors and move them toward conversion.",
+      features: ["Cart Abandonment", "Site Retargeting", "Email Retargeting", "Cross-Channel Sync", "Dynamic Ads", "Conversion Optimization"]
+    },
+    {
+      title: "Analytics & Attribution",
+      icon: "📊",
+      description: "Full-funnel tracking with cross-channel attribution so you know exactly which campaigns drive revenue.",
+      features: ["Google Analytics", "Conversion Tracking", "UTM Parameters", "ROI Analysis", "Custom Dashboards", "Monthly Reports"]
+    },
+    {
+      title: "Creative Testing",
+      icon: "🧪",
+      description: "Systematic A/B testing of ad creatives, headlines, and CTAs to continuously improve performance.",
+      features: ["A/B Testing", "Creative Strategy", "Ad Copy Testing", "Visual Optimization", "CTA Testing", "Performance Analysis"]
+    },
+    {
+      title: "Conversion Rate Optimisation",
+      icon: "⚡",
+      description: "Landing page and offer optimisation to maximise the conversion rate of your paid traffic.",
+      features: ["Landing Page Design", "A/B Testing", "User Experience", "Form Optimization", "Speed Optimization", "Mobile Responsive"]
+    }
+  ],
+  process: [
+    {
+      step: "01",
+      title: "Account Audit",
+      desc: "We review your existing ad accounts, landing pages, and tracking setup to identify quick wins and structural issues.",
+      icon: "🔍"
+    },
+    {
+      step: "02",
+      title: "Strategy & Setup",
+      desc: "Build campaign structure, audience segments, creative briefs, and conversion tracking from the ground up.",
+      icon: "📋"
+    },
+    {
+      step: "03",
+      title: "Launch & Learn",
+      desc: "Deploy campaigns with controlled budgets while our system collects performance data across all variables.",
+      icon: "🚀"
+    },
+    {
+      step: "04",
+      title: "Optimise & Scale",
+      desc: "Double down on winning combinations, cut losers fast, and scale budgets methodically with performance guardrails.",
+      icon: "📈"
+    }
+  ],
+  results: [
+    {
+      metric: "ROI Delivered",
+      increase: "AED 500K+",
+      timeframe: "For UAE Clients",
+      color: "#B2278C"
+    },
+    {
+      metric: "Cost Per Lead",
+      increase: "-35%",
+      timeframe: "Average Reduction",
+      color: "#185EA7"
+    },
+    {
+      metric: "Return on Ad Spend",
+      increase: "2.8x",
+      timeframe: "Average ROAS",
+      color: "#814B97"
+    },
+    {
+      metric: "UAE Brands",
+      increase: "15+",
+      timeframe: "Trusted Us to Grow",
+      color: "#B2278C"
+    }
+  ],
+  faqs: [
+    {
+      q: "What is performance marketing?",
+      a: "Performance marketing is a results-driven approach where advertisers pay only for measurable outcomes like clicks, leads, or sales. Unlike traditional advertising, every dirham spent is accountable and tied directly to business results."
+    },
+    {
+      q: "How much budget do I need to start?",
+      a: "We work with businesses of all sizes. Typically, we recommend a minimum monthly ad spend of AED 10,000-15,000 to see meaningful results, but we can tailor strategies based on your goals and budget."
+    },
+    {
+      q: "How long until I see results?",
+      a: "Initial results can be seen within the first 2-4 weeks as we test and optimize. Significant, scalable results typically appear after 60-90 days of consistent optimization and budget scaling."
+    },
+    {
+      q: "What platforms do you advertise on?",
+      a: "We specialize in Meta Ads (Facebook & Instagram), Google Ads (Search, Shopping, Display, YouTube), TikTok Ads, LinkedIn Ads, and programmatic display. We recommend platforms based on your target audience and business goals."
+    },
+    {
+      q: "How do you measure success?",
+      a: "We track key metrics including cost per lead, cost per acquisition, return on ad spend, conversion rate, and overall ROI. You'll receive detailed monthly reports with transparent performance data and actionable insights."
+    },
+    {
+      q: "Do you offer creative services?",
+      a: "Yes! We provide full creative services including ad copywriting, graphic design, video production, and landing page creation. We ensure your ads not only target the right audience but also convert them effectively."
+    }
+  ]
+};
+
+function ServiceCard({ service }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        position: 'relative',
+        borderRadius: '28px',
+        overflow: 'hidden',
+        background: 'rgba(0,0,0,0.4)',
+        border: '1px solid rgba(255,255,255,0.08)',
+        padding: '2rem',
+        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+        transform: hovered ? 'translateY(-8px)' : 'translateY(0)',
+        boxShadow: hovered ? '0 20px 40px rgba(0,0,0,0.4)' : 'none',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div
+        style={{
+          width: 60,
+          height: 60,
+          borderRadius: '20px',
+          background: `linear-gradient(135deg, rgba(178,39,140,0.2), transparent)`,
+          border: '1px solid rgba(178,39,140,0.3)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '2rem',
+          marginBottom: '1.5rem',
+        }}
+      >
+        {service.icon}
+      </div>
+      <h3
+        style={{
+          fontFamily: 'Inter, sans-serif',
+          fontSize: '1.5rem',
+          fontWeight: 700,
+          marginBottom: '1rem',
+          color: '#ffffff',
+        }}
+      >
+        {service.title}
+      </h3>
+      <p
+        style={{
+          color: '#888',
+          fontSize: '0.9rem',
+          lineHeight: 1.7,
+          marginBottom: '1.5rem',
+          fontFamily: 'Inter, sans-serif',
+        }}
+      >
+        {service.description}
+      </p>
+      <div style={{ marginTop: 'auto' }}>
+        {service.features.map((feature, idx) => (
+          <div
+            key={idx}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              marginBottom: '0.5rem',
+              color: '#666',
+              fontSize: '0.85rem',
+              fontFamily: 'Inter, sans-serif',
+            }}
+          >
+            <span style={{ color: '#B2278C' }}>✓</span>
+            <span>{feature}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ChannelCard({ channel }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        background: 'rgba(0,0,0,0.3)',
+        border: '1px solid rgba(255,255,255,0.07)',
+        borderRadius: '24px',
+        padding: '1.5rem',
+        textAlign: 'center',
+        transition: 'all 0.3s ease',
+        transform: hovered ? 'translateY(-5px)' : 'translateY(0)',
+        borderColor: hovered ? `rgba(178,39,140,0.5)` : 'rgba(255,255,255,0.07)',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div
+        style={{
+          fontSize: '2.5rem',
+          marginBottom: '0.75rem',
+        }}
+      >
+        {channel.icon}
+      </div>
+      <div
+        style={{
+          color: channel.color,
+          fontSize: '1.2rem',
+          fontWeight: 700,
+          marginBottom: '0.5rem',
+          fontFamily: 'Inter, sans-serif',
+        }}
+      >
+        {channel.name}
+      </div>
+      <p
+        style={{
+          color: '#888',
+          fontSize: '0.85rem',
+          lineHeight: 1.6,
+          fontFamily: 'Inter, sans-serif',
+        }}
+      >
+        {channel.description}
+      </p>
+    </div>
+  );
+}
+
+function ProcessStep({ step, title, desc, icon }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        background: 'rgba(0,0,0,0.4)',
+        border: '1px solid rgba(255,255,255,0.08)',
+        borderRadius: '28px',
+        padding: '2rem',
+        position: 'relative',
+        transition: 'all 0.4s ease',
+        transform: hovered ? 'translateY(-5px)' : 'translateY(0)',
+        borderColor: hovered ? 'rgba(178,39,140,0.5)' : 'rgba(255,255,255,0.08)',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 3,
+          background: `linear-gradient(90deg, transparent, #B2278C, transparent)`,
+          borderRadius: '28px 28px 0 0',
+        }}
+      />
+      <div
+        style={{
+          width: 70,
+          height: 70,
+          borderRadius: '20px',
+          background: 'rgba(178,39,140,0.1)',
+          border: '1px solid rgba(178,39,140,0.3)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '2rem',
+          marginBottom: '1.5rem',
+        }}
+      >
+        {icon}
+      </div>
+      <div
+        style={{
+          fontFamily: 'Inter, sans-serif',
+          fontSize: '0.7rem',
+          fontWeight: 700,
+          color: '#B2278C',
+          marginBottom: '0.5rem',
+          letterSpacing: '0.1em',
+        }}
+      >
+        STEP {step}
+      </div>
+      <h3
+        style={{
+          fontFamily: 'Inter, sans-serif',
+          fontSize: '1.2rem',
+          fontWeight: 700,
+          marginBottom: '0.75rem',
+          color: '#ffffff',
+        }}
+      >
+        {title}
+      </h3>
+      <p style={{ color: '#888', fontSize: '0.85rem', lineHeight: 1.7, fontFamily: 'Inter, sans-serif' }}>{desc}</p>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '-0.5rem',
+          right: '1rem',
+          fontSize: '5rem',
+          fontWeight: 900,
+          color: 'rgba(255,255,255,0.02)',
+          fontFamily: 'Inter, sans-serif',
+          pointerEvents: 'none',
+          lineHeight: 1,
+        }}
+      >
+        {step}
+      </div>
+    </div>
+  );
+}
+
+function ResultCard({ metric, increase, timeframe, color }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        background: 'rgba(0,0,0,0.3)',
+        border: '1px solid rgba(255,255,255,0.07)',
+        borderRadius: '24px',
+        padding: '2rem',
+        textAlign: 'center',
+        transition: 'all 0.4s ease',
+        transform: hovered ? 'translateY(-8px)' : 'translateY(0)',
+        borderColor: hovered ? `rgba(178,39,140,0.5)` : 'rgba(255,255,255,0.07)',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div
+        style={{
+          fontSize: '2.5rem',
+          fontWeight: 800,
+          color: color,
+          fontFamily: 'Inter, sans-serif',
+          marginBottom: '0.5rem',
+        }}
+      >
+        {increase}
+      </div>
+      <div
+        style={{
+          color: '#ffffff',
+          fontSize: '1.1rem',
+          fontWeight: 600,
+          marginBottom: '0.5rem',
+          fontFamily: 'Inter, sans-serif',
+        }}
+      >
+        {metric}
+      </div>
+      <div style={{ color: '#666', fontSize: '0.85rem', fontFamily: 'Inter, sans-serif' }}>{timeframe}</div>
+    </div>
+  );
+}
+
+function FAQItem({ q, a, isOpen, onToggle }) {
+  return (
+    <div
+      style={{
+        background: 'rgba(0,0,0,0.3)',
+        border: '1px solid rgba(255,255,255,0.07)',
+        borderRadius: '20px',
+        marginBottom: '1rem',
+        overflow: 'hidden',
+        transition: 'all 0.3s ease',
+      }}
+    >
+      <button
+        onClick={onToggle}
+        style={{
+          width: '100%',
+          padding: '1.5rem',
+          background: 'transparent',
+          border: 'none',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          cursor: 'pointer',
+          fontFamily: 'Inter, sans-serif',
+          fontSize: '1rem',
+          fontWeight: 600,
+          color: '#ffffff',
+          textAlign: 'left',
+        }}
+      >
+        {q}
+        <span
+          style={{
+            fontSize: '1.5rem',
+            transition: 'transform 0.3s ease',
+            transform: isOpen ? 'rotate(45deg)' : 'rotate(0)',
+            color: '#B2278C',
+          }}
+        >
+          +
+        </span>
+      </button>
+      {isOpen && (
+        <div
+          style={{
+            padding: '0 1.5rem 1.5rem 1.5rem',
+            color: '#888',
+            lineHeight: 1.7,
+            borderTop: '1px solid rgba(255,255,255,0.05)',
+            fontFamily: 'Inter, sans-serif',
+          }}
+        >
+          {a}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function PerformanceMarketing() {
+  const heroRef = useRef(null);
+  const headlineRef = useRef(null);
+  const subRef = useRef(null);
+  const btnsRef = useRef(null);
+  const floatingElementsRef = useRef([]);
+  const [openFAQ, setOpenFAQ] = useState(null);
+
+  useEffect(() => {
+    const heroTl = gsap.timeline({ delay: 0.2 });
+
+    const headline = headlineRef.current;
+    if (headline) {
+      const words = headline.innerText.split(' ');
+      headline.innerHTML = words
+        .map(word => `<span class="word" style="display:inline-block;opacity:0;transform:translateY(80px)">${word}</span>`)
+        .join(' ');
+    }
+
+    heroTl
+      .to('.word', { y: 0, opacity: 1, duration: 1.2, stagger: 0.08, ease: 'power4.out' })
+      .fromTo(subRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, '-=0.7')
+      .fromTo(btnsRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.5');
+
+    floatingElementsRef.current.forEach((el, i) => {
+      if (!el) return;
+      gsap.to(el, {
+        y: i % 2 === 0 ? -40 : 40,
+        x: i % 3 === 0 ? 30 : -30,
+        rotation: i * 20,
+        duration: 4 + i,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+      });
+    });
+
+    gsap.utils.toArray('.reveal-section').forEach(section => {
+      gsap.fromTo(
+        section,
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 85%', toggleActions: 'play none none reverse' },
+        }
+      );
+    });
+
+    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+  }, []);
+
   return (
-    <ServiceDetailTemplate
-      icon="📈"
-      title="Performance Marketing"
-      metric="300%"
-      metricLabel="Average ROI"
-      heroDesc="Meta Ads, Google Ads, and data-driven campaigns that actually convert. We build full-funnel paid media strategies that maximize every marketing dollar through rigorous testing and optimization."
-      accentColor="#B2278C"
-      features={[
-        { icon: '🎯', title: 'Meta Ads Management', desc: 'End-to-end Facebook and Instagram campaigns including audience research, creative testing, and budget optimization.' },
-        { icon: '🔍', title: 'Google Ads', desc: 'Search, Shopping, Display, and YouTube campaigns optimized for maximum conversion at minimum CPA.' },
-        { icon: '🔄', title: 'Retargeting Funnels', desc: 'Multi-touch retargeting sequences that bring back lost visitors and move them toward conversion.' },
-        { icon: '📊', title: 'Analytics & Attribution', desc: 'Full-funnel tracking with cross-channel attribution so you know exactly which campaigns drive revenue.' },
-        { icon: '🧪', title: 'Creative Testing', desc: 'Systematic A/B testing of ad creatives, headlines, and CTAs to continuously improve performance.' },
-        { icon: '⚡', title: 'Conversion Rate Optimization', desc: 'Landing page and offer optimization to maximize the conversion rate of your paid traffic.' },
-      ]}
-      process={[
-        { title: 'Account Audit', desc: 'We review your existing ad accounts, landing pages, and tracking setup to identify quick wins and structural issues.' },
-        { title: 'Strategy & Setup', desc: 'Build campaign structure, audience segments, creative briefs, and conversion tracking from the ground up.' },
-        { title: 'Launch & Learn', desc: 'Deploy campaigns with controlled budgets while our system collects performance data across all variables.' },
-        { title: 'Optimize & Scale', desc: 'Double down on winning combinations, cut losers fast, and scale budgets methodically with performance guardrails.' },
-      ]}
-      results={[
-        { value: '300%', label: 'Avg ROI', sub: 'Across all clients' },
-        { value: '-45%', label: 'Cost Per Lead', sub: 'Average reduction' },
-        { value: '3.2x', label: 'ROAS', sub: 'Average return on ad spend' },
-        { value: '60d', label: 'Break Even', sub: 'Average time to profitability' },
-      ]}
-    />
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+
+        :root {
+          --pink: #B2278C;
+          --blue: #185EA7;
+          --purple: #814B97;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.05); }
+        }
+        
+        @keyframes shine {
+          0% { background-position: -100% 0; }
+          100% { background-position: 200% 0; }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        
+        .glow-text {
+          background: linear-gradient(135deg, #B2278C, #185EA7, #814B97);
+          background-size: 200% 200%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          animation: shine 3s ease infinite;
+        }
+        
+        .hero-badge {
+          animation: pulse 2s ease infinite;
+        }
+        
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+        
+        .channels-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+        }
+        
+        .process-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+        }
+        
+        .results-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+        }
+        
+        @media (max-width: 1024px) {
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .channels-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .process-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .results-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .services-grid {
+            grid-template-columns: 1fr;
+          }
+          .channels-grid {
+            grid-template-columns: 1fr;
+          }
+          .process-grid {
+            grid-template-columns: 1fr;
+          }
+          .results-grid {
+            grid-template-columns: 1fr;
+          }
+          .stats-container {
+            gap: 2rem;
+          }
+        }
+        
+        .stats-container {
+          display: flex;
+          justify-content: center;
+          gap: 4rem;
+          flex-wrap: wrap;
+          margin-top: 3rem;
+        }
+        
+        .stat-item {
+          text-align: center;
+        }
+        
+        .stat-number {
+          font-family: 'Inter', sans-serif;
+          font-size: 2.5rem;
+          font-weight: 800;
+          background: linear-gradient(135deg, #B2278C, #814B97);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          line-height: 1;
+        }
+        
+        .stat-label {
+          color: #888;
+          font-size: 0.85rem;
+          margin-top: 0.5rem;
+          font-family: 'Inter', sans-serif;
+        }
+        
+        .whatis-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+          align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+          .whatis-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+        }
+        
+        body {
+          font-family: 'Inter', sans-serif;
+        }
+      `}</style>
+
+  
+
+      <section
+        ref={heroRef}
+        style={{
+          minHeight: '80vh',
+          position: 'relative',
+          overflow: 'hidden',
+          background: 'transparent',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <div className="container" style={{ position: 'relative', zIndex: 2, paddingTop: '120px', paddingBottom: '80px' }}>
+          <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
+            <div
+              className="hero-badge"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '0.6rem 1.5rem',
+                background: 'rgba(178,39,140,0.12)',
+                border: '1px solid rgba(178,39,140,0.5)',
+                borderRadius: '100px',
+                marginBottom: '2rem',
+                backdropFilter: 'blur(10px)',
+              }}
+            >
+              <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#B2278C', display: 'inline-block', animation: 'pulse 2s infinite' }} />
+              <span style={{ color: '#e0e0e0', fontSize: '0.9rem', fontWeight: 500, fontFamily: 'Inter, sans-serif' }}>
+                {performanceData.hero.badge}
+              </span>
+            </div>
+
+            <h1
+              ref={headlineRef}
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontSize: 'clamp(3rem, 8vw, 5rem)',
+                fontWeight: 800,
+                lineHeight: 1.08,
+                marginBottom: '1.5rem',
+                color: '#ffffff',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              {performanceData.hero.title}{' '}
+              <span className="glow-text">{performanceData.hero.titleGradient}</span>
+            </h1>
+
+            <p
+              ref={subRef}
+              style={{
+                fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
+                color: '#b0b0b0',
+                maxWidth: 700,
+                margin: '0 auto 2rem',
+                lineHeight: 1.7,
+                fontFamily: 'Inter, sans-serif',
+              }}
+            >
+              {performanceData.hero.description}
+            </p>
+
+            <div ref={btnsRef} style={{ display: 'flex', gap: '1.2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link
+                to={performanceData.hero.ctaLink}
+                style={{
+                  padding: '1rem 2.5rem',
+                  background: 'linear-gradient(135deg, #B2278C, #8B1A6B)',
+                  color: '#fff',
+                  borderRadius: '50px',
+                  fontWeight: 700,
+                  textDecoration: 'none',
+                  fontSize: '1rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  transition: 'all 0.3s',
+                  boxShadow: '0 0 40px rgba(178,39,140,0.4)',
+                  fontFamily: 'Inter, sans-serif',
+                }}
+              >
+                {performanceData.hero.ctaText} <span style={{ fontSize: '1.2rem' }}>→</span>
+              </Link>
+              <Link
+                to={performanceData.hero.secondaryLink}
+                style={{
+                  padding: '1rem 2.5rem',
+                  background: 'rgba(255,255,255,0.05)',
+                  color: '#fff',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '50px',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  fontSize: '1rem',
+                  backdropFilter: 'blur(10px)',
+                  transition: 'all 0.3s',
+                  fontFamily: 'Inter, sans-serif',
+                }}
+              >
+                {performanceData.hero.secondaryText}
+              </Link>
+            </div>
+
+            <div className="stats-container">
+              {performanceData.stats.map((stat, i) => (
+                <div key={i} className="stat-item">
+                  <div className="stat-number">{stat.number}</div>
+                  <div className="stat-label">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '6rem 0', background: 'transparent' }} className="reveal-section">
+        <div className="container">
+          <div className="whatis-grid">
+            <div>
+              <p style={{ color: '#B2278C', fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
+                WHY PERFORMANCE MARKETING
+              </p>
+              <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 2.8rem)', fontWeight: 700, color: '#ffffff', marginBottom: '1.5rem' }}>
+                {performanceData.whatIsPerformance.title}
+              </h2>
+              <p style={{ color: '#888', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem', fontFamily: 'Inter, sans-serif' }}>
+                {performanceData.whatIsPerformance.description}
+              </p>
+              <div>
+                {performanceData.whatIsPerformance.points.map((point, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+                    <span style={{ color: '#B2278C', fontSize: '1.2rem' }}>✓</span>
+                    <span style={{ color: '#aaa', fontSize: '0.95rem', fontFamily: 'Inter, sans-serif' }}>{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div
+              style={{
+                borderRadius: '28px',
+                padding: '2rem',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+               <img
+                src='/perfo.avif'
+                alt="NFC Digital Business Card"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  transform: 'scale(0.9)',
+                  transition: 'transform 0.5s ease',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(0.9)')}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '6rem 0', background: 'transparent' }} className="reveal-section">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <p style={{ color: '#B2278C', fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
+              ADVERTISING CHANNELS
+            </p>
+            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', marginBottom: '1rem' }}>
+              Multi-Channel <span style={{ color: '#B2278C' }}>Approach</span>
+            </h2>
+            <p style={{ color: '#888', maxWidth: 600, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+              Reach your audience wherever they are
+            </p>
+          </div>
+
+          <div className="channels-grid">
+            {performanceData.channels.map((channel, i) => (
+              <ChannelCard key={i} channel={channel} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '6rem 0', background: 'transparent' }} className="reveal-section">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <p style={{ color: '#B2278C', fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
+              OUR SERVICES
+            </p>
+            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', marginBottom: '1rem' }}>
+              Performance <span style={{ color: '#B2278C' }}>Marketing Services</span>
+            </h2>
+            <p style={{ color: '#888', maxWidth: 600, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+              Data-driven strategies that deliver measurable results
+            </p>
+          </div>
+
+          <div className="services-grid">
+            {performanceData.services.map((service, i) => (
+              <ServiceCard key={i} service={service} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '6rem 0', background: 'transparent' }} className="reveal-section">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <p style={{ color: '#B2278C', fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
+              OUR PROCESS
+            </p>
+            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', marginBottom: '1rem' }}>
+              How We <span style={{ color: '#B2278C' }}>Deliver Results</span>
+            </h2>
+            <p style={{ color: '#888', maxWidth: 600, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+              A systematic approach to achieving your goals
+            </p>
+          </div>
+
+          <div className="process-grid">
+            {performanceData.process.map((step, i) => (
+              <ProcessStep key={i} {...step} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '6rem 0', background: 'transparent' }} className="reveal-section">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <p style={{ color: '#B2278C', fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
+              PROVEN RESULTS
+            </p>
+            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', marginBottom: '1rem' }}>
+              Real Metrics. <span style={{ color: '#B2278C' }}>Real ROI.</span>
+            </h2>
+            <p style={{ color: '#888', maxWidth: 600, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+              See the impact of our performance marketing strategies
+            </p>
+          </div>
+
+          <div className="results-grid">
+            {performanceData.results.map((result, i) => (
+              <ResultCard key={i} {...result} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '6rem 0', background: 'transparent' }} className="reveal-section">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <p style={{ color: '#B2278C', fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
+              FAQ
+            </p>
+            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: '#ffffff', marginBottom: '1rem' }}>
+              Frequently Asked <span style={{ color: '#B2278C' }}>Questions</span>
+            </h2>
+            <p style={{ color: '#888', maxWidth: 600, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+              Everything you need to know about performance marketing
+            </p>
+          </div>
+
+          <div style={{ maxWidth: 800, margin: '0 auto' }}>
+            {performanceData.faqs.map((faq, i) => (
+              <FAQItem
+                key={i}
+                q={faq.q}
+                a={faq.a}
+                isOpen={openFAQ === i}
+                onToggle={() => setOpenFAQ(openFAQ === i ? null : i)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '5rem 0', background: 'transparent' }}>
+        <div className="container">
+          <div
+            style={{
+              background: 'linear-gradient(135deg, rgba(178,39,140,0.15), rgba(24,94,167,0.1))',
+              borderRadius: '40px',
+              padding: '4rem',
+              textAlign: 'center',
+              border: '1px solid rgba(178,39,140,0.3)',
+              backdropFilter: 'blur(10px)',
+            }}
+          >
+            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 700, color: '#ffffff', marginBottom: '1rem' }}>
+              Ready to Scale Your Business?
+            </h2>
+            <p style={{ color: '#888', maxWidth: 600, margin: '0 auto 2rem', fontSize: '1rem', fontFamily: 'Inter, sans-serif' }}>
+              Let's build a data-driven performance marketing strategy that delivers measurable ROI.
+            </p>
+            <Link
+              to="/contact"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '1rem 2.5rem',
+                background: 'linear-gradient(135deg, #B2278C, #8B1A6B)',
+                color: '#fff',
+                borderRadius: '50px',
+                textDecoration: 'none',
+                fontWeight: 700,
+                transition: 'all 0.3s',
+                boxShadow: '0 0 30px rgba(178,39,140,0.3)',
+                fontFamily: 'Inter, sans-serif',
+              }}
+            >
+              Get Free Growth Audit <span style={{ fontSize: '1.2rem' }}>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <div
+        style={{
+          position: 'fixed',
+          right: '1.5rem',
+          bottom: '1.5rem',
+          zIndex: 100,
+          pointerEvents: 'none',
+        }}
+      >
+        <div
+          style={{
+            background: 'rgba(0,0,0,0.8)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(178,39,140,0.5)',
+            borderRadius: '50px',
+            padding: '0.75rem 1.5rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+            fontSize: '0.85rem',
+            boxShadow: '0 8px 30px rgba(178,39,140,0.3)',
+          }}
+        >
+          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#B2278C', animation: 'pulse 2s infinite', display: 'inline-block' }} />
+          <span style={{ color: '#ffffff', fontWeight: 500, fontFamily: 'Inter, sans-serif' }}>Based in Dubai · Available Worldwide</span>
+        </div>
+      </div>
+    </>
   );
 }
