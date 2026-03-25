@@ -884,10 +884,10 @@ export default function Home() {
                 backdropFilter: 'blur(10px)',
               }}
             >
-              <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#B2278C', display: 'inline-block', animation: 'pulse 2s infinite' }} />
+              {/* <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#B2278C', display: 'inline-block', animation: 'pulse 2s infinite' }} />
               <span className="hero-badge-text" style={{ color: '#e0e0e0', fontSize: '0.9rem', fontWeight: 500 }}>
                 ✨ Trusted by 15+ UAE Brands ✨
-              </span>
+              </span> */}
             </div>
 
             <h1
@@ -1496,9 +1496,9 @@ export default function Home() {
             boxShadow: '0 8px 30px rgba(178,39,140,0.3)',
           }}
         >
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#B2278C', animation: 'pulse 2s infinite', display: 'inline-block' }} />
+          {/* <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#B2278C', animation: 'pulse 2s infinite', display: 'inline-block' }} />
           <span style={{ color: '#ffffff', fontWeight: 500 }}>Based in Dubai · Available Worldwide</span>
-        </div>
+        </div> */}
       </div>
     </>
   );
