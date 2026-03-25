@@ -131,7 +131,7 @@ const allServices = [
     title: 'Social Media Marketing',
     bgImage: '/social.avif',
     color: '#185EA7',
-    link: '/services/social-media'
+    link: '/services/social-media-marketing'
   },
   {
     title: ' SEO & Google Ads',
@@ -143,13 +143,13 @@ const allServices = [
     title: 'Branding & Graphic Design',
     bgImage: '/brand.avif',
     color: '#B2278C',
-    link: '/services/photography'
+    link: '/services/branding-graphic-design'
   },
   {
     title: 'Logo Designing',
     bgImage: '/logo.avif',
     color: '#185EA7',
-    link: '/services/'
+    link: '/services/logo-design'
   },
 ];
 
