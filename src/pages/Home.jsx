@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -151,7 +151,6 @@ const allServices = [
     color: '#185EA7',
     link: '/services/'
   },
-  
 ];
 
 function ServiceCard({ service }) {
@@ -466,7 +465,29 @@ export default function Home() {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
+  const fetchRecentWorks = useCallback(async () => {
+    try {
+      const data = await api.get('/works', { params: { limit: 6 } });
+      const worksList = Array.isArray(data?.works) ? data.works : Array.isArray(data) ? data : [];
+      const safeWorks = worksList.map(item => ({
+        ...item,
+        tags: Array.isArray(item.tags) ? item.tags : [],
+        image: item.featuredImage?.url || item.image || null,
+        _id: item._id || item.id,
+        color: item.color || '#B2278C'
+      }));
+      setRecentWorks(safeWorks.slice(0, 6));
+    } catch (err) {
+      console.error('Failed to fetch works:', err);
+      setRecentWorks([]);
+    } finally {
+      setLoadingWorks(false);
+    }
+  }, []);
+
   useEffect(() => {
+    fetchRecentWorks();
+
     const heroTl = gsap.timeline({ delay: 0.2 });
 
     const headline = headlineRef.current;
@@ -548,31 +569,7 @@ export default function Home() {
     });
 
     return () => ScrollTrigger.getAll().forEach(t => t.kill());
-  }, []);
-
-  useEffect(() => {
-    const fetchRecentWorks = async () => {
-      try {
-        const data = await api.get('/works', { params: { limit: 6 } });
-        const worksList = Array.isArray(data?.works) ? data.works : Array.isArray(data) ? data : [];
-        const safeWorks = worksList.map(item => ({
-          ...item,
-          tags: Array.isArray(item.tags) ? item.tags : [],
-          image: item.featuredImage?.url || item.image || null,
-          _id: item._id || item.id,
-          color: item.color || '#B2278C'
-        }));
-        setRecentWorks(safeWorks.slice(0, 6));
-      } catch (err) {
-        console.error('Failed to fetch works:', err);
-        setRecentWorks([]);
-      } finally {
-        setLoadingWorks(false);
-      }
-    };
-  
-    fetchRecentWorks();
-  }, []);
+  }, [fetchRecentWorks]);
 
   const handleMouseDown = (e) => {
     if (!sliderRef.current) return;
@@ -613,6 +610,12 @@ export default function Home() {
         @keyframes shine {
           0% { background-position: -100% 0; }
           100% { background-position: 200% 0; }
+        }
+        
+        @keyframes wshimmer {
+          0% { opacity: 0.5; }
+          50% { opacity: 1; }
+          100% { opacity: 0.5; }
         }
         
         .work-card {
@@ -773,6 +776,13 @@ export default function Home() {
           margin-top: 0.5rem;
         }
         
+        .container {
+          width: 100%;
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 0 2rem;
+        }
+        
         @media (max-width: 1200px) {
           .services-grid-desktop {
             grid-template-columns: repeat(3, minmax(300px, 379px));
@@ -782,6 +792,9 @@ export default function Home() {
             width: 100%;
             max-width: 379px;
             height: 466px;
+          }
+          .container {
+            padding: 0 1.5rem;
           }
         }
         
@@ -817,6 +830,12 @@ export default function Home() {
           .service-icon {
             font-size: 3rem;
           }
+          .container {
+            padding: 0 1rem;
+          }
+          section {
+            padding: 4rem 0 !important;
+          }
         }
         
         @media (max-width: 480px) {
@@ -827,6 +846,12 @@ export default function Home() {
           .service-card {
             width: 260px;
             height: 340px;
+          }
+          .container {
+            padding: 0 0.75rem;
+          }
+          section {
+            padding: 3rem 0 !important;
           }
         }
       `}</style>
