@@ -1497,8 +1497,8 @@ export default function Home() {
           }}
         >
           {/* <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#B2278C', animation: 'pulse 2s infinite', display: 'inline-block' }} />
-          <span style={{ color: '#ffffff', fontWeight: 500 }}>Based in Dubai · Available Worldwide</span>
-        </div> */}
+          <span style={{ color: '#ffffff', fontWeight: 500 }}>Based in Dubai · Available Worldwide</span> */}
+        </div>
       </div>
     </>
   );
