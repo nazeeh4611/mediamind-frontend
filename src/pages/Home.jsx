@@ -970,7 +970,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="stats-container">
+            {/* <div className="stats-container">
               <div className="stat-item">
                 <div className="stat-number">700+</div>
                 <div className="stat-label">Satisfied Customers</div>
@@ -983,7 +983,7 @@ export default function Home() {
                 <div className="stat-number">95%</div>
                 <div className="stat-label">Client Satisfaction</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
