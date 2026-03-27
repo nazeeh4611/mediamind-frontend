@@ -54,7 +54,7 @@ export function BentoServicesSection({ onEnterBtn, onLeaveBtn }) {
               borderRadius: 28,
               overflow: 'hidden',
               opacity: 0,
-              minHeight: 420,
+              minHeight: 490,
               position: 'relative',
               cursor: 'pointer',
               border: `1px solid ${INK10}`,
@@ -68,8 +68,9 @@ export function BentoServicesSection({ onEnterBtn, onLeaveBtn }) {
               paddingBottom: '140px',
               overflow: 'hidden',
             }}>
-              <img
-                src="/seo.avif"
+            
+               <img
+                src="/webman.avif"
                 alt="Google Ads"
                 style={{
                   width: '75%',
@@ -86,12 +87,7 @@ export function BentoServicesSection({ onEnterBtn, onLeaveBtn }) {
               padding: '1.75rem 2rem',
               background: 'linear-gradient(to top, rgba(253,232,216,0.98) 60%, transparent)',
             }}>
-              <div style={{
-                width: 44, height: 44, borderRadius: 12, background: INK,
-                display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.85rem',
-              }}>
-                <span style={{ color: WHITE, fontSize: '1.1rem', fontWeight: 900 }}>A</span>
-              </div>
+             
               <h3 style={{
                 fontFamily: "'Inter', sans-serif", fontWeight: 800,
                 fontSize: '1.3rem', color: INK, lineHeight: 1.25, marginBottom: '0.5rem',
@@ -105,6 +101,9 @@ export function BentoServicesSection({ onEnterBtn, onLeaveBtn }) {
               </p>
             </div>
           </motion.div>
+
+
+          
 
           {/* Add remaining bento cards similarly */}
           <motion.div
@@ -124,6 +123,43 @@ export function BentoServicesSection({ onEnterBtn, onLeaveBtn }) {
               flexDirection: 'column',
               justifyContent: 'flex-end',
             }}>
+
+<div style={{
+              position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+              display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+              paddingBottom: '140px',
+              overflow: 'hidden',
+            }}>
+              <img
+                src="/nfcmain copy.avif"
+                alt="Google Ads"
+                style={{
+                  width: '75%',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  objectPosition: 'bottom',
+                  filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))',
+                }}
+                loading="lazy"
+              />
+            </div>
+            <div style={{
+              position: 'relative', zIndex: 2,
+              padding: '1.75rem 2rem',
+            }}>
+             
+              <h3 style={{
+                fontFamily: "'Inter', sans-serif", fontWeight: 800,
+                fontSize: '1.3rem', color: INK, lineHeight: 1.25, marginBottom: '0.5rem',
+              }}>
+                Generate high-quality leads and achieve your revenue targets.
+              </h3>
+              <p style={{
+                fontFamily: "'Inter', sans-serif", fontSize: '0.82rem', color: INK60, lineHeight: 1.65,
+              }}>
+                Our innovative approach is designed to scale your business by 8–10x.
+              </p>
+            </div>
             {/* Content */}
           </motion.div>
 
@@ -133,3 +169,16 @@ export function BentoServicesSection({ onEnterBtn, onLeaveBtn }) {
     </section>
   );
 }
+
+<img
+src="/webman.avif"
+alt="Google Ads"
+style={{
+  width: '75%',
+  height: 'auto',
+  objectFit: 'contain',
+  objectPosition: 'bottom',
+  filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.15))',
+}}
+loading="lazy"
+/>

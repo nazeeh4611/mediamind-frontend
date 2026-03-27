@@ -62,6 +62,51 @@ const NfcIcon = () => (
   </IconBadge>
 );
 
+const LogoDesignIcon = () => (
+    <IconBadge>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        {/* Pencil */}
+        <path
+          d="M4 16L14.5 5.5C15.3 4.7 16.7 4.7 17.5 5.5C18.3 6.3 18.3 7.7 17.5 8.5L7 19L4 20L5 17Z"
+          stroke="#fff"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+  
+        {/* Logo circle */}
+        <circle
+          cx="16"
+          cy="16"
+          r="3"
+          stroke="#fff"
+          strokeWidth="2"
+        />
+      </svg>
+    </IconBadge>
+  );
+const MailIcon = () => (
+    <IconBadge>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <rect
+          x="3"
+          y="5"
+          width="18"
+          height="14"
+          rx="2"
+          stroke="#fff"
+          strokeWidth="2"
+        />
+        <path
+          d="M3 7l9 6 9-6"
+          stroke="#fff"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </IconBadge>
+  );
 const SeoIcon = () => (
   <IconBadge>
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -786,7 +831,7 @@ export function ServicesSection() {
                 }}
               >
                 <img
-                  src="/digital-marketing-services.jpg"
+                  src="/digihome.avif"
                   alt="Digital Marketing Services"
                   style={{
                     width: "100%",
@@ -827,139 +872,114 @@ export function ServicesSection() {
           </div>
 
           <div
-            className="srv-row4"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "32px",
-              marginBottom: "32px",
-            }}
-          >
-            <div
-              className="srv-card"
-              style={{
-                background: "#f5ece0",
-                borderRadius: 40,
-                padding: "2rem",
-                minHeight: 280,
-                display: "flex",
-                flexDirection: "column",
-                boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
-                position: "relative",
-              }}
-            >
-              <div
-                style={{
-                  position: "relative",
-                  height: "160px",
-                  marginBottom: "1rem",
-                  borderRadius: "24px",
-                  overflow: "hidden",
-                  background: "rgba(0,0,0,0.05)",
-                }}
-              >
-                <img
-                  src="/public-relations.jpg"
-                  alt="Public Relations"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
-                />
-              </div>
-              <MegaIcon />
-              <h3
-                style={{
-                  fontFamily: "'Bricolage Grotesque', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "1.2rem",
-                  color: "#c84b1e",
-                  lineHeight: 1.3,
-                  marginBottom: "0.5rem",
-                  marginTop: "0.5rem",
-                }}
-              >
-                Public Relation Solutions
-              </h3>
-              <div style={{ marginTop: "auto" }}>
-                <div
-                  style={{
-                    display: "inline-flex",
-                    background: "#fff",
-                    borderRadius: 10,
-                    padding: "6px 12px",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "'Bricolage Grotesque', sans-serif",
-                      fontWeight: 900,
-                      fontSize: "0.75rem",
-                      color: "#c84b1e",
-                    }}
-                  >
-                    PR Marketing
-                  </span>
-                </div>
-              </div>
-            </div>
+  className="srv-row4"
+  style={{
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "24px",
+    marginBottom: "24px",
+  }}
+>
+  {/* Card 1 */}
+  <div
+    className="srv-card"
+    style={{
+      background: "#f5ece0",
+      borderRadius: 32,
+      padding: "1.5rem",
+      minHeight: 220,
+      display: "flex",
+      flexDirection: "column",
+      boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+    }}
+  >
+    <div
+      style={{
+        height: "250px",
+        marginBottom: "12px",
+        borderRadius: "18px",
+        overflow: "hidden",
+        background: "rgba(0,0,0,0.05)",
+      }}
+    >
+   <img
+  src="/mailhome.avif"
+  alt="Public Relations"
+  style={{
+    width: "100%",
+    height: "100%",
+    objectFit: "contain",   // FIX
+    display: "block",
+  }}
+/>
+    </div>
 
-            <div
-              className="srv-card"
-              style={{
-                background: "#b6e8f2",
-                borderRadius: 40,
-                padding: "2rem",
-                minHeight: 280,
-                display: "flex",
-                flexDirection: "column",
-                boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
-                position: "relative",
-              }}
-            >
-              <div
-                style={{
-                  position: "relative",
-                  height: "160px",
-                  marginBottom: "1rem",
-                  borderRadius: "24px",
-                  overflow: "hidden",
-                  background: "rgba(0,0,0,0.05)",
-                }}
-              >
-                <img
-                  src="/whatsapp-marketing.jpg"
-                  alt="WhatsApp Marketing"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
-                />
-              </div>
-              <WAIcon />
-              <h3
-                style={{
-                  fontFamily: "'Bricolage Grotesque', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "1.2rem",
-                  color: "#0d0d0d",
-                  lineHeight: 1.3,
-                  marginTop: "0.5rem",
-                }}
-              >
-                Simplify your WhatsApp Game.
-              </h3>
-            </div>
-          </div>
+    <MailIcon />
+
+    <h3
+      style={{
+        fontFamily: "'Bricolage Grotesque', sans-serif",
+        fontWeight: 700,
+        fontSize: "1.1rem",
+        color: "#c84b1e",
+        marginTop: "6px",
+        marginBottom: "6px",
+      }}
+    >
+Reach inbox. Drive results.    </h3>
+
+
+  </div>
+
+  {/* Card 2 */}
+  <div
+    className="srv-card"
+    style={{
+      background: "#b6e8f2",
+      borderRadius: 32,
+      padding: "1.5rem",
+      minHeight: 220,
+      display: "flex",
+      flexDirection: "column",
+      boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+    }}
+  >
+    <div
+       style={{
+        height: "250px",
+        marginBottom: "12px",
+        borderRadius: "18px",
+        overflow: "hidden",
+        background: "rgba(196, 219, 231)",
+      }}
+    >
+      <img
+        src="/logohome.avif"
+        alt="Logo Designing"
+        style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",  
+            objectPosition: "left",   // <-- ADD THIS            // FIX
+            display: "block",
+        }}
+      />
+    </div>
+
+    <LogoDesignIcon/>
+
+    <h3
+      style={{
+        fontFamily: "'Bricolage Grotesque', sans-serif",
+        fontWeight: 700,
+        fontSize: "1.1rem",
+        color: "#0d0d0d",
+        marginTop: "6px",
+      }}
+    >
+Design a logo that speaks your brand    </h3>
+  </div>
+</div>
 
           <div
             style={{
