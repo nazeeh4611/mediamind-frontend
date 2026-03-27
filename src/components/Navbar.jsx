@@ -34,29 +34,28 @@ export default function Navbar() {
     <nav ref={navRef} style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
       padding: '1rem 0',
-      background: scrolled ? 'rgba(0,0,0,0.85)' : 'transparent',
-      backdropFilter: scrolled ? 'blur(20px)' : 'none',
-      borderBottom: scrolled ? '1px solid rgba(178,39,140,0.25)' : 'none',
+      background: '#ffffff',
+      boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.08)' : 'none',
       transition: 'all 0.4s ease',
     }}>
-      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
         <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-          <img src="/dn.png" alt="logo" className="h-12 md:h-16 w-auto object-contain" />
+          <img src="/dn.png" alt="logo" style={{ height: '68px', width: 'auto', objectFit: 'contain' }} />
         </Link>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }} className="desktop-nav">
           {links.map(l => (
             <Link key={l.to} to={l.to} style={{
-              fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.9rem',
-              color: location.pathname === l.to ? '#B2278C' : '#ffffff',
-              opacity: location.pathname === l.to ? 1 : 0.7,
+              fontFamily: 'var(--font-display, Inter)', fontWeight: 600, fontSize: '0.9rem',
+              color: location.pathname === l.to ? '#B2278C' : '#333333',
+              opacity: location.pathname === l.to ? 1 : 0.8,
               transition: 'all 0.2s', letterSpacing: '0.01em', textDecoration: 'none',
               position: 'relative',
             }}
             onMouseEnter={e => { e.currentTarget.style.color = '#B2278C'; e.currentTarget.style.opacity = '1'; }}
             onMouseLeave={e => {
-              e.currentTarget.style.color = location.pathname === l.to ? '#B2278C' : '#ffffff';
-              e.currentTarget.style.opacity = location.pathname === l.to ? '1' : '0.7';
+              e.currentTarget.style.color = location.pathname === l.to ? '#B2278C' : '#333333';
+              e.currentTarget.style.opacity = location.pathname === l.to ? '1' : '0.8';
             }}
             >
               {l.label}
@@ -71,7 +70,7 @@ export default function Navbar() {
           <Link to="/contact" style={{
             padding: '0.6rem 1.5rem', fontSize: '0.85rem',
             background: '#B2278C', color: '#fff', borderRadius: '50px',
-            fontFamily: 'var(--font-display)', fontWeight: 700,
+            fontFamily: 'var(--font-display, Inter)', fontWeight: 700,
             textDecoration: 'none', transition: 'all 0.25s',
             boxShadow: '0 0 20px rgba(178,39,140,0.25)',
           }}
@@ -93,7 +92,8 @@ export default function Navbar() {
           {[0, 1, 2].map(i => (
             <span key={i} style={{
               display: 'block', width: 24, height: 2,
-              background: '#ffffff', borderRadius: 2,
+              background: '#333333',
+              borderRadius: 2,
               transition: 'all 0.3s ease',
               transform: menuOpen
                 ? i === 0 ? 'rotate(45deg) translate(5px,5px)'
@@ -108,17 +108,17 @@ export default function Navbar() {
       {menuOpen && (
         <div style={{
           position: 'absolute', top: '100%', left: 0, right: 0,
-          background: 'rgba(5,5,10,0.97)', backdropFilter: 'blur(20px)',
+          background: '#ffffff',
           padding: '1.5rem 1.5rem 2rem',
           display: 'flex', flexDirection: 'column', gap: '0.25rem',
-          borderBottom: '1px solid rgba(178,39,140,0.3)',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
         }}>
           {links.map(l => (
             <Link key={l.to} to={l.to} style={{
-              fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '1.1rem',
-              color: location.pathname === l.to ? '#B2278C' : '#ffffff',
+              fontFamily: 'var(--font-display, Inter)', fontWeight: 600, fontSize: '1.1rem',
+              color: location.pathname === l.to ? '#B2278C' : '#333333',
               padding: '0.85rem 0',
-              borderBottom: '1px solid rgba(255,255,255,0.06)',
+              borderBottom: '1px solid rgba(0,0,0,0.06)',
               textDecoration: 'none',
             }}>
               {l.label}
@@ -127,7 +127,7 @@ export default function Navbar() {
           <Link to="/contact" style={{
             textAlign: 'center', marginTop: '1rem',
             padding: '0.85rem', background: '#B2278C', color: '#fff',
-            borderRadius: '12px', fontFamily: 'var(--font-display)',
+            borderRadius: '12px', fontFamily: 'var(--font-display, Inter)',
             fontWeight: 700, textDecoration: 'none', fontSize: '0.95rem',
           }}>
             Get Started
