@@ -106,10 +106,9 @@ export default function Home() {
       <BentoServicesSection onEnterBtn={enterBtn} onLeaveBtn={leaveBtn} />
       <ServicesSection/>
       <ServicesScrollSection onEnterBtn={enterBtn} onLeaveBtn={leaveBtn} />
-      <ServicesGrid />
       <TestimonialsSection />
-      <RecentWorksSection works={recentWorks} loading={loadingWorks} />
-      <BlogSection />
+      {/* <RecentWorksSection works={recentWorks} loading={loadingWorks} /> */}
+      {/* <BlogSection /> */}
       <ContactSection />
     </div>
   );

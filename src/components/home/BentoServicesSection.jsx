@@ -92,12 +92,12 @@ export function BentoServicesSection({ onEnterBtn, onLeaveBtn }) {
                 fontFamily: "'Inter', sans-serif", fontWeight: 800,
                 fontSize: '1.3rem', color: INK, lineHeight: 1.25, marginBottom: '0.5rem',
               }}>
-                Generate high-quality leads and achieve your revenue targets.
+              We build websites that grow your business.
               </h3>
               <p style={{
                 fontFamily: "'Inter', sans-serif", fontSize: '0.82rem', color: INK60, lineHeight: 1.65,
               }}>
-                Our innovative approach is designed to scale your business by 8–10x.
+              Fast, scalable, and designed for results.
               </p>
             </div>
           </motion.div>
@@ -152,13 +152,11 @@ export function BentoServicesSection({ onEnterBtn, onLeaveBtn }) {
                 fontFamily: "'Inter', sans-serif", fontWeight: 800,
                 fontSize: '1.3rem', color: INK, lineHeight: 1.25, marginBottom: '0.5rem',
               }}>
-                Generate high-quality leads and achieve your revenue targets.
-              </h3>
+Streamline customer engagement with smart NFC solutions.              </h3>
               <p style={{
                 fontFamily: "'Inter', sans-serif", fontSize: '0.82rem', color: INK60, lineHeight: 1.65,
               }}>
-                Our innovative approach is designed to scale your business by 8–10x.
-              </p>
+Designed to improve connections, generate leads, and grow your business.              </p>
             </div>
             {/* Content */}
           </motion.div>

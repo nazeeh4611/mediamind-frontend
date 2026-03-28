@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import { INK, INK60, INK10, OFF_WHITE, WHITE, ORANGE } from '../../utils/constants';
+import { INK, INK60,INK30, INK10, OFF_WHITE, WHITE, ORANGE } from '../../utils/constants';
 
 export function WorkCard({ work, i }) {
   const [err, setErr] = useState(false);
