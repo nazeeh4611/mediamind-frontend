@@ -1,342 +1,716 @@
-import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUpRight } from 'lucide-react';
-import {MagneticBtn} from '../components/home/MagneticBtn';
-import { 
-  WHITE, INK, INK60, INK30, INK20, INK10, 
-  OFF_WHITE, ORANGE, PURPLE, GRAD_HERO 
-} from '../utils/constants';
+import { ArrowUpRight, Users, Award, Globe, Zap, Heart, Target, Sparkles } from 'lucide-react';
+import { MagneticBtn } from '../components/home/MagneticBtn';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const team = [
-  { name: 'Ahmed Al Mansoori', role: 'Founder & Growth Strategist', avatar: 'AA', color: ORANGE, desc: '10+ years in digital marketing, helping UAE businesses scale online.' },
-  { name: 'Sarah Khalid', role: 'Head of Performance Marketing', avatar: 'SK', color: '#3b82f6', desc: 'Certified Google Ads and Meta specialist with 8 years of experience.' },
-  { name: 'Omar Hassan', role: 'Creative Director', avatar: 'OH', color: '#8b5cf6', desc: 'Award-winning designer with a passion for brand storytelling.' },
-  { name: 'Leila Mahmoud', role: 'Client Success Manager', avatar: 'LM', color: '#ec4899', desc: 'Dedicated to ensuring every client achieves their business goals.' },
+const PINK = '#B2278C';
+const PINK_LIGHT = 'rgba(178, 39, 140, 0.08)';
+const PINK_MID = 'rgba(178, 39, 140, 0.18)';
+const WHITE = '#FFFFFF';
+const INK = '#111111';
+const INK60 = 'rgba(17, 17, 17, 0.6)';
+const INK30 = 'rgba(17, 17, 17, 0.3)';
+const INK10 = 'rgba(17, 17, 17, 0.1)';
+const OFF_WHITE = '#F9F9F9';
+
+const teamMembers = [
+  {
+    name: 'Alex Morgan',
+    role: 'CEO & Founder',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80',
+    bio: 'Visionary leader with 15+ years in tech innovation'
+  },
+  {
+    name: 'Sarah Chen',
+    role: 'Creative Director',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+    bio: 'Award-winning designer specializing in brand experiences'
+  },
+  {
+    name: 'Marcus Rodriguez',
+    role: 'Tech Lead',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
+    bio: 'Full-stack expert with passion for emerging tech'
+  },
+  {
+    name: 'Elena Kowalski',
+    role: 'Head of Strategy',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80',
+    bio: 'Strategic thinker driving digital transformation'
+  }
 ];
 
 const values = [
-  { icon: '🎯', title: 'Results First', desc: 'Every decision we make is tied to measurable outcomes. We don\'t do vanity metrics.' },
-  { icon: '🔬', title: 'Data-Driven', desc: 'Intuition informed by data. We test everything and let the numbers guide strategy.' },
-  { icon: '🤝', title: 'True Partnership', desc: 'We treat your business like our own. Your wins are our wins.' },
-  { icon: '🚀', title: 'Always Evolving', desc: 'Marketing moves fast. We stay ahead of algorithm changes and trends.' },
+  {
+    icon: Zap,
+    title: 'Innovation First',
+    description: 'We constantly push boundaries to deliver cutting-edge solutions that set new standards.'
+  },
+  {
+    icon: Heart,
+    title: 'Client-Centric',
+    description: 'Your success is our priority. We build partnerships that drive real results.'
+  },
+  {
+    icon: Globe,
+    title: 'Global Vision',
+    description: 'Creating solutions that transcend borders and connect people worldwide.'
+  },
+  {
+    icon: Target,
+    title: 'Results Driven',
+    description: 'Every project is measured by tangible outcomes and measurable success.'
+  }
 ];
 
-export default function About() {
-  const heroRef = useRef(null);
-  const storyRef = useRef(null);
-  const valuesRef = useRef(null);
-  const teamRef = useRef(null);
+const milestones = [
+  { year: '2020', title: 'Company Founded', description: 'Started with a vision to transform digital connections' },
+  { year: '2021', title: 'First 1000 Clients', description: 'Reached milestone of serving over 1000 businesses' },
+  { year: '2022', title: 'Global Expansion', description: 'Expanded operations to 15+ countries worldwide' },
+  { year: '2023', title: 'NFC Innovation', description: 'Launched revolutionary smart NFC solutions' },
+  { year: '2024', title: 'Industry Awards', description: 'Recognized as top innovator in tech industry' }
+];
+
+const stats = [
+  { number: '5000+', label: 'Happy Clients', icon: Users },
+  { number: '98%', label: 'Retention Rate', icon: Award },
+  { number: '50+', label: 'Team Members', icon: Sparkles },
+  { number: '15+', label: 'Countries', icon: Globe }
+];
+
+function SectionLabel({ children }) {
+  return (
+    <span style={{
+      display: 'inline-block',
+      color: PINK,
+      fontWeight: 700,
+      letterSpacing: '0.12em',
+      fontSize: '0.72rem',
+      fontFamily: 'Syne, sans-serif',
+      marginBottom: '1rem',
+      background: PINK_LIGHT,
+      border: `1px solid ${PINK_MID}`,
+      padding: '0.3rem 0.9rem',
+      borderRadius: '4px',
+    }}>{children}</span>
+  );
+}
+
+function HeroAbout() {
+  const contentRef = useRef(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    
-    // Hero animations
-    gsap.fromTo(heroRef.current?.children || [],
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.9, stagger: 0.12, ease: 'power3.out', delay: 0.2 }
-    );
-
-    // Story section animations
-    if (storyRef.current) {
-      gsap.fromTo(storyRef.current.querySelectorAll('.animate-item'),
-        { y: 40, opacity: 0 },
-        {
-          y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: 'power3.out',
-          scrollTrigger: { trigger: storyRef.current, start: 'top 80%' }
-        }
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.hero-about-title',
+        { y: 100, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, ease: 'power4.out', delay: 0.3 }
       );
-    }
-
-    // Values section animations
-    gsap.utils.toArray('.value-card').forEach((card, i) => {
-      gsap.fromTo(card,
-        { y: 60, opacity: 0 },
-        {
-          y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: card, start: 'top 85%' },
-          delay: i * 0.1,
-        }
+      gsap.fromTo('.hero-about-sub',
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: 0.8 }
       );
-    });
-
-    // Team section animations
-    gsap.utils.toArray('.team-card').forEach((card, i) => {
-      gsap.fromTo(card,
-        { y: 60, opacity: 0 },
-        {
-          y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: card, start: 'top 85%' },
-          delay: i * 0.1,
-        }
+      gsap.fromTo('.hero-about-btns',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 1.1 }
       );
-    });
-
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+    }, contentRef);
+    return () => ctx.revert();
   }, []);
 
   return (
-    <div style={{ background: WHITE }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
-        .section-label {
-          font-family: 'Inter', sans-serif;
-          font-size: 0.75rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          display: inline-block;
-          padding: 0.25rem 0.9rem;
-          border-radius: 50px;
-          background: ${INK10};
-          color: ${INK60};
-        }
-        
-        .section-title {
-          font-family: 'Inter', sans-serif;
-          font-weight: 800;
-          font-size: clamp(2rem, 4vw, 3.5rem);
-          letter-spacing: -0.03em;
-          line-height: 1.2;
-          color: ${INK};
-        }
-        
-        .section-desc {
-          font-family: 'Inter', sans-serif;
-          color: ${INK60};
-          line-height: 1.8;
-          font-size: 1rem;
-        }
-        
-        .team-card, .value-card {
-          transition: all 0.3s ease;
-          background: ${WHITE};
-          border: 1px solid ${INK10};
-          border-radius: 24px;
-        }
-        
-        .team-card:hover, .value-card:hover {
-          transform: translateY(-6px);
-          border-color: ${ORANGE};
-          box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        }
-        
-        .stat-card {
-          transition: all 0.3s ease;
-          background: ${OFF_WHITE};
-          border: 1px solid ${INK10};
-        }
-        
-        .stat-card:hover {
-          transform: translateY(-4px);
-          border-color: ${ORANGE};
-          background: ${WHITE};
-        }
-        
-        @media (max-width: 768px) {
-          .about-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-          .team-grid { grid-template-columns: 1fr 1fr !important; }
-          .values-grid { grid-template-columns: 1fr !important; }
-        }
-        
-        @media (max-width: 480px) {
-          .team-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
+    <section style={{
+      position: 'relative',
+      width: '100%',
+      minHeight: '100vh',
+      overflow: 'hidden',
+      background: '#080808',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingTop: 'clamp(80px, 12vh, 110px)',
+      paddingBottom: 'clamp(3rem, 8vw, 5rem)'
+    }}>
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: 'radial-gradient(circle at 20% 50%, rgba(178,39,140,0.15) 0%, transparent 50%)',
+        pointerEvents: 'none'
+      }} />
+      
+      <div ref={contentRef} style={{
+        position: 'relative',
+        zIndex: 10,
+        width: '100%',
+        maxWidth: 1240,
+        margin: '0 auto',
+        padding: '1rem',
+        textAlign: 'center'
+      }}>
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          background: PINK_MID,
+          border: `1px solid ${PINK_MID}`,
+          borderRadius: '100px',
+          padding: '0.35rem 1rem',
+          marginBottom: '2rem'
+        }}>
+          <span style={{
+            width: 6,
+            height: 6,
+            borderRadius: '50%',
+            background: PINK,
+            display: 'block'
+          }} />
+          <span style={{
+            color: 'rgba(255,255,255,0.9)',
+            fontSize: '0.72rem',
+            fontFamily: 'Syne, sans-serif',
+            fontWeight: 600,
+            letterSpacing: '0.12em'
+          }}>
+            OUR STORY
+          </span>
+        </div>
 
-      {/* Hero Section */}
-      <section style={{
-        minHeight: '60vh',
+        <h1 className="hero-about-title" style={{
+          fontFamily: 'Syne, sans-serif',
+          fontSize: 'clamp(2.5rem, 7vw, 5.5rem)',
+          fontWeight: 800,
+          color: '#fff',
+          lineHeight: 0.96,
+          letterSpacing: '-0.03em',
+          marginBottom: '1.8rem',
+          maxWidth: '900px',
+          marginLeft: 'auto',
+          marginRight: 'auto'
+        }}>
+          We're on a mission to<br />
+          <span style={{ color: PINK }}>transform connections</span>
+        </h1>
+
+        <p className="hero-about-sub" style={{
+          color: 'rgba(255,255,255,0.7)',
+          fontFamily: 'DM Sans, sans-serif',
+          fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)',
+          lineHeight: 1.75,
+          maxWidth: 700,
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          marginBottom: '2.8rem'
+        }}>
+          We believe in the power of smart technology to create meaningful connections. 
+          Since 2020, we've been helping businesses and individuals embrace the future of networking.
+        </p>
+
+        <div className="hero-about-btns" style={{
+          display: 'flex',
+          gap: '0.75rem',
+          justifyContent: 'center',
+          flexWrap: 'wrap'
+        }}>
+          <MagneticBtn to="/contact" style={{
+            padding: '0.85rem 1.8rem',
+            background: '#fff',
+            color: '#111',
+            borderRadius: '6px',
+            fontWeight: 700,
+            fontSize: '0.85rem',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            fontFamily: 'Syne, sans-serif'
+          }}>
+            Join Our Journey <ArrowUpRight size={14} />
+          </MagneticBtn>
+
+          <MagneticBtn to="/works" style={{
+            padding: '0.85rem 1.8rem',
+            background: 'transparent',
+            color: 'rgba(255,255,255,0.85)',
+            border: '1px solid rgba(255,255,255,0.25)',
+            borderRadius: '6px',
+            fontWeight: 600,
+            fontSize: '0.85rem',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            fontFamily: 'Syne, sans-serif',
+            backdropFilter: 'blur(12px)'
+          }}>
+            View Our Work
+          </MagneticBtn>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function StatCard({ stat, index }) {
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(cardRef.current,
+      { y: 40, opacity: 0, scale: 0.9 },
+      { y: 0, opacity: 1, scale: 1, duration: 0.6, delay: index * 0.1, scrollTrigger: { trigger: cardRef.current, start: 'top 85%', once: true } }
+    );
+  }, [index]);
+
+  const Icon = stat.icon;
+
+  return (
+    <div ref={cardRef} style={{
+      background: WHITE,
+      border: `1px solid ${INK10}`,
+      borderRadius: '16px',
+      padding: '2rem',
+      textAlign: 'center',
+      transition: 'all 0.3s ease',
+      cursor: 'default'
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = 'translateY(-5px)';
+      e.currentTarget.style.borderColor = PINK;
+      e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.08)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = 'translateY(0)';
+      e.currentTarget.style.borderColor = INK10;
+      e.currentTarget.style.boxShadow = 'none';
+    }}>
+      <div style={{
+        width: 60,
+        height: 60,
+        borderRadius: '12px',
+        background: PINK_LIGHT,
+        border: `1px solid ${PINK_MID}`,
         display: 'flex',
         alignItems: 'center',
-        paddingTop: '120px',
-        paddingBottom: '4rem',
-        position: 'relative',
-        overflow: 'hidden',
-        background: GRAD_HERO,
+        justifyContent: 'center',
+        margin: '0 auto 1.2rem'
       }}>
-        {/* Decorative elements */}
-        <div style={{ position: 'absolute', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(249,115,22,.1) 0%,transparent 70%)', top: '-10%', right: '-5%', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle,rgba(59,130,246,.08) 0%,transparent 70%)', bottom: '5%', left: '-5%', pointerEvents: 'none' }} />
-        
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 1, width: '100%' }}>
-          <div ref={heroRef} style={{ maxWidth: 720 }}>
-            <p className="section-label" style={{ marginBottom: '1rem', color: ORANGE, background: `${INK10}` }}>About MediaMind</p>
-            <h1 className="section-title" style={{ marginBottom: '1.5rem' }}>
-              We're builders who<br />
-              <span style={{ color: ORANGE }}>obsess over your growth</span>
-            </h1>
-            <p className="section-desc">
-              MediaMind was founded with one belief: that exceptional marketing should be accessible to every ambitious brand. We combine the expertise of a large agency with the agility and care of a boutique studio.
+        <Icon size={28} color={PINK} />
+      </div>
+      <div style={{
+        fontFamily: 'Syne, sans-serif',
+        fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
+        fontWeight: 800,
+        color: INK,
+        marginBottom: '0.5rem'
+      }}>{stat.number}</div>
+      <div style={{
+        color: INK60,
+        fontSize: '0.85rem',
+        fontFamily: 'DM Sans, sans-serif'
+      }}>{stat.label}</div>
+    </div>
+  );
+}
+
+function ValueCard({ value, index }) {
+  const cardRef = useRef(null);
+  const [hovered, setHovered] = useState(false);
+  const Icon = value.icon;
+
+  useEffect(() => {
+    gsap.fromTo(cardRef.current,
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, delay: index * 0.1, scrollTrigger: { trigger: cardRef.current, start: 'top 85%', once: true } }
+    );
+  }, [index]);
+
+  return (
+    <div ref={cardRef} style={{
+      background: hovered ? OFF_WHITE : WHITE,
+      border: `1px solid ${hovered ? PINK : INK10}`,
+      borderRadius: '16px',
+      padding: '2rem',
+      transition: 'all 0.3s ease',
+      transform: hovered ? 'translateY(-5px)' : 'translateY(0)'
+    }}
+    onMouseEnter={() => setHovered(true)}
+    onMouseLeave={() => setHovered(false)}>
+      <div style={{
+        width: 50,
+        height: 50,
+        borderRadius: '12px',
+        background: hovered ? PINK : PINK_LIGHT,
+        border: `1px solid ${hovered ? PINK : PINK_MID}`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: '1.5rem',
+        transition: 'all 0.3s'
+      }}>
+        <Icon size={24} color={hovered ? WHITE : PINK} />
+      </div>
+      <h3 style={{
+        fontFamily: 'Syne, sans-serif',
+        fontSize: '1.2rem',
+        fontWeight: 700,
+        color: INK,
+        marginBottom: '0.8rem'
+      }}>{value.title}</h3>
+      <p style={{
+        color: INK60,
+        fontSize: '0.85rem',
+        lineHeight: 1.65,
+        fontFamily: 'DM Sans, sans-serif'
+      }}>{value.description}</p>
+    </div>
+  );
+}
+
+function MilestoneItem({ milestone, index }) {
+  const itemRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(itemRef.current,
+      { x: index % 2 === 0 ? -30 : 30, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.7, delay: index * 0.1, scrollTrigger: { trigger: itemRef.current, start: 'top 85%', once: true } }
+    );
+  }, [index]);
+
+  return (
+    <div ref={itemRef} style={{
+      display: 'flex',
+      gap: '1.5rem',
+      padding: '1.5rem',
+      background: WHITE,
+      borderLeft: `3px solid ${PINK}`,
+      borderRadius: '8px',
+      transition: 'all 0.3s'
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = 'translateX(8px)';
+      e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = 'translateX(0)';
+      e.currentTarget.style.boxShadow = 'none';
+    }}>
+      <div style={{
+        fontFamily: 'Syne, sans-serif',
+        fontSize: '2rem',
+        fontWeight: 800,
+        color: PINK,
+        minWidth: '70px'
+      }}>{milestone.year}</div>
+      <div>
+        <h4 style={{
+          fontFamily: 'Syne, sans-serif',
+          fontSize: '1.1rem',
+          fontWeight: 700,
+          color: INK,
+          marginBottom: '0.5rem'
+        }}>{milestone.title}</h4>
+        <p style={{
+          color: INK60,
+          fontSize: '0.85rem',
+          lineHeight: 1.6,
+          fontFamily: 'DM Sans, sans-serif'
+        }}>{milestone.description}</p>
+      </div>
+    </div>
+  );
+}
+
+function TeamCard({ member, index }) {
+  const cardRef = useRef(null);
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    gsap.fromTo(cardRef.current,
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, delay: index * 0.1, scrollTrigger: { trigger: cardRef.current, start: 'top 85%', once: true } }
+    );
+  }, [index]);
+
+  return (
+    <div ref={cardRef} style={{
+      background: WHITE,
+      border: `1px solid ${hovered ? PINK : INK10}`,
+      borderRadius: '20px',
+      overflow: 'hidden',
+      transition: 'all 0.3s ease',
+      transform: hovered ? 'translateY(-8px)' : 'translateY(0)',
+      boxShadow: hovered ? '0 20px 40px rgba(0,0,0,0.1)' : 'none'
+    }}
+    onMouseEnter={() => setHovered(true)}
+    onMouseLeave={() => setHovered(false)}>
+      <div style={{ aspectRatio: '1/1', overflow: 'hidden' }}>
+        <img 
+          src={member.image} 
+          alt={member.name}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            transition: 'transform 0.5s ease',
+            transform: hovered ? 'scale(1.05)' : 'scale(1)'
+          }}
+        />
+      </div>
+      <div style={{ padding: '1.5rem' }}>
+        <h3 style={{
+          fontFamily: 'Syne, sans-serif',
+          fontSize: '1.2rem',
+          fontWeight: 700,
+          color: INK,
+          marginBottom: '0.3rem'
+        }}>{member.name}</h3>
+        <p style={{
+          color: PINK,
+          fontSize: '0.8rem',
+          fontWeight: 600,
+          marginBottom: '0.8rem',
+          fontFamily: 'DM Sans, sans-serif'
+        }}>{member.role}</p>
+        <p style={{
+          color: INK60,
+          fontSize: '0.8rem',
+          lineHeight: 1.5,
+          fontFamily: 'DM Sans, sans-serif'
+        }}>{member.bio}</p>
+      </div>
+    </div>
+  );
+}
+
+export default function About() {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray('.reveal-about').forEach((el) => {
+        gsap.fromTo(el,
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' } }
+        );
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div style={{ background: WHITE, fontFamily: 'DM Sans, sans-serif' }}>
+      <HeroAbout />
+
+      <section style={{ padding: 'clamp(3rem, 8vw, 8rem) 1rem', background: WHITE }}>
+        <div style={{ maxWidth: 1240, margin: '0 auto' }}>
+          <div className="reveal-about" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <SectionLabel>OUR IMPACT</SectionLabel>
+            <h2 style={{
+              fontFamily: 'Syne, sans-serif',
+              fontSize: 'clamp(1.8rem, 5vw, 3rem)',
+              fontWeight: 800,
+              color: INK,
+              marginBottom: '1rem'
+            }}>By the Numbers</h2>
+            <p style={{
+              color: INK60,
+              fontSize: '1rem',
+              maxWidth: 600,
+              margin: '0 auto',
+              fontFamily: 'DM Sans, sans-serif'
+            }}>
+              Our journey in numbers — real impact, real results
             </p>
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '2.5rem', flexWrap: 'wrap' }}>
-              <MagneticBtn
-                to="/contact"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  padding: '1rem 2.5rem',
-                  background: INK,
-                  color: WHITE,
-                  borderRadius: 50,
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 700,
-                  fontSize: '0.95rem',
-                  boxShadow: '0 8px 30px rgba(17,17,17,0.2)',
-                }}>
-                Work With Us <ArrowUpRight size={16} />
-              </MagneticBtn>
-            </div>
+          </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: '1.5rem'
+          }}>
+            {stats.map((stat, i) => (
+              <StatCard key={i} stat={stat} index={i} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Our Story Section */}
-      <section ref={storyRef} style={{ padding: '6rem 0', background: WHITE }}>
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }} className="about-grid">
-            <div className="animate-item">
-              <p className="section-label" style={{ marginBottom: '1rem', color: ORANGE }}>Our Story</p>
-              <h2 className="section-title" style={{ marginBottom: '1.5rem', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)' }}>
-                From frustrated marketers to growth architects
-              </h2>
-              <p style={{ color: INK60, lineHeight: 1.8, marginBottom: '1rem' }}>
-                We started MediaMind after watching too many great companies waste their budgets on agencies that prioritized looking busy over driving results.
+      <section style={{ padding: 'clamp(3rem, 8vw, 8rem) 1rem', background: OFF_WHITE }}>
+        <div style={{ maxWidth: 1240, margin: '0 auto' }}>
+          <div className="reveal-about" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <SectionLabel>OUR VALUES</SectionLabel>
+            <h2 style={{
+              fontFamily: 'Syne, sans-serif',
+              fontSize: 'clamp(1.8rem, 5vw, 3rem)',
+              fontWeight: 800,
+              color: INK,
+              marginBottom: '1rem'
+            }}>What Drives Us</h2>
+            <p style={{
+              color: INK60,
+              fontSize: '1rem',
+              maxWidth: 600,
+              margin: '0 auto',
+              fontFamily: 'DM Sans, sans-serif'
+            }}>
+              Core principles that guide everything we do
+            </p>
+          </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem'
+          }}>
+            {values.map((value, i) => (
+              <ValueCard key={i} value={value} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: 'clamp(3rem, 8vw, 8rem) 1rem', background: WHITE }}>
+        <div style={{ maxWidth: 1240, margin: '0 auto' }}>
+          <div className="reveal-about" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+            <div>
+              <SectionLabel>OUR JOURNEY</SectionLabel>
+              <h2 style={{
+                fontFamily: 'Syne, sans-serif',
+                fontSize: 'clamp(1.8rem, 5vw, 2.8rem)',
+                fontWeight: 800,
+                color: INK,
+                marginBottom: '1.5rem',
+                lineHeight: 1.1
+              }}>Milestones That<br />Defined Us</h2>
+              <p style={{
+                color: INK60,
+                fontSize: '0.95rem',
+                lineHeight: 1.7,
+                marginBottom: '2rem',
+                fontFamily: 'DM Sans, sans-serif'
+              }}>
+                From humble beginnings to industry leaders — every step has been about innovation and excellence.
               </p>
-              <p style={{ color: INK60, lineHeight: 1.8, marginBottom: '1rem' }}>
-                We built the agency we always wished existed — one where every dollar spent is tracked, every strategy is tested, and every client relationship is treated as a genuine partnership.
-              </p>
-              <p style={{ color: INK60, lineHeight: 1.8 }}>
-                Today, we've helped 200+ brands across e-commerce, hospitality, and professional services achieve sustainable, scalable growth through performance marketing and high-impact creative.
-              </p>
+              <MagneticBtn to="/contact" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.85rem 2rem',
+                background: PINK,
+                color: WHITE,
+                borderRadius: '6px',
+                fontWeight: 700,
+                fontSize: '0.85rem',
+                fontFamily: 'Syne, sans-serif'
+              }}>
+                Be Part of Our Story <ArrowUpRight size={14} />
+              </MagneticBtn>
             </div>
-            
-            <div className="animate-item" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              {[
-                { n: '200+', l: 'Brands Scaled' },
-                { n: '$50M+', l: 'Revenue Generated' },
-                { n: '8×', l: 'Avg. ROAS' },
-                { n: '98%', l: 'Client Retention' },
-              ].map((s, i) => (
-                <div key={i} className="stat-card" style={{
-                  padding: '1.5rem',
-                  borderRadius: '16px',
-                  textAlign: 'center',
-                  transition: 'all 0.3s ease',
-                }}>
-                  <div style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 800,
-                    fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-                    color: ORANGE,
-                    marginBottom: '0.25rem',
-                  }}>{s.n}</div>
-                  <div style={{ color: INK60, fontSize: '0.85rem', fontFamily: "'Inter', sans-serif" }}>{s.l}</div>
-                </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {milestones.map((milestone, i) => (
+                <MilestoneItem key={i} milestone={milestone} index={i} />
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section style={{ padding: '6rem 0', background: OFF_WHITE }}>
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <p className="section-label" style={{ marginBottom: '1rem', color: ORANGE, background: `${INK10}` }}>Our Values</p>
-          <h2 className="section-title" style={{ marginBottom: '3rem' }}>What drives us</h2>
-          <div className="values-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-            {values.map((v, i) => (
-              <div key={i} className="value-card" style={{
-                padding: '2rem',
-              }}>
-                <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{v.icon}</div>
-                <h3 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, marginBottom: '0.5rem', color: INK, fontSize: '1.25rem' }}>{v.title}</h3>
-                <p style={{ color: INK60, fontSize: '0.9rem', lineHeight: 1.7, fontFamily: "'Inter', sans-serif" }}>{v.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section ref={teamRef} style={{ padding: '6rem 0', background: WHITE }}>
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <p className="section-label" style={{ marginBottom: '1rem', color: ORANGE, background: `${INK10}` }}>The Team</p>
-          <h2 className="section-title" style={{ marginBottom: '3rem' }}>Meet the people behind the results</h2>
-          <div className="team-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-            {team.map((t, i) => (
-              <div key={i} className="team-card" style={{
-                padding: '2rem',
-                textAlign: 'center',
-              }}>
-                <div style={{
-                  width: 80,
-                  height: 80,
-                  borderRadius: '50%',
-                  margin: '0 auto 1.25rem',
-                  background: `linear-gradient(135deg, ${t.color}, ${t.color}aa)`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontFamily: "'Inter', sans-serif",
-                  fontWeight: 700,
-                  fontSize: '1.25rem',
-                  color: WHITE
-                }}>{t.avatar}</div>
-                <h3 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, marginBottom: '0.25rem', color: INK, fontSize: '1.1rem' }}>{t.name}</h3>
-                <div style={{ color: t.color, fontSize: '0.75rem', fontWeight: 600, marginBottom: '0.75rem', fontFamily: "'Inter', sans-serif", textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t.role}</div>
-                <p style={{ color: INK60, fontSize: '0.85rem', lineHeight: 1.6, fontFamily: "'Inter', sans-serif" }}>{t.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section style={{ padding: '6rem 0', background: OFF_WHITE }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{
-            background: INK,
-            borderRadius: 28,
-            padding: '3rem 4rem',
-            textAlign: 'center',
-          }}>
-            <h2 style={{ 
-              fontFamily: "'Inter', sans-serif", 
-              fontWeight: 800, 
-              fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
-              color: WHITE,
+      <section style={{ padding: 'clamp(3rem, 8vw, 8rem) 1rem', background: OFF_WHITE }}>
+        <div style={{ maxWidth: 1240, margin: '0 auto' }}>
+          <div className="reveal-about" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <SectionLabel>MEET THE TEAM</SectionLabel>
+            <h2 style={{
+              fontFamily: 'Syne, sans-serif',
+              fontSize: 'clamp(1.8rem, 5vw, 3rem)',
+              fontWeight: 800,
+              color: INK,
               marginBottom: '1rem'
-            }}>
-              Ready to grow with us?
-            </h2>
+            }}>The Minds Behind Magic</h2>
             <p style={{
-              fontFamily: "'Inter', sans-serif",
-              color: 'rgba(255,255,255,0.7)',
+              color: INK60,
               fontSize: '1rem',
-              marginBottom: '2rem',
-              maxWidth: 500,
-              margin: '0 auto 2rem'
+              maxWidth: 600,
+              margin: '0 auto',
+              fontFamily: 'DM Sans, sans-serif'
             }}>
-              Let's create something amazing together. We're just a message away.
+              Passionate experts dedicated to your success
             </p>
-            <MagneticBtn
-              to="/contact"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                padding: '1rem 2.5rem',
+          </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '2rem'
+          }}>
+            {teamMembers.map((member, i) => (
+              <TeamCard key={i} member={member} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: 'clamp(3rem, 8vw, 8rem) 1rem', background: INK, position: 'relative', overflow: 'hidden' }}>
+        <div style={{
+          position: 'absolute',
+          width: 700,
+          height: 700,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(178,39,140,0.12) 0%, transparent 70%)',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          pointerEvents: 'none',
+        }} />
+        <div style={{ maxWidth: 1240, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+          <div style={{
+            display: 'inline-block',
+            background: 'rgba(255,255,255,0.04)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderRadius: '20px',
+            padding: 'clamp(2rem, 6vw, 4rem) clamp(1.5rem, 5vw, 5rem)',
+            maxWidth: '90%'
+          }}>
+            <SectionLabel>JOIN US</SectionLabel>
+            <h2 style={{
+              fontFamily: 'Syne, sans-serif',
+              fontSize: 'clamp(1.5rem, 5vw, 2.8rem)',
+              fontWeight: 800,
+              color: WHITE,
+              marginBottom: '1rem',
+              letterSpacing: '-0.025em',
+              lineHeight: 1.05
+            }}>Ready to Create<br />Something Amazing?</h2>
+            <p style={{ color: 'rgba(255,255,255,0.45)', maxWidth: 480, margin: '0 auto 2rem', fontFamily: 'DM Sans, sans-serif', lineHeight: 1.7, fontSize: '0.9rem' }}>
+              Let's work together to bring your vision to life. We're just a message away.
+            </p>
+            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <MagneticBtn to="/contact" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                padding: '1rem 2rem',
                 background: WHITE,
                 color: INK,
-                borderRadius: 50,
-                fontFamily: "'Inter', sans-serif",
+                borderRadius: '6px',
                 fontWeight: 700,
-                fontSize: '0.95rem',
+                fontFamily: 'Syne, sans-serif',
+                fontSize: '0.9rem'
               }}>
-              Start Your Journey <ArrowUpRight size={16} />
-            </MagneticBtn>
+                Get in Touch <ArrowUpRight size={16} />
+              </MagneticBtn>
+              <MagneticBtn to="/works" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                padding: '1rem 2rem',
+                background: 'transparent',
+                color: 'rgba(255,255,255,0.7)',
+                border: '1px solid rgba(255,255,255,0.15)',
+                borderRadius: '6px',
+                fontWeight: 600,
+                fontFamily: 'Syne, sans-serif',
+                fontSize: '0.9rem'
+              }}>
+                View Portfolio
+              </MagneticBtn>
+            </div>
           </div>
         </div>
       </section>

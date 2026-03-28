@@ -10,7 +10,7 @@ const serviceItems = [
   { label: "Branding & Graphic Design", route: "/services/branding-graphic-design", icon: "🎨" },
   { label: "Logo Design", route: "/services/logo-design", icon: "✏️" },
   { label: "Email Marketing", route: "/services/email-marketing", icon: "📧" },
-  { label: "Performance Marketing", route: "/services/perfomance-marketing", icon: "🚀" },
+  // { label: "Performance Marketing", route: "/services/perfomance-marketing", icon: "🚀" },
 ];
 
 export default function Navbar() {

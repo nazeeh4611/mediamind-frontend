@@ -3,22 +3,24 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, Check, ChevronDown, Zap, RefreshCw, BarChart2, Palette, Leaf, Globe } from 'lucide-react';
 import { MagneticBtn } from '../components/home/MagneticBtn';
-import {
-  WHITE, INK, INK60, INK30, INK10,
-  OFF_WHITE,
-} from '../utils/constants';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PINK = '#B2278C';
 const PINK_LIGHT = 'rgba(178, 39, 140, 0.08)';
 const PINK_MID = 'rgba(178, 39, 140, 0.18)';
+const WHITE = '#FFFFFF';
+const INK = '#111111';
+const INK60 = 'rgba(17, 17, 17, 0.6)';
+const INK30 = 'rgba(17, 17, 17, 0.3)';
+const INK10 = 'rgba(17, 17, 17, 0.1)';
+const OFF_WHITE = '#F9F9F9';
 
 const nfcStats = [
   { number: '1,200+', label: 'Smart Cards Deployed' },
-  { number: '99%',    label: 'Customer Satisfaction' },
-  { number: '4.8x',   label: 'More Engagement' },
-  { number: '24/7',   label: 'Live Updates' },
+  { number: '99%', label: 'Customer Satisfaction' },
+  { number: '4.8x', label: 'More Engagement' },
+  { number: '24/7', label: 'Live Updates' },
 ];
 
 const nfcProducts = [
@@ -140,206 +142,200 @@ function HeroNFC() {
   }, []);
 
   return (
-<section style={{
-  position: 'relative',
-  width: '100%',
-  minHeight: '100vh',
-  overflow: 'hidden',
-  background: '#080808',
-  display: 'flex',
-  alignItems: 'center',
-  paddingTop: '110px' // space for navbar
-}}>
-  {/* LEFT IMAGE */}
-  <div
-    ref={imgRef}
-    style={{
-      position: 'absolute',
-      top: '110px',
-      left: 0,
-      width: '48%',   // smaller image
-      height: '78%',  // smaller height
-      zIndex: 1,
-      borderTopRightRadius: '24px',
-      borderBottomRightRadius: '24px',
-      overflow: 'hidden'
-    }}
-  >
-    <img
-      src="/nfchero.avif"
-      alt="NFC Hero"
-      style={{
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-        display: 'block'
-      }}
-    />
-
-    {/* overlay gradients */}
-    <div style={{
-      position: 'absolute',
-      inset: 0,
-      background:
-        'linear-gradient(to right, rgba(8,8,8,0.1) 0%, rgba(8,8,8,0.7) 70%, rgba(8,8,8,1) 100%)'
-    }} />
-
-    <div style={{
-      position: 'absolute',
-      inset: 0,
-      background:
-        'linear-gradient(to bottom, rgba(8,8,8,0.5) 0%, transparent 30%, transparent 70%, rgba(8,8,8,0.7) 100%)'
-    }} />
-  </div>
-
-  {/* RIGHT CONTENT */}
-  <div
-    ref={textRef}
-    style={{
+    <section style={{
       position: 'relative',
-      zIndex: 10,
       width: '100%',
-      maxWidth: 1240,
-      margin: '0 auto',
-      padding: '2rem',
+      minHeight: '100vh',
+      overflow: 'hidden',
+      background: '#080808',
       display: 'flex',
-      justifyContent: 'flex-end'
-    }}
-  >
-    <div style={{ width: '52%', paddingLeft: '2rem' }}>
-      {/* Label */}
-      <div style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '0.5rem',
-        background: 'rgba(178,39,140,0.18)',
-        border: '1px solid rgba(178,39,140,0.38)',
-        borderRadius: '100px',
-        padding: '0.35rem 1rem',
-        marginBottom: '2rem'
-      }}>
-        <span style={{
-          width: 6,
-          height: 6,
-          borderRadius: '50%',
-          background: '#B2278C',
-          display: 'block'
+      alignItems: 'center',
+      paddingTop: 'clamp(80px, 12vh, 110px)',
+      paddingBottom: 'clamp(3rem, 8vw, 5rem)'
+    }}>
+      <div
+        ref={imgRef}
+        style={{
+          position: 'absolute',
+          top: 'clamp(80px, 12vh, 110px)',
+          left: 0,
+          width: '100%',
+          height: '45%',
+          zIndex: 1,
+          borderTopRightRadius: 'clamp(16px, 3vw, 24px)',
+          borderBottomRightRadius: 'clamp(16px, 3vw, 24px)',
+          overflow: 'hidden'
+        }}
+      >
+        <img
+          src="/nfchero.avif"
+          alt="NFC Hero"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block'
+          }}
+        />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(135deg, rgba(8,8,8,0.3) 0%, rgba(8,8,8,0.8) 100%)'
         }} />
-        <span style={{
-          color: 'rgba(255,255,255,0.9)',
-          fontSize: '0.72rem',
-          fontFamily: 'Syne, sans-serif',
-          fontWeight: 600,
-          letterSpacing: '0.12em'
-        }}>
-          SMART NFC TECHNOLOGY
-        </span>
       </div>
 
-      {/* Title */}
-      <h1 style={{
-        fontFamily: 'Syne, sans-serif',
-        fontSize: 'clamp(2.6rem, 5.5vw, 5rem)',
-        fontWeight: 800,
-        color: '#fff',
-        lineHeight: 0.96,
-        letterSpacing: '-0.03em',
-        marginBottom: '1.8rem'
-      }}>
-        {['Smart', 'NFC', 'that', 'transforms', 'connections.'].map((w, i) => (
-          <span key={i} className="nfc-word" style={{
-            display: 'inline-block',
-            marginRight: '0.22em'
-          }}>{w}</span>
-        ))}
-      </h1>
-
-      {/* Subtitle */}
-      <p className="hero-sub" style={{
-        color: 'rgba(255,255,255,0.7)',
-        fontFamily: 'DM Sans, sans-serif',
-        fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
-        lineHeight: 1.75,
-        maxWidth: 460,
-        marginBottom: '2.8rem'
-      }}>
-        Replace paper cards with intelligent NFC products. Share contacts, media,
-        and websites with one tap — trackable, updatable, unforgettable.
-      </p>
-
-      {/* Buttons */}
-      <div className="hero-btns" style={{
-        display: 'flex',
-        gap: '0.75rem',
-        flexWrap: 'wrap',
-        marginBottom: '3.5rem'
-      }}>
-        <MagneticBtn to="/contact" style={{
-          padding: '0.95rem 2.2rem',
-          background: '#fff',
-          color: '#111',
-          borderRadius: '6px',
-          fontWeight: 700,
-          fontSize: '0.88rem',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          fontFamily: 'Syne, sans-serif'
+      <div
+        ref={textRef}
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          width: '100%',
+          maxWidth: 1400,
+          margin: '0 auto',
+          padding: '1.5rem',
+        }}
+      >
+        <div style={{ 
+          width: '100%', 
+          maxWidth: '800px',
+          marginLeft: 'auto',
+          marginRight: 'auto'
         }}>
-          Get Your NFC Card <ArrowUpRight size={15} />
-        </MagneticBtn>
-
-        <MagneticBtn to="/works" style={{
-          padding: '0.95rem 2.2rem',
-          background: 'transparent',
-          color: 'rgba(255,255,255,0.85)',
-          border: '1px solid rgba(255,255,255,0.25)',
-          borderRadius: '6px',
-          fontWeight: 600,
-          fontSize: '0.88rem',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          fontFamily: 'Syne, sans-serif',
-          backdropFilter: 'blur(12px)'
-        }}>
-          View Products
-        </MagneticBtn>
-      </div>
-
-      {/* Stats */}
-      <div className="hero-stats" style={{
-        display: 'flex',
-        borderTop: '1px solid rgba(255,255,255,0.12)',
-        paddingTop: '2rem'
-      }}>
-        {nfcStats.map((s, i) => (
-          <div key={i} style={{
-            flex: 1,
-            paddingRight: i < nfcStats.length - 1 ? '1.5rem' : '0',
-            borderRight: i < nfcStats.length - 1
-              ? '1px solid rgba(255,255,255,0.12)'
-              : 'none',
-            paddingLeft: i > 0 ? '1.5rem' : '0'
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            background: PINK_MID,
+            border: `1px solid ${PINK_MID}`,
+            borderRadius: '100px',
+            padding: '0.35rem 1rem',
+            marginBottom: '2rem'
           }}>
-            <div style={{
+            <span style={{
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              background: PINK,
+              display: 'block'
+            }} />
+            <span style={{
+              color: 'rgba(255,255,255,0.9)',
+              fontSize: '0.72rem',
               fontFamily: 'Syne, sans-serif',
-              fontSize: '1.6rem',
-              fontWeight: 800,
-              color: '#fff'
-            }}>{s.number}</div>
-
-            <div style={{
-              color: 'rgba(255,255,255,0.45)',
-              fontSize: '0.68rem',
-              marginTop: '0.3rem'
-            }}>{s.label}</div>
+              fontWeight: 600,
+              letterSpacing: '0.12em'
+            }}>
+              SMART NFC TECHNOLOGY
+            </span>
           </div>
-        ))}
+
+          <h1 style={{
+            fontFamily: 'Syne, sans-serif',
+            fontSize: 'clamp(2.5rem, 7vw, 5.5rem)',
+            fontWeight: 800,
+            color: '#fff',
+            lineHeight: 1,
+            letterSpacing: '-0.03em',
+            marginBottom: '1.5rem'
+          }}>
+            {['Smart', 'NFC', 'that', 'transforms', 'connections.'].map((w, i) => (
+              <span key={i} className="nfc-word" style={{
+                display: 'inline-block',
+                marginRight: '0.22em'
+              }}>{w}</span>
+            ))}
+          </h1>
+
+          <p className="hero-sub" style={{
+            color: 'rgba(255,255,255,0.75)',
+            fontFamily: 'DM Sans, sans-serif',
+            fontSize: 'clamp(0.9rem, 1.8vw, 1.1rem)',
+            lineHeight: 1.6,
+            maxWidth: '100%',
+            marginBottom: '2.5rem'
+          }}>
+            Replace paper cards with intelligent NFC products. Share contacts, media,
+            and websites with one tap — trackable, updatable, unforgettable.
+          </p>
+
+          <div className="hero-btns" style={{
+            display: 'flex',
+            gap: '1rem',
+            flexWrap: 'wrap',
+            marginBottom: '3rem',
+            justifyContent: 'flex-start'
+          }}>
+            <MagneticBtn to="/contact" style={{
+              padding: 'clamp(0.75rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2.5rem)',
+              background: '#fff',
+              color: '#111',
+              borderRadius: '8px',
+              fontWeight: 700,
+              fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.6rem',
+              fontFamily: 'Syne, sans-serif',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+              textDecoration: 'none',
+              border: 'none',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+            }}>
+              Get Your NFC Card <ArrowUpRight size={16} />
+            </MagneticBtn>
+
+            <MagneticBtn to="/works" style={{
+              padding: 'clamp(0.75rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2.5rem)',
+              background: 'rgba(255,255,255,0.05)',
+              color: 'rgba(255,255,255,0.9)',
+              border: '1px solid rgba(255,255,255,0.25)',
+              borderRadius: '8px',
+              fontWeight: 600,
+              fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.6rem',
+              fontFamily: 'Syne, sans-serif',
+              backdropFilter: 'blur(10px)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+              textDecoration: 'none'
+            }}>
+              View Products
+            </MagneticBtn>
+          </div>
+
+          <div className="hero-stats" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+            gap: '1.5rem',
+            borderTop: '1px solid rgba(255,255,255,0.15)',
+            paddingTop: '2rem'
+          }}>
+            {nfcStats.map((s, i) => (
+              <div key={i} style={{
+                textAlign: 'left'
+              }}>
+                <div style={{
+                  fontFamily: 'Syne, sans-serif',
+                  fontSize: 'clamp(1.3rem, 4vw, 1.8rem)',
+                  fontWeight: 800,
+                  color: '#fff',
+                  lineHeight: 1.2
+                }}>{s.number}</div>
+                <div style={{
+                  color: 'rgba(255,255,255,0.5)',
+                  fontSize: 'clamp(0.65rem, 2vw, 0.75rem)',
+                  marginTop: '0.3rem',
+                  letterSpacing: '0.02em'
+                }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
   );
 }
 
@@ -358,49 +354,77 @@ function ProductCard({ product, index }) {
     <div
       ref={cardRef}
       style={{
-        background: WHITE, border: `1px solid ${hovered ? PINK : INK10}`,
-        borderRadius: '16px', overflow: 'hidden',
-        transition: 'all 0.4s cubic-bezier(0.2,0.9,0.4,1)',
-        transform: hovered ? 'translateY(-6px)' : 'translateY(0)',
-        boxShadow: hovered ? '0 20px 40px rgba(0,0,0,0.1)' : 'none',
+        background: WHITE,
+        border: `1px solid ${hovered ? PINK : INK10}`,
+        borderRadius: '20px',
+        overflow: 'hidden',
+        transition: 'all 0.4s cubic-bezier(0.2,0.9,0.4,1.1)',
+        transform: hovered ? 'translateY(-8px)' : 'translateY(0)',
+        boxShadow: hovered ? '0 20px 40px rgba(0,0,0,0.12)' : '0 4px 12px rgba(0,0,0,0.05)',
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <div style={{ aspectRatio: '16/10', overflow: 'hidden', position: 'relative' }}>
         <img src={product.image} alt={product.title} style={{
-          width: '100%', height: '100%', objectFit: 'cover',
-          transition: 'transform 0.7s ease', transform: hovered ? 'scale(1.06)' : 'scale(1)',
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          transition: 'transform 0.7s ease',
+          transform: hovered ? 'scale(1.08)' : 'scale(1)',
         }} />
         <div style={{
-          position: 'absolute', top: '1rem', left: '1rem',
-          background: PINK, color: WHITE, padding: '0.25rem 0.75rem',
-          borderRadius: '4px', fontSize: '0.65rem', fontWeight: 700,
-          fontFamily: 'Syne, sans-serif', letterSpacing: '0.08em',
+          position: 'absolute',
+          top: '1rem',
+          left: '1rem',
+          background: PINK,
+          color: WHITE,
+          padding: '0.3rem 0.9rem',
+          borderRadius: '6px',
+          fontSize: '0.7rem',
+          fontWeight: 700,
+          fontFamily: 'Syne, sans-serif',
+          letterSpacing: '0.08em',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
         }}>
           {product.tag.toUpperCase()}
         </div>
       </div>
       <div style={{ padding: '1.5rem' }}>
-        <h3 style={{ fontFamily: 'Syne, sans-serif', fontSize: '1.1rem', fontWeight: 800, color: INK, marginBottom: '0.5rem' }}>{product.title}</h3>
-        <p style={{ color: INK60, fontSize: '0.82rem', lineHeight: 1.65, marginBottom: '1.2rem', fontFamily: 'DM Sans, sans-serif' }}>{product.description}</p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.5rem' }}>
+        <h3 style={{ fontFamily: 'Syne, sans-serif', fontSize: '1.2rem', fontWeight: 800, color: INK, marginBottom: '0.6rem', lineHeight: 1.3 }}>{product.title}</h3>
+        <p style={{ color: INK60, fontSize: '0.85rem', lineHeight: 1.6, marginBottom: '1.2rem', fontFamily: 'DM Sans, sans-serif' }}>{product.description}</p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem' }}>
           {product.features.map((feat, idx) => (
             <span key={idx} style={{
-              background: INK10, color: INK60,
-              padding: '0.25rem 0.7rem', borderRadius: '4px',
-              fontSize: '0.72rem', fontFamily: 'DM Sans, sans-serif',
+              background: INK10,
+              color: INK60,
+              padding: '0.3rem 0.8rem',
+              borderRadius: '6px',
+              fontSize: '0.7rem',
+              fontWeight: 500,
+              fontFamily: 'DM Sans, sans-serif',
             }}>{feat}</span>
           ))}
         </div>
         <MagneticBtn to="/contact" style={{
-          display: 'inline-flex', width: '100%', justifyContent: 'center',
-          alignItems: 'center', gap: '0.5rem', padding: '0.8rem 0',
-          background: hovered ? PINK : INK, color: WHITE, borderRadius: '6px',
-          fontWeight: 600, fontSize: '0.83rem', fontFamily: 'Syne, sans-serif',
-          transition: 'background 0.3s',
+          display: 'inline-flex',
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '0.6rem',
+          padding: '0.9rem 0',
+          background: hovered ? PINK : INK,
+          color: WHITE,
+          borderRadius: '10px',
+          fontWeight: 700,
+          fontSize: '0.85rem',
+          fontFamily: 'Syne, sans-serif',
+          transition: 'all 0.3s ease',
+          cursor: 'pointer',
+          textDecoration: 'none',
+          border: 'none'
         }}>
-          Order Now <ArrowUpRight size={14} />
+          Order Now <ArrowUpRight size={15} />
         </MagneticBtn>
       </div>
     </div>
@@ -412,21 +436,32 @@ function FeatureTile({ feat, Icon }) {
 
   return (
     <div
-      style={{ background: hovered ? OFF_WHITE : WHITE, padding: '2.5rem', transition: 'background 0.3s', cursor: 'default' }}
+      style={{
+        background: hovered ? OFF_WHITE : WHITE,
+        padding: 'clamp(1.8rem, 4vw, 2.5rem)',
+        transition: 'all 0.3s ease',
+        cursor: 'default',
+        borderBottom: hovered ? `2px solid ${PINK}` : '2px solid transparent'
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <div style={{
-        width: 44, height: 44, borderRadius: '10px',
+        width: 52,
+        height: 52,
+        borderRadius: '12px',
         background: hovered ? PINK : PINK_LIGHT,
         border: `1px solid ${hovered ? PINK : PINK_MID}`,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        marginBottom: '1.5rem', transition: 'all 0.3s',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: '1.5rem',
+        transition: 'all 0.3s ease',
       }}>
-        <Icon size={20} color={hovered ? WHITE : PINK} />
+        <Icon size={22} color={hovered ? WHITE : PINK} />
       </div>
-      <h4 style={{ fontFamily: 'Syne, sans-serif', fontSize: '1rem', fontWeight: 700, color: INK, marginBottom: '0.6rem' }}>{feat.title}</h4>
-      <p style={{ color: INK60, fontSize: '0.83rem', lineHeight: 1.65, fontFamily: 'DM Sans, sans-serif' }}>{feat.description}</p>
+      <h4 style={{ fontFamily: 'Syne, sans-serif', fontSize: '1.1rem', fontWeight: 700, color: INK, marginBottom: '0.8rem' }}>{feat.title}</h4>
+      <p style={{ color: INK60, fontSize: '0.85rem', lineHeight: 1.65, fontFamily: 'DM Sans, sans-serif' }}>{feat.description}</p>
     </div>
   );
 }
@@ -437,33 +472,50 @@ function UseCaseTile({ useCase, featured }) {
   return (
     <div
       style={{
-        position: 'relative', borderRadius: '16px', overflow: 'hidden',
+        position: 'relative',
+        borderRadius: '20px',
+        overflow: 'hidden',
         aspectRatio: featured ? '16/10' : '4/3',
-        gridRow: featured ? 'span 2' : 'span 1', cursor: 'default',
+        cursor: 'pointer',
+        transition: 'all 0.3s ease',
+        transform: hovered ? 'scale(1.02)' : 'scale(1)',
+        boxShadow: hovered ? '0 20px 40px rgba(0,0,0,0.15)' : 'none'
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <img src={useCase.image} alt={useCase.title} style={{
-        width: '100%', height: '100%', objectFit: 'cover',
-        transition: 'transform 0.7s ease', transform: hovered ? 'scale(1.05)' : 'scale(1)',
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        transition: 'transform 0.7s ease',
+        transform: hovered ? 'scale(1.08)' : 'scale(1)',
       }} />
       <div style={{
-        position: 'absolute', inset: 0,
+        position: 'absolute',
+        inset: 0,
         background: hovered
-          ? 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 60%, transparent 100%)'
-          : 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)',
-        transition: 'background 0.4s',
+          ? 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 70%, transparent 100%)'
+          : 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)',
+        transition: 'background 0.4s ease',
       }} />
-      <div style={{ position: 'absolute', bottom: 0, left: 0, padding: featured ? '2rem' : '1.2rem' }}>
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: featured ? 'clamp(1.5rem, 4vw, 2rem)' : '1.2rem' }}>
         <h4 style={{
-          fontFamily: 'Syne, sans-serif', fontSize: featured ? '1.4rem' : '0.95rem',
-          fontWeight: 800, color: WHITE, marginBottom: '0.4rem', lineHeight: 1.1,
+          fontFamily: 'Syne, sans-serif',
+          fontSize: featured ? 'clamp(1.1rem, 4vw, 1.4rem)' : '1rem',
+          fontWeight: 800,
+          color: WHITE,
+          marginBottom: '0.5rem',
+          lineHeight: 1.2,
         }}>{useCase.title}</h4>
         <p style={{
-          color: 'rgba(255,255,255,0.7)', fontSize: featured ? '0.88rem' : '0.78rem',
-          fontFamily: 'DM Sans, sans-serif', lineHeight: 1.5, maxWidth: 300,
-          opacity: hovered ? 1 : 0.75, transition: 'opacity 0.3s',
+          color: 'rgba(255,255,255,0.8)',
+          fontSize: featured ? 'clamp(0.8rem, 2vw, 0.85rem)' : '0.75rem',
+          fontFamily: 'DM Sans, sans-serif',
+          lineHeight: 1.5,
+          opacity: hovered ? 1 : 0.8,
+          transition: 'opacity 0.3s ease',
+          display: featured ? 'block' : 'none'
         }}>{useCase.description}</p>
       </div>
     </div>
@@ -476,25 +528,38 @@ function ProcessTile({ step, title, description }) {
   return (
     <div
       style={{
-        background: WHITE, border: `1px solid ${hovered ? PINK : INK10}`,
-        borderRadius: '16px', overflow: 'hidden', transition: 'all 0.35s',
-        transform: hovered ? 'translateY(-5px)' : 'translateY(0)',
-        boxShadow: hovered ? '0 16px 32px rgba(0,0,0,0.07)' : 'none',
+        background: WHITE,
+        border: `1px solid ${hovered ? PINK : INK10}`,
+        borderRadius: '20px',
+        overflow: 'hidden',
+        transition: 'all 0.35s cubic-bezier(0.2,0.9,0.4,1.1)',
+        transform: hovered ? 'translateY(-6px)' : 'translateY(0)',
+        boxShadow: hovered ? '0 20px 40px rgba(0,0,0,0.08)' : '0 4px 12px rgba(0,0,0,0.03)',
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <div style={{
-        width: 48, height: 48, borderRadius: '12px', background: PINK,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        width: 56,
+        height: 56,
+        borderRadius: '16px',
+        background: hovered ? PINK : PINK_LIGHT,
+        border: `1px solid ${hovered ? PINK : PINK_MID}`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         margin: '1.8rem 1.8rem 0',
-        fontFamily: 'Syne, sans-serif', fontSize: '0.85rem', fontWeight: 800, color: WHITE,
+        fontFamily: 'Syne, sans-serif',
+        fontSize: '1rem',
+        fontWeight: 800,
+        color: hovered ? WHITE : PINK,
+        transition: 'all 0.3s ease'
       }}>
         {step}
       </div>
       <div style={{ padding: '1.2rem 1.8rem 1.8rem' }}>
-        <h3 style={{ fontFamily: 'Syne, sans-serif', fontSize: '1rem', fontWeight: 800, color: INK, marginBottom: '0.5rem' }}>{title}</h3>
-        <p style={{ color: INK60, fontSize: '0.82rem', lineHeight: 1.65, fontFamily: 'DM Sans, sans-serif' }}>{description}</p>
+        <h3 style={{ fontFamily: 'Syne, sans-serif', fontSize: '1.1rem', fontWeight: 800, color: INK, marginBottom: '0.6rem' }}>{title}</h3>
+        <p style={{ color: INK60, fontSize: '0.85rem', lineHeight: 1.65, fontFamily: 'DM Sans, sans-serif' }}>{description}</p>
       </div>
     </div>
   );
@@ -504,36 +569,53 @@ function FAQItem({ q, a, isOpen, onToggle }) {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    if (isOpen) {
-      gsap.to(contentRef.current, { height: 'auto', duration: 0.45, ease: 'power2.out', opacity: 1 });
-    } else {
-      gsap.to(contentRef.current, { height: 0, duration: 0.35, ease: 'power2.in', opacity: 0 });
+    if (contentRef.current) {
+      if (isOpen) {
+        gsap.to(contentRef.current, { height: 'auto', duration: 0.45, ease: 'power2.out', opacity: 1 });
+      } else {
+        gsap.to(contentRef.current, { height: 0, duration: 0.35, ease: 'power2.in', opacity: 0 });
+      }
     }
   }, [isOpen]);
 
   return (
     <div style={{ borderBottom: `1px solid ${INK10}`, overflow: 'hidden' }}>
       <button onClick={onToggle} style={{
-        width: '100%', padding: '1.5rem 0', background: 'transparent', border: 'none',
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        cursor: 'pointer', fontFamily: 'Syne, sans-serif', fontSize: '0.95rem',
-        fontWeight: 700, color: isOpen ? INK : INK60,
-        textAlign: 'left', gap: '2rem', transition: 'color 0.2s',
+        width: '100%',
+        padding: 'clamp(1rem, 4vw, 1.5rem) 0',
+        background: 'transparent',
+        border: 'none',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        cursor: 'pointer',
+        fontFamily: 'Syne, sans-serif',
+        fontSize: 'clamp(0.9rem, 3vw, 1rem)',
+        fontWeight: 700,
+        color: isOpen ? INK : INK60,
+        textAlign: 'left',
+        gap: '1rem',
+        transition: 'color 0.2s ease',
       }}>
-        {q}
+        <span>{q}</span>
         <div style={{
-          width: 30, height: 30, borderRadius: '6px',
+          width: 32,
+          height: 32,
+          borderRadius: '8px',
           background: isOpen ? PINK : INK10,
           border: `1px solid ${isOpen ? PINK : INK10}`,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          transition: 'all 0.3s', flexShrink: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.3s ease',
+          flexShrink: 0,
           transform: isOpen ? 'rotate(180deg)' : 'rotate(0)',
         }}>
-          <ChevronDown size={15} color={isOpen ? WHITE : INK} />
+          <ChevronDown size={16} color={isOpen ? WHITE : INK} />
         </div>
       </button>
       <div ref={contentRef} style={{ height: 0, overflow: 'hidden', opacity: 0 }}>
-        <p style={{ color: INK60, lineHeight: 1.8, fontFamily: 'DM Sans, sans-serif', fontSize: '0.88rem', paddingBottom: '1.5rem' }}>{a}</p>
+        <p style={{ color: INK60, lineHeight: 1.8, fontFamily: 'DM Sans, sans-serif', fontSize: '0.9rem', paddingBottom: '1.5rem' }}>{a}</p>
       </div>
     </div>
   );
@@ -547,7 +629,7 @@ export default function NFCSolutions() {
       gsap.utils.toArray('.reveal-up-nfc').forEach((el) => {
         gsap.fromTo(el,
           { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' } }
+          { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' } }
         );
       });
     });
@@ -558,80 +640,120 @@ export default function NFCSolutions() {
     <div style={{ background: WHITE, fontFamily: 'DM Sans, sans-serif' }}>
       <HeroNFC />
 
-      <section style={{ padding: '8rem 0', background: WHITE }}>
-        <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
+      <section style={{ padding: 'clamp(4rem, 10vw, 8rem) 1.5rem', background: WHITE }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
             <div className="reveal-up-nfc">
               <SectionLabel>SMART CONNECTIVITY</SectionLabel>
               <h2 style={{
-                fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-                fontWeight: 800, color: INK, lineHeight: 1.05,
-                marginBottom: '1.5rem', letterSpacing: '-0.025em',
+                fontFamily: 'Syne, sans-serif',
+                fontSize: 'clamp(2rem, 5vw, 3.2rem)',
+                fontWeight: 800,
+                color: INK,
+                lineHeight: 1.1,
+                marginBottom: '1.5rem',
+                letterSpacing: '-0.02em',
               }}>One Tap.<br />Infinite Possibilities.</h2>
-              <p style={{ color: INK60, lineHeight: 1.85, marginBottom: '2.5rem', fontFamily: 'DM Sans, sans-serif', fontSize: '0.95rem' }}>
+              <p style={{ color: INK60, lineHeight: 1.7, marginBottom: '2rem', fontFamily: 'DM Sans, sans-serif', fontSize: 'clamp(0.9rem, 2vw, 1rem)' }}>
                 NFC (Near Field Communication) allows instant data sharing with a simple tap. Replace paper cards with smart NFC products that update anytime, track engagement, and share unlimited information.
               </p>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '2.5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.8rem', marginBottom: '2rem' }}>
                 {['Share contacts instantly', 'Update without reprinting', 'Track who taps', 'Connect to any URL', 'Social media links', 'Eco-friendly'].map((pt, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                     <div style={{
-                      width: 18, height: 18, borderRadius: '4px',
-                      background: PINK_LIGHT, border: `1px solid ${PINK_MID}`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                      width: 20,
+                      height: 20,
+                      borderRadius: '5px',
+                      background: PINK_LIGHT,
+                      border: `1px solid ${PINK_MID}`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
                     }}>
-                      <Check size={10} color={PINK} />
+                      <Check size={12} color={PINK} />
                     </div>
                     <span style={{ color: INK60, fontSize: '0.85rem', fontFamily: 'DM Sans, sans-serif' }}>{pt}</span>
                   </div>
                 ))}
               </div>
               <MagneticBtn to="/contact" style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                padding: '0.9rem 2rem', background: PINK, color: WHITE,
-                borderRadius: '6px', fontWeight: 700, fontSize: '0.88rem', fontFamily: 'Syne, sans-serif',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                padding: 'clamp(0.85rem, 2.5vw, 1rem) clamp(1.8rem, 4vw, 2.5rem)',
+                background: PINK,
+                color: WHITE,
+                borderRadius: '10px',
+                fontWeight: 700,
+                fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+                fontFamily: 'Syne, sans-serif',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                border: 'none',
+                boxShadow: '0 4px 12px rgba(178,39,140,0.3)'
               }}>
-                Get Started <ArrowUpRight size={15} />
+                Get Started <ArrowUpRight size={16} />
               </MagneticBtn>
             </div>
             <div className="reveal-up-nfc" style={{ position: 'relative' }}>
-              <div style={{ borderRadius: '20px', overflow: 'hidden', aspectRatio: '4/5' }}>
+              <div style={{ borderRadius: '24px', overflow: 'hidden', aspectRatio: '4/5', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
                 <img
                   src="/nfcpage.avif"
                   alt="NFC Card"
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', background: OFF_WHITE }}
                 />
               </div>
               <div style={{
-                position: 'absolute', bottom: '-1.5rem', left: '-1.5rem',
-                background: WHITE, border: `1px solid ${INK10}`,
-                borderRadius: '14px', padding: '1.2rem 1.5rem',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+                position: 'absolute',
+                bottom: '-1rem',
+                left: '1rem',
+                background: WHITE,
+                border: `1px solid ${INK10}`,
+                borderRadius: '16px',
+                padding: 'clamp(1rem, 3vw, 1.2rem) clamp(1.2rem, 3vw, 1.5rem)',
+                boxShadow: '0 12px 24px rgba(0,0,0,0.1)',
               }}>
-                <div style={{ fontFamily: 'Syne, sans-serif', fontSize: '1.8rem', fontWeight: 800, color: INK, lineHeight: 1 }}>4.8x</div>
-                <div style={{ color: INK60, fontSize: '0.72rem', fontFamily: 'DM Sans, sans-serif', marginTop: '0.2rem' }}>More Engagement</div>
+                <div style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(1.5rem, 4vw, 1.8rem)', fontWeight: 800, color: INK, lineHeight: 1 }}>4.8x</div>
+                <div style={{ color: INK60, fontSize: '0.7rem', fontFamily: 'DM Sans, sans-serif', marginTop: '0.2rem' }}>More Engagement</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section style={{ padding: '8rem 0', background: OFF_WHITE }}>
-        <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 2rem' }}>
-          <div className="reveal-up-nfc" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '4rem' }}>
+      <section style={{ padding: 'clamp(4rem, 10vw, 8rem) 1.5rem', background: OFF_WHITE }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          <div className="reveal-up-nfc" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', marginBottom: '3rem', gap: '1.5rem' }}>
             <div>
               <SectionLabel>OUR PRODUCTS</SectionLabel>
-              <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: INK, letterSpacing: '-0.025em', lineHeight: 1.05 }}>Smart NFC Solutions</h2>
+              <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 800, color: INK, letterSpacing: '-0.02em', lineHeight: 1.1 }}>Smart NFC Solutions</h2>
             </div>
             <MagneticBtn to="/contact" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-              padding: '0.75rem 1.75rem', border: `1px solid ${INK30}`,
-              color: INK, background: 'transparent', borderRadius: '6px',
-              fontWeight: 600, fontSize: '0.85rem', fontFamily: 'Syne, sans-serif', whiteSpace: 'nowrap',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.8rem 1.6rem',
+              border: `1.5px solid ${INK30}`,
+              color: INK,
+              background: 'transparent',
+              borderRadius: '10px',
+              fontWeight: 600,
+              fontSize: '0.85rem',
+              fontFamily: 'Syne, sans-serif',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+              textDecoration: 'none'
             }}>
               View All <ArrowUpRight size={14} />
             </MagneticBtn>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.2rem' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem'
+          }}>
             {nfcProducts.map((product, i) => (
               <ProductCard key={i} product={product} index={i} />
             ))}
@@ -639,16 +761,20 @@ export default function NFCSolutions() {
         </div>
       </section>
 
-      <section style={{ padding: '8rem 0', background: WHITE }}>
-        <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 2rem' }}>
-          <div className="reveal-up-nfc" style={{ textAlign: 'center', marginBottom: '5rem' }}>
+      <section style={{ padding: 'clamp(4rem, 10vw, 8rem) 1.5rem', background: WHITE }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          <div className="reveal-up-nfc" style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <SectionLabel>KEY FEATURES</SectionLabel>
-            <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: INK, letterSpacing: '-0.025em' }}>Why Choose NFC</h2>
+            <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 800, color: INK, letterSpacing: '-0.02em' }}>Why Choose NFC</h2>
           </div>
           <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '1px', background: INK10,
-            borderRadius: '20px', overflow: 'hidden', border: `1px solid ${INK10}`,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '1px',
+            background: INK10,
+            borderRadius: '24px',
+            overflow: 'hidden',
+            border: `1px solid ${INK10}`,
           }}>
             {nfcFeatures.map((feat, idx) => {
               const Icon = feat.icon;
@@ -658,13 +784,17 @@ export default function NFCSolutions() {
         </div>
       </section>
 
-      <section style={{ padding: '8rem 0', background: OFF_WHITE }}>
-        <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 2rem' }}>
-          <div className="reveal-up-nfc" style={{ marginBottom: '4rem' }}>
+      <section style={{ padding: 'clamp(4rem, 10vw, 8rem) 1.5rem', background: OFF_WHITE }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          <div className="reveal-up-nfc" style={{ marginBottom: '3rem' }}>
             <SectionLabel>USE CASES</SectionLabel>
-            <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: INK, letterSpacing: '-0.025em', lineHeight: 1.05 }}>Versatile Applications</h2>
+            <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 800, color: INK, letterSpacing: '-0.02em', lineHeight: 1.1 }}>Versatile Applications</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr', gridTemplateRows: 'auto auto', gap: '1.2rem' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '1.5rem'
+          }}>
             {nfcUseCases.map((uc, i) => (
               <UseCaseTile key={i} useCase={uc} featured={i === 0} />
             ))}
@@ -672,44 +802,57 @@ export default function NFCSolutions() {
         </div>
       </section>
 
-      <section style={{ padding: '8rem 0', background: WHITE }}>
-        <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 2rem' }}>
-          <div className="reveal-up-nfc" style={{ textAlign: 'center', marginBottom: '5rem' }}>
+      <section style={{ padding: 'clamp(4rem, 10vw, 8rem) 1.5rem', background: WHITE }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          <div className="reveal-up-nfc" style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <SectionLabel>SIMPLE PROCESS</SectionLabel>
-            <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: INK, letterSpacing: '-0.025em' }}>Get Started in 4 Steps</h2>
+            <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 800, color: INK, letterSpacing: '-0.02em' }}>Get Started in 4 Steps</h2>
           </div>
-          <div style={{ position: 'relative' }}>
-            <div style={{
-              position: 'absolute', top: '2.8rem',
-              left: 'calc(12.5% + 1.5rem)', right: 'calc(12.5% + 1.5rem)',
-              height: '1px',
-              background: `linear-gradient(to right, transparent, ${PINK_MID}, transparent)`,
-              zIndex: 0,
-            }} />
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', position: 'relative', zIndex: 1 }}>
-              {nfcProcess.map((step, i) => <ProcessTile key={i} {...step} />)}
-            </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: '1.8rem',
+            position: 'relative',
+            zIndex: 1,
+          }}>
+            {nfcProcess.map((step, i) => <ProcessTile key={i} {...step} />)}
           </div>
         </div>
       </section>
 
-      <section style={{ padding: '8rem 0', background: OFF_WHITE }}>
-        <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: '6rem', alignItems: 'start' }}>
-            <div className="reveal-up-nfc" style={{ position: 'sticky', top: '8rem' }}>
+      <section style={{ padding: 'clamp(4rem, 10vw, 8rem) 1.5rem', background: OFF_WHITE }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'start' }}>
+            <div className="reveal-up-nfc" style={{ position: 'sticky', top: '100px' }}>
               <SectionLabel>FAQs</SectionLabel>
               <h2 style={{
-                fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
-                fontWeight: 800, color: INK, marginBottom: '1rem',
-                letterSpacing: '-0.025em', lineHeight: 1.05,
+                fontFamily: 'Syne, sans-serif',
+                fontSize: 'clamp(2rem, 5vw, 3rem)',
+                fontWeight: 800,
+                color: INK,
+                marginBottom: '1rem',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
               }}>Common<br />Questions</h2>
-              <p style={{ color: INK60, lineHeight: 1.7, fontFamily: 'DM Sans, sans-serif', marginBottom: '2.5rem', fontSize: '0.9rem' }}>Everything about NFC smart cards and solutions.</p>
+              <p style={{ color: INK60, lineHeight: 1.7, fontFamily: 'DM Sans, sans-serif', marginBottom: '2rem', fontSize: '0.95rem' }}>Everything about NFC smart cards and solutions.</p>
               <MagneticBtn to="/contact" style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
-                padding: '0.9rem 2rem', background: PINK, color: WHITE,
-                borderRadius: '6px', fontWeight: 700, fontSize: '0.88rem', fontFamily: 'Syne, sans-serif',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                padding: 'clamp(0.85rem, 2.5vw, 1rem) clamp(1.8rem, 4vw, 2.5rem)',
+                background: PINK,
+                color: WHITE,
+                borderRadius: '10px',
+                fontWeight: 700,
+                fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+                fontFamily: 'Syne, sans-serif',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                border: 'none',
+                boxShadow: '0 4px 12px rgba(178,39,140,0.3)'
               }}>
-                Ask Us Anything <ArrowUpRight size={15} />
+                Ask Us Anything <ArrowUpRight size={16} />
               </MagneticBtn>
             </div>
             <div className="reveal-up-nfc">
@@ -721,40 +864,77 @@ export default function NFCSolutions() {
         </div>
       </section>
 
-      <section style={{ padding: '8rem 0', background: INK, position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: 'clamp(4rem, 10vw, 8rem) 1.5rem', background: INK, position: 'relative', overflow: 'hidden' }}>
         <div style={{
-          position: 'absolute', width: 700, height: 700, borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(178,39,140,0.12) 0%, transparent 70%)',
-          top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none',
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          background: 'radial-gradient(circle at 50% 50%, rgba(178,39,140,0.15) 0%, transparent 70%)',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          pointerEvents: 'none',
         }} />
-        <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 2rem', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 2 }}>
           <div style={{
-            display: 'inline-block', background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(255,255,255,0.08)', borderRadius: '20px',
-            padding: '4rem 5rem', maxWidth: 720,
+            display: 'inline-block',
+            background: 'rgba(255,255,255,0.03)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            borderRadius: '32px',
+            padding: 'clamp(2.5rem, 7vw, 4.5rem) clamp(1.5rem, 5vw, 4rem)',
+            maxWidth: '95%',
+            width: '100%'
           }}>
             <SectionLabel>GET STARTED</SectionLabel>
             <h2 style={{
-              fontFamily: 'Syne, sans-serif', fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)',
-              fontWeight: 800, color: WHITE, marginBottom: '1rem',
-              letterSpacing: '-0.025em', lineHeight: 1.05,
+              fontFamily: 'Syne, sans-serif',
+              fontSize: 'clamp(1.8rem, 6vw, 3rem)',
+              fontWeight: 800,
+              color: WHITE,
+              marginBottom: '1rem',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.1,
             }}>Ready to Upgrade<br />Your Connections?</h2>
-            <p style={{ color: 'rgba(255,255,255,0.45)', maxWidth: 480, margin: '0 auto 2.5rem', fontFamily: 'DM Sans, sans-serif', lineHeight: 1.7, fontSize: '0.9rem' }}>
+            <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: 500, margin: '0 auto 2rem', fontFamily: 'DM Sans, sans-serif', lineHeight: 1.7, fontSize: 'clamp(0.85rem, 2vw, 0.95rem)' }}>
               Join the digital revolution. Get your custom NFC card today and start making every interaction count.
             </p>
-            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <MagneticBtn to="/contact" style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
-                padding: '1rem 2.4rem', background: WHITE, color: INK,
-                borderRadius: '6px', fontWeight: 700, fontFamily: 'Syne, sans-serif', fontSize: '0.9rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                padding: 'clamp(0.9rem, 2.5vw, 1.1rem) clamp(1.8rem, 5vw, 2.8rem)',
+                background: WHITE,
+                color: INK,
+                borderRadius: '12px',
+                fontWeight: 700,
+                fontFamily: 'Syne, sans-serif',
+                fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                border: 'none',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
               }}>
                 Order Your NFC Card <ArrowUpRight size={16} />
               </MagneticBtn>
               <MagneticBtn to="/works" style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
-                padding: '1rem 2.4rem', background: 'transparent',
-                color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.15)',
-                borderRadius: '6px', fontWeight: 600, fontFamily: 'Syne, sans-serif', fontSize: '0.9rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                padding: 'clamp(0.9rem, 2.5vw, 1.1rem) clamp(1.8rem, 5vw, 2.8rem)',
+                background: 'rgba(255,255,255,0.05)',
+                color: 'rgba(255,255,255,0.85)',
+                border: '1.5px solid rgba(255,255,255,0.2)',
+                borderRadius: '12px',
+                fontWeight: 600,
+                fontFamily: 'Syne, sans-serif',
+                fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                backdropFilter: 'blur(10px)'
               }}>
                 See Examples
               </MagneticBtn>
