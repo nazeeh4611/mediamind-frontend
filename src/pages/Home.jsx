@@ -61,13 +61,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={wrapRef} style={{ background: WHITE, color: INK, overflowX: 'hidden' }}>
-      <style>{`
+<div ref={wrapRef} style={{ background: WHITE, color: INK }}>
+  
+        <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background: #fff; cursor: ${isMobile ? 'auto' : 'none'} !important; margin: 0; overflow-x: hidden; }
-        a, button { cursor: ${isMobile ? 'pointer' : 'none'} !important; }
+        body { background: #fff; margin: 0; overflow-x: hidden; }
+        a, !important; }
         .cc { position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999; will-change: transform; transition: width 0.2s ease, height 0.2s ease; }
         .cd { position: fixed; width: 6px; height: 6px; border-radius: 50%; pointer-events: none; z-index: 10000; will-change: transform; background: ${ORANGE}; }
         .stack-card { will-change: transform, opacity; }

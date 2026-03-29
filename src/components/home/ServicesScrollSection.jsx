@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MagneticBtn } from './MagneticBtn';
 import { scrollingServices } from '../../utils/constants';
+import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,9 +98,16 @@ export function ServicesScrollSection({ onEnterBtn, onLeaveBtn }) {
               <p style={{ fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1.5rem', color: '#444' }}>
                 {s.desc}
               </p>
-              <button style={{ alignSelf: 'flex-start', padding: '0.85rem 1.75rem', background: '#111', color: '#fff', borderRadius: 50, fontWeight: 600, border: 'none', cursor: 'pointer', fontSize: '0.88rem' }}>
-                Learn More
-              </button>
+              <Link to={s.route} style={{ textDecoration: "none" }}>
+  <MagneticBtn
+    onMouseEnter={() => onEnterBtn('View')}
+    onMouseLeave={onLeaveBtn}
+    style={{ padding: '1rem 2rem', background: '#111', color: '#fff', borderRadius: 50, fontWeight: 600 }}
+  >
+    Learn More
+  </MagneticBtn>
+</Link>
+           
             </div>
           </div>
 
@@ -179,13 +187,15 @@ export function ServicesScrollSection({ onEnterBtn, onLeaveBtn }) {
                 <p style={{ fontSize: '1rem', lineHeight: 1.6, marginBottom: '2rem', color: '#444' }}>
                   {s.desc}
                 </p>
-                <MagneticBtn
-                  onMouseEnter={() => onEnterBtn('View')}
-                  onMouseLeave={onLeaveBtn}
-                  style={{ padding: '1rem 2rem', background: '#111', color: '#fff', borderRadius: 50, fontWeight: 600 }}
-                >
-                  Learn More
-                </MagneticBtn>
+                <Link to={s.route} style={{ textDecoration: "none" }}>
+  <MagneticBtn
+    onMouseEnter={() => onEnterBtn('View')}
+    onMouseLeave={onLeaveBtn}
+    style={{ padding: '1rem 2rem', background: '#111', color: '#fff', borderRadius: 50, fontWeight: 600 }}
+  >
+    Learn More
+  </MagneticBtn>
+</Link>
               </div>
               <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img src={s.img} alt={s.tag} style={{ width: '100%', maxHeight: '350px', objectFit: 'contain' }} />

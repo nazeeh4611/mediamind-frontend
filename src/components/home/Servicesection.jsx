@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const IconBadge = ({ children, bg = "#111" }) => (
   <div style={{
@@ -388,14 +389,22 @@ export function ServicesSection() {
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.85rem, 2.5vw, 1rem)", color: "#777", maxWidth: 560, margin: "0 auto 2rem", lineHeight: 1.6 }}>
             Looking to elevate your brand? We craft immersive experiences that captivate, engage, and make your business unforgettable.
           </p>
-          <button className="cta-btn">
-            <span className="cta-arrow">
-              <svg width="20" height="20" viewBox="0 0 14 14" fill="none">
-                <path d="M2 12L12 2M12 2H5M12 2v7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-            <span className="cta-label">Let's craft together</span>
-          </button>
+          <Link to="/contact" style={{ textDecoration: "none" }}>
+  <button className="cta-btn">
+    <span className="cta-arrow">
+      <svg width="20" height="20" viewBox="0 0 14 14" fill="none">
+        <path
+          d="M2 12L12 2M12 2H5M12 2v7"
+          stroke="#fff"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </span>
+    <span className="cta-label">Let's craft together</span>
+  </button>
+</Link>
         </div>
       </div>
     </section>

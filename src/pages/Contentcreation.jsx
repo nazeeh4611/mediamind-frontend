@@ -1,15 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Check, ArrowUpRight, } from 'lucide-react';
-import {MagneticBtn} from '../components/home/MagneticBtn';
-import { 
-  WHITE, INK, INK60, INK30, INK10, 
-  OFF_WHITE, ORANGE, GRAD_HERO 
+import { Check, ArrowUpRight } from 'lucide-react';
+import { MagneticBtn } from '../components/home/MagneticBtn';
+import {
+  WHITE, INK, INK60, INK30, INK10,
+  OFF_WHITE, ORANGE, GRAD_HERO
 } from '../utils/constants';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const socialData = {
   hero: {
@@ -94,10 +90,10 @@ const socialData = {
     { step: "06", title: "Analysis & Optimization", desc: "Track performance, analyze data, and continuously optimize for better results.", icon: "📊" }
   ],
   results: [
-    { metric: "Followers Growth", increase: "+245%", timeframe: "Average Increase", color: ORANGE },
-    { metric: "Engagement Rate", increase: "+178%", timeframe: "Industry Average", color: "#3b82f6" },
-    { metric: "Website Traffic", increase: "+156%", timeframe: "From Social", color: "#8b5cf6" },
-    { metric: "Leads Generated", increase: "+134%", timeframe: "Monthly Average", color: ORANGE }
+    { metric: "Followers Growth", increase: "+245%", timeframe: "Average Increase", color: "#B2278C" },
+    { metric: "Engagement Rate", increase: "+178%", timeframe: "Industry Average", color: "#B2278C" },
+    { metric: "Website Traffic", increase: "+156%", timeframe: "From Social", color: "#B2278C" },
+    { metric: "Leads Generated", increase: "+134%", timeframe: "Monthly Average", color: "#B2278C" }
   ],
   faqs: [
     { q: "Which social media platforms should my business be on?", a: "It depends on your target audience, industry, and business goals. We analyze your ideal customers and recommend platforms where they're most active. For most businesses, Instagram, Facebook, and LinkedIn are great starting points." },
@@ -119,11 +115,16 @@ function ServiceCard({ service }) {
         borderRadius: '24px',
         overflow: 'hidden',
         background: WHITE,
-        border: `1px solid ${hovered ? ORANGE : INK10}`,
+        border: `1px solid ${hovered ? "#B2278C" : INK10}`,
         padding: '2rem',
         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
         transform: hovered ? 'translateY(-8px)' : 'translateY(0)',
         boxShadow: hovered ? '0 20px 40px rgba(0,0,0,0.08)' : 'none',
+        minWidth: '280px',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -180,7 +181,7 @@ function ServiceCard({ service }) {
               fontFamily: "'Inter', sans-serif",
             }}
           >
-            <Check size={14} color={ORANGE} />
+            <Check size={14} color="#B2278C" />
             <span>{feature}</span>
           </div>
         ))}
@@ -196,12 +197,14 @@ function PlatformCard({ platform }) {
     <div
       style={{
         background: WHITE,
-        border: `1px solid ${hovered ? ORANGE : INK10}`,
+        border: `1px solid ${hovered ? "#B2278C" : INK10}`,
         borderRadius: '20px',
         padding: '1.5rem',
         textAlign: 'center',
         transition: 'all 0.3s ease',
         transform: hovered ? 'translateY(-5px)' : 'translateY(0)',
+        minWidth: '260px',
+        width: '100%'
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -246,12 +249,15 @@ function ProcessStep({ step, title, desc, icon }) {
     <div
       style={{
         background: WHITE,
-        border: `1px solid ${hovered ? ORANGE : INK10}`,
+        border: `1px solid ${hovered ? "#B2278C" : INK10}`,
         borderRadius: '24px',
         padding: '2rem',
         position: 'relative',
         transition: 'all 0.4s ease',
         transform: hovered ? 'translateY(-5px)' : 'translateY(0)',
+        minWidth: '280px',
+        width: '100%',
+        height: '100%'
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -277,7 +283,7 @@ function ProcessStep({ step, title, desc, icon }) {
           fontFamily: "'Inter', sans-serif",
           fontSize: '0.7rem',
           fontWeight: 700,
-          color: ORANGE,
+          color: "#B2278C",
           marginBottom: '0.5rem',
           letterSpacing: '0.1em',
         }}
@@ -307,12 +313,14 @@ function ResultCard({ metric, increase, timeframe, color }) {
     <div
       style={{
         background: WHITE,
-        border: `1px solid ${hovered ? ORANGE : INK10}`,
+        border: `1px solid ${hovered ? "#B2278C" : INK10}`,
         borderRadius: '20px',
         padding: '2rem',
         textAlign: 'center',
         transition: 'all 0.4s ease',
         transform: hovered ? 'translateY(-8px)' : 'translateY(0)',
+        minWidth: '200px',
+        width: '100%'
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -321,7 +329,7 @@ function ResultCard({ metric, increase, timeframe, color }) {
         style={{
           fontSize: '2.5rem',
           fontWeight: 800,
-          color: color,
+          color: "#B2278C",
           fontFamily: "'Inter', sans-serif",
           marginBottom: '0.5rem',
         }}
@@ -360,7 +368,7 @@ function FAQItem({ q, a, isOpen, onToggle }) {
         onClick={onToggle}
         style={{
           width: '100%',
-          padding: '1.5rem',
+          padding: '1rem 1.5rem',
           background: 'transparent',
           border: 'none',
           display: 'flex',
@@ -374,13 +382,14 @@ function FAQItem({ q, a, isOpen, onToggle }) {
           textAlign: 'left',
         }}
       >
-        {q}
+        <span style={{ flex: 1 }}>{q}</span>
         <span
           style={{
             fontSize: '1.5rem',
             transition: 'transform 0.3s ease',
             transform: isOpen ? 'rotate(45deg)' : 'rotate(0)',
-            color: ORANGE,
+            color: "#B2278C",
+            marginLeft: '1rem'
           }}
         >
           +
@@ -403,61 +412,74 @@ function FAQItem({ q, a, isOpen, onToggle }) {
   );
 }
 
-export default function SocialMediaMarketing() {
-  const heroRef = useRef(null);
-  const headlineRef = useRef(null);
-  const subRef = useRef(null);
-  const btnsRef = useRef(null);
-  const [openFAQ, setOpenFAQ] = useState(null);
+function HorizontalScrollSection({ title, subtitle, items, renderItem, bgColor = WHITE }) {
+  const scrollRef = useRef(null);
 
-  useEffect(() => {
-    const heroTl = gsap.timeline({ delay: 0.2 });
+  return (
+    <section style={{ padding: '4rem 0', background: bgColor }}>
+      <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          {subtitle && (
+            <p style={{ color: "#B2278C", fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.8rem', marginBottom: '0.8rem', fontFamily: 'Inter, sans-serif' }}>
+              {subtitle}
+            </p>
+          )}
+          <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(1.6rem, 4vw, 2.5rem)', fontWeight: 700, color: INK, marginBottom: '0.5rem' }}>
+            {title}
+          </h2>
+        </div>
 
-    const headline = headlineRef.current;
-    if (headline) {
-      const words = headline.innerText.split(' ');
-      headline.innerHTML = words
-        .map(word => `<span class="word" style="display:inline-block;opacity:0;transform:translateY(80px)">${word}</span>`)
-        .join(' ');
-    }
-
-    heroTl
-      .to('.word', { y: 0, opacity: 1, duration: 1.2, stagger: 0.08, ease: 'power4.out' })
-      .fromTo(subRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, '-=0.7')
-      .fromTo(btnsRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.5');
-
-    gsap.utils.toArray('.reveal-section').forEach(section => {
-      gsap.fromTo(
-        section,
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: section, start: 'top 85%', toggleActions: 'play none none reverse' },
+        <div
+          ref={scrollRef}
+          style={{
+            display: 'flex',
+            overflowX: 'auto',
+            gap: '1.5rem',
+            paddingBottom: '1rem',
+            scrollbarWidth: 'thin',
+            WebkitOverflowScrolling: 'touch'
+          }}
+          className="horizontal-scroll"
+        >
+          {items.map((item, i) => (
+            <div key={i} style={{ flex: '0 0 auto', width: 'min(100%, 320px)' }}>
+              {renderItem(item, i)}
+            </div>
+          ))}
+        </div>
+      </div>
+      <style>{`
+        .horizontal-scroll::-webkit-scrollbar {
+          height: 6px;
         }
-      );
-    });
+        .horizontal-scroll::-webkit-scrollbar-track {
+          background: ${INK10};
+          border-radius: 10px;
+        }
+        .horizontal-scroll::-webkit-scrollbar-thumb {
+          background: #B2278C;
+          border-radius: 10px;
+        }
+      `}</style>
+    </section>
+  );
+}
 
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
-  }, []);
+export default function SocialMediaMarketing() {
+  const [openFAQ, setOpenFAQ] = useState(null);
 
   return (
     <div style={{ background: WHITE }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
-
         @keyframes pulse {
           0%, 100% { opacity: 1; transform: scale(1); }
           50% { opacity: 0.6; transform: scale(1.05); }
         }
-        
         @keyframes shine {
           0% { background-position: -100% 0; }
           100% { background-position: 200% 0; }
         }
-        
         .glow-text {
           background: linear-gradient(135deg, ${ORANGE}, #3b82f6, #8b5cf6);
           background-size: 200% 200%;
@@ -466,62 +488,24 @@ export default function SocialMediaMarketing() {
           color: transparent;
           animation: shine 3s ease infinite;
         }
-        
-        .services-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
+        .container {
+          width: 100%;
         }
-        
-        .platforms-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
+        img {
+          max-width: 100%;
+          height: auto;
         }
-        
-        .process-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
+        button, .btn {
+          cursor: pointer;
         }
-        
-        .results-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.5rem;
-        }
-        
-        @media (max-width: 1024px) {
-          .services-grid { grid-template-columns: repeat(2, 1fr); }
-          .platforms-grid { grid-template-columns: repeat(2, 1fr); }
-          .process-grid { grid-template-columns: repeat(2, 1fr); }
-          .results-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        
         @media (max-width: 768px) {
-          .services-grid { grid-template-columns: 1fr; }
-          .platforms-grid { grid-template-columns: 1fr; }
-          .process-grid { grid-template-columns: 1fr; }
-          .results-grid { grid-template-columns: 1fr; }
-        }
-        
-        .whatis-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 3rem;
-          align-items: center;
-        }
-        
-        @media (max-width: 768px) {
-          .whatis-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
+          .stats-container {
+            gap: 1.5rem !important;
           }
         }
       `}</style>
 
       <section
-        ref={heroRef}
         style={{
           minHeight: '80vh',
           position: 'relative',
@@ -531,37 +515,37 @@ export default function SocialMediaMarketing() {
           alignItems: 'center',
         }}
       >
-        <div style={{ position: 'absolute', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(249,115,22,.1) 0%,transparent 70%)', top: '-10%', right: '-5%', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle,rgba(59,130,246,.08) 0%,transparent 70%)', bottom: '5%', left: '-5%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', width: '60%', maxWidth: 600, paddingBottom: '60%', borderRadius: '50%', background: 'radial-gradient(circle,rgba(249,115,22,.1) 0%,transparent 70%)', top: '-10%', right: '-5%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', width: '50%', maxWidth: 500, paddingBottom: '50%', borderRadius: '50%', background: 'radial-gradient(circle,rgba(59,130,246,.08) 0%,transparent 70%)', bottom: '5%', left: '-5%', pointerEvents: 'none' }} />
         
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 2, paddingTop: '120px', paddingBottom: '80px' }}>
+        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem', position: 'relative', zIndex: 2, paddingTop: '100px', paddingBottom: '60px' }}>
           <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
             <div
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.75rem',
-                padding: '0.6rem 1.5rem',
+                padding: '0.5rem 1.2rem',
                 background: OFF_WHITE,
                 border: `1px solid ${INK10}`,
                 borderRadius: '100px',
-                marginBottom: '2rem',
+                marginBottom: '1.5rem',
+                flexWrap: 'wrap'
               }}
             >
               <span style={{ width: 10, height: 10, borderRadius: '50%', background: ORANGE, display: 'inline-block', animation: 'pulse 2s infinite' }} />
-              <span style={{ color: INK60, fontSize: '0.9rem', fontWeight: 500, fontFamily: 'Inter, sans-serif' }}>
+              <span style={{ color: INK60, fontSize: '0.85rem', fontWeight: 500, fontFamily: 'Inter, sans-serif' }}>
                 {socialData.hero.badge}
               </span>
             </div>
 
             <h1
-              ref={headlineRef}
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: 'clamp(3rem, 8vw, 5rem)',
+                fontSize: 'clamp(2.5rem, 8vw, 5rem)',
                 fontWeight: 800,
-                lineHeight: 1.08,
-                marginBottom: '1.5rem',
+                lineHeight: 1.1,
+                marginBottom: '1rem',
                 color: INK,
                 letterSpacing: '-0.02em',
               }}
@@ -571,64 +555,66 @@ export default function SocialMediaMarketing() {
             </h1>
 
             <p
-              ref={subRef}
               style={{
-                fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
+                fontSize: 'clamp(0.9rem, 2.5vw, 1.2rem)',
                 color: INK60,
                 maxWidth: 700,
-                margin: '0 auto 2rem',
-                lineHeight: 1.7,
+                margin: '0 auto 1.5rem',
+                lineHeight: 1.6,
                 fontFamily: 'Inter, sans-serif',
+                padding: '0 1rem'
               }}
             >
               {socialData.hero.description}
             </p>
 
-            <div ref={btnsRef} style={{ display: 'flex', gap: '1.2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', padding: '0 1rem' }}>
               <MagneticBtn
                 to={socialData.hero.ctaLink}
                 style={{
-                  padding: '1rem 2.5rem',
+                  padding: '0.8rem 1.8rem',
                   background: INK,
                   color: WHITE,
                   borderRadius: '50px',
                   fontWeight: 700,
-                  fontSize: '1rem',
+                  fontSize: '0.9rem',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.75rem',
+                  gap: '0.5rem',
                   fontFamily: 'Inter, sans-serif',
+                  whiteSpace: 'nowrap'
                 }}
               >
-                {socialData.hero.ctaText} <ArrowUpRight size={18} />
+                {socialData.hero.ctaText} <ArrowUpRight size={16} />
               </MagneticBtn>
               <MagneticBtn
                 to={socialData.hero.secondaryLink}
                 style={{
-                  padding: '1rem 2.5rem',
+                  padding: '0.8rem 1.8rem',
                   background: WHITE,
                   color: INK,
                   border: `1px solid ${INK10}`,
                   borderRadius: '50px',
                   fontWeight: 600,
-                  fontSize: '1rem',
+                  fontSize: '0.9rem',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.75rem',
+                  gap: '0.5rem',
                   fontFamily: 'Inter, sans-serif',
+                  whiteSpace: 'nowrap'
                 }}
               >
-                {socialData.hero.secondaryText} <ArrowUpRight size={18} />
+                {socialData.hero.secondaryText} <ArrowUpRight size={16} />
               </MagneticBtn>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '4rem', flexWrap: 'wrap', marginTop: '3rem' }}>
+            <div className="stats-container" style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap', marginTop: '2.5rem' }}>
               {socialData.stats.map((stat, i) => (
-                <div key={i} style={{ textAlign: 'center' }}>
-                  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '2.5rem', fontWeight: 800, background: `linear-gradient(135deg, ${ORANGE}, #8b5cf6)`, WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', lineHeight: 1 }}>
+                <div key={i} style={{ textAlign: 'center', minWidth: '100px' }}>
+                  <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(1.5rem, 5vw, 2.2rem)', fontWeight: 800, background: `linear-gradient(135deg, ${ORANGE}, #8b5cf6)`, WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', lineHeight: 1 }}>
                     {stat.number}
                   </div>
-                  <div style={{ color: INK60, fontSize: '0.85rem', marginTop: '0.5rem', fontFamily: 'Inter, sans-serif' }}>{stat.label}</div>
+                  <div style={{ color: INK60, fontSize: '0.75rem', marginTop: '0.3rem', fontFamily: 'Inter, sans-serif' }}>{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -636,145 +622,88 @@ export default function SocialMediaMarketing() {
         </div>
       </section>
 
-      <section style={{ padding: '6rem 0', background: WHITE }} className="reveal-section">
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <div className="whatis-grid">
+      <section style={{ padding: '4rem 0', background: WHITE }}>
+        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', alignItems: 'center' }}>
             <div>
-              <p style={{ color: ORANGE, fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
+              <p style={{ color: "#B2278C", fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.8rem', marginBottom: '0.8rem', fontFamily: 'Inter, sans-serif' }}>
                 WHY SOCIAL MEDIA
               </p>
-              <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 2.8rem)', fontWeight: 700, color: INK, marginBottom: '1.5rem' }}>
+              <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(1.6rem, 4vw, 2.5rem)', fontWeight: 700, color: INK, marginBottom: '1rem' }}>
                 {socialData.whatIsSocial.title}
               </h2>
-              <p style={{ color: INK60, fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem', fontFamily: 'Inter, sans-serif' }}>
+              <p style={{ color: INK60, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem', fontFamily: 'Inter, sans-serif' }}>
                 {socialData.whatIsSocial.description}
               </p>
               <div>
                 {socialData.whatIsSocial.points.map((point, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                    <Check size={18} color={ORANGE} />
-                    <span style={{ color: INK60, fontSize: '0.95rem', fontFamily: 'Inter, sans-serif' }}>{point}</span>
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.8rem' }}>
+                    <Check size={16} color="#B2278C" />
+                    <span style={{ color: INK60, fontSize: '0.9rem', fontFamily: 'Inter, sans-serif' }}>{point}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div style={{ borderRadius: '28px', padding: '2rem', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ borderRadius: '24px', padding: '1rem', position: 'relative', overflow: 'hidden' }}>
               <img
                 src='/social.avif'
                 alt="Social Media Marketing"
                 style={{
                   width: '100%',
-                  height: '100%',
+                  height: 'auto',
                   objectFit: 'contain',
-                  transform: 'scale(0.9)',
-                  transition: 'transform 0.5s ease',
+                  transition: 'transform 0.3s ease',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(0.9)')}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.02)')}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
               />
             </div>
           </div>
         </div>
       </section>
 
-      <section style={{ padding: '6rem 0', background: OFF_WHITE }} className="reveal-section">
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <p style={{ color: ORANGE, fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
-              PLATFORMS WE MASTER
-            </p>
-            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: INK, marginBottom: '1rem' }}>
-              Reach Your Audience <span style={{ color: ORANGE }}>Where They Are</span>
-            </h2>
-            <p style={{ color: INK60, maxWidth: 600, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
-              Strategic presence across all major social platforms
-            </p>
-          </div>
+      <HorizontalScrollSection
+        subtitle="PLATFORMS WE MASTER"
+        title="Reach Your Audience <span style='color: #B2278C'>Where They Are</span>"
+        items={socialData.platforms}
+        renderItem={(platform) => <PlatformCard platform={platform} />}
+        bgColor={OFF_WHITE}
+      />
 
-          <div className="platforms-grid">
-            {socialData.platforms.map((platform, i) => (
-              <PlatformCard key={i} platform={platform} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <HorizontalScrollSection
+        subtitle="OUR SERVICES"
+        title="Social Media <span style='color: #B2278C'>Marketing Services</span>"
+        items={socialData.services}
+        renderItem={(service) => <ServiceCard service={service} />}
+        bgColor={WHITE}
+      />
 
-      <section style={{ padding: '6rem 0', background: WHITE }} className="reveal-section">
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <p style={{ color: ORANGE, fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
-              OUR SERVICES
-            </p>
-            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: INK, marginBottom: '1rem' }}>
-              Social Media <span style={{ color: ORANGE }}>Marketing Services</span>
-            </h2>
-            <p style={{ color: INK60, maxWidth: 600, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
-              Comprehensive solutions to grow your social presence
-            </p>
-          </div>
+      <HorizontalScrollSection
+        subtitle="OUR PROCESS"
+        title="How We Build <span style='color: #B2278C'>Your Social Presence</span>"
+        items={socialData.process}
+        renderItem={(step) => <ProcessStep {...step} />}
+        bgColor={OFF_WHITE}
+      />
 
-          <div className="services-grid">
-            {socialData.services.map((service, i) => (
-              <ServiceCard key={i} service={service} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <HorizontalScrollSection
+        subtitle="PROVEN RESULTS"
+        title="Real Growth. <span style='color: #B2278C'>Real Engagement.</span>"
+        items={socialData.results}
+        renderItem={(result) => <ResultCard {...result} />}
+        bgColor={WHITE}
+      />
 
-      <section style={{ padding: '6rem 0', background: OFF_WHITE }} className="reveal-section">
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <p style={{ color: ORANGE, fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
-              OUR PROCESS
-            </p>
-            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: INK, marginBottom: '1rem' }}>
-              How We Build <span style={{ color: ORANGE }}>Your Social Presence</span>
-            </h2>
-            <p style={{ color: INK60, maxWidth: 600, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
-              A strategic approach to social media success
-            </p>
-          </div>
-
-          <div className="process-grid">
-            {socialData.process.map((step, i) => (
-              <ProcessStep key={i} {...step} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section style={{ padding: '6rem 0', background: WHITE }} className="reveal-section">
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <p style={{ color: ORANGE, fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
-              PROVEN RESULTS
-            </p>
-            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: INK, marginBottom: '1rem' }}>
-              Real Growth. <span style={{ color: ORANGE }}>Real Engagement.</span>
-            </h2>
-            <p style={{ color: INK60, maxWidth: 600, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
-              See how we've transformed social presence for our clients
-            </p>
-          </div>
-
-          <div className="results-grid">
-            {socialData.results.map((result, i) => (
-              <ResultCard key={i} {...result} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section style={{ padding: '6rem 0', background: OFF_WHITE }} className="reveal-section">
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <p style={{ color: ORANGE, fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.85rem', marginBottom: '1rem', fontFamily: 'Inter, sans-serif' }}>
+      <section style={{ padding: '4rem 0', background: OFF_WHITE }}>
+        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <p style={{ color: "#B2278C", fontWeight: 700, letterSpacing: '0.1em', fontSize: '0.8rem', marginBottom: '0.8rem', fontFamily: 'Inter, sans-serif' }}>
               FAQ
             </p>
-            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, color: INK, marginBottom: '1rem' }}>
-              Frequently Asked <span style={{ color: ORANGE }}>Questions</span>
+            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(1.6rem, 4vw, 2.5rem)', fontWeight: 700, color: INK, marginBottom: '0.5rem' }}>
+              Frequently Asked <span style={{ color: "#B2278C" }}>Questions</span>
             </h2>
-            <p style={{ color: INK60, maxWidth: 600, margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
+            <p style={{ color: INK60, maxWidth: 600, margin: '0 auto', fontFamily: 'Inter, sans-serif', fontSize: '0.9rem' }}>
               Everything you need to know about our social media marketing services
             </p>
           </div>
@@ -793,20 +722,20 @@ export default function SocialMediaMarketing() {
         </div>
       </section>
 
-      <section style={{ padding: '5rem 0', background: WHITE }}>
-        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
+      <section style={{ padding: '4rem 0', background: WHITE }}>
+        <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 1.5rem' }}>
           <div
             style={{
               background: INK,
-              borderRadius: '32px',
-              padding: '4rem',
+              borderRadius: '28px',
+              padding: '2.5rem 1.5rem',
               textAlign: 'center',
             }}
           >
-            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 700, color: WHITE, marginBottom: '1rem' }}>
+            <h2 style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 700, color: WHITE, marginBottom: '0.8rem' }}>
               Ready to Grow Your Social Presence?
             </h2>
-            <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 600, margin: '0 auto 2rem', fontSize: '1rem', fontFamily: 'Inter, sans-serif' }}>
+            <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 500, margin: '0 auto 1.5rem', fontSize: '0.9rem', fontFamily: 'Inter, sans-serif', padding: '0 1rem' }}>
               Let's create engaging content and campaigns that connect with your audience and drive real business results.
             </p>
             <MagneticBtn
@@ -814,16 +743,17 @@ export default function SocialMediaMarketing() {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.75rem',
-                padding: '1rem 2.5rem',
+                gap: '0.6rem',
+                padding: '0.8rem 1.8rem',
                 background: WHITE,
                 color: INK,
                 borderRadius: '50px',
                 fontWeight: 700,
                 fontFamily: 'Inter, sans-serif',
+                fontSize: '0.9rem'
               }}
             >
-              Start Your Social Campaign <ArrowUpRight size={18} />
+              Start Your Social Campaign <ArrowUpRight size={16} />
             </MagneticBtn>
           </div>
         </div>

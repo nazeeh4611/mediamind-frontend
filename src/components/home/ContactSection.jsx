@@ -16,9 +16,35 @@ export function ContactSection() {
 
   useEffect(() => {
     if (!sectionRef.current) return;
+  
+    // Disable animation on mobile
+    if (window.innerWidth <= 768) {
+      const left = sectionRef.current.querySelector('.contact-left');
+      const right = sectionRef.current.querySelector('.contact-right');
+      if (left) left.style.opacity = 1;
+      if (right) right.style.opacity = 1;
+      return;
+    }
+  
     const left = sectionRef.current.querySelector('.contact-left');
     const right = sectionRef.current.querySelector('.contact-right');
-    gsap.fromTo([left, right], { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 75%', once: true } });
+  
+    gsap.fromTo(
+      [left, right],
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 75%',
+          once: true,
+        },
+      }
+    );
   }, []);
 
   return (

@@ -57,42 +57,46 @@ export const scrollingServices = [
   {
     tag: 'Search Engine Optimization',
     title: 'Rank #1 On\nSearch Engine',
-    desc: 'Your business deserves organic growth. We design SEO campaigns that not only highlight your brand to potential audiences but also drive market expansion.',
+    desc: 'Your business deserves organic growth...',
     bg: '#c2d9e5',
     accent: '#0d9488',
     img: '/seocard.avif',
     color: '#0d9488',
     decorColor: 'rgba(13,148,136,0.15)',
+    route: '/services/seo'
   },
   {
     tag: 'Social Media Marketing',
     title: 'Build Brands That People Follow',
-    desc: 'Unlock the full potential of social media with strategy, creativity, and data-driven campaigns. Our social media marketing services help grow your audience, increase engagement, generate leads, and boost your brand awareness.',
+    desc: 'Unlock the full potential...',
     bg: 'linear-gradient(135deg,#d8b4fe,#a78bfa)',
     accent: '#7c3aed',
     img: '/social.avif',
     color: '#7c3aed',
     decorColor: 'rgba(124,58,237,0.15)',
+    route: '/services/social-media-marketing'
   },
   {
     tag: 'Web Development',
-    title: 'Websites That\nWork Wonders',
-    desc: 'From concept to launch, we build user-focused, modern websites that amplify your brand and grow your business.',
+    title: 'Websites That Work Wonders',
+    desc: 'From concept to launch...',
     bg: 'linear-gradient(135deg,#fed7aa,#fb923c)',
     accent: '#ea580c',
     img: '/webcard.avif',
     color: '#ea580c',
     decorColor: 'rgba(234,88,12,0.15)',
+    route: '/services/website-development'
   },
   {
     tag: 'Branding',
-    title: 'Create\nCaptivating\nExperiences',
-    desc: 'We are a creative agency with Super Powers. An effective brand strategy is the blueprint for your business success, hence we create captivating brand experiences.',
+    title: 'Create Captivating Experiences',
+    desc: 'We are a creative agency...',
     bg: 'linear-gradient(135deg,#bbf7d0,#4ade80)',
     accent: '#15803d',
     img: '/brandcard.avif',
     color: '#15803d',
     decorColor: 'rgba(21,128,61,0.15)',
+    route: '/services/branding-graphic-design'
   },
 ];
 
