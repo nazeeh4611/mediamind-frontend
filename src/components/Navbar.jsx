@@ -79,7 +79,7 @@ export default function Navbar() {
         maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'
       }}>
         <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-          <img src="/dn.png" alt="logo" style={{ height: '68px', width: 'auto', objectFit: 'contain' }} />
+          <img src="/lg.avif" alt="logo" style={{ height: '88px', width: 'auto', objectFit: 'contain' }} />
         </Link>
 
         {/* Desktop Nav */}

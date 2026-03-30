@@ -163,10 +163,8 @@ export default function Footer() {
                 lineHeight: 1.9,
               }}
             >
-              hello@mediamind.io
-              <br />
-              +971 50 123 4567
-              <br />
+admin@mediaminddigital.ae              <br />
++971 55 117 1721              <br />
               Dubai, United Arab Emirates
             </p>
 
