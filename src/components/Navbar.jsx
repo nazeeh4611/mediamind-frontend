@@ -69,7 +69,7 @@ export default function Navbar() {
   return (
     <nav ref={navRef} style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
-      padding: '1rem 0',
+      padding: '0.5rem 0',
       background: '#ffffff',
       boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.08)' : 'none',
       transition: 'all 0.4s ease',
@@ -79,11 +79,11 @@ export default function Navbar() {
         maxWidth: '1200px', margin: '0 auto', padding: '0 2rem'
       }}>
         <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-          <img src="/lg.avif" alt="logo" style={{ height: '88px', width: 'auto', objectFit: 'contain' }} />
+          <img src="/lg.avif" alt="logo" style={{ height: '64px', width: 'auto', objectFit: 'contain' }} />
         </Link>
 
         {/* Desktop Nav */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }} className="desktop-nav">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="desktop-nav">
           {links.map(l => (
             l.hasDropdown ? (
               <div
@@ -93,7 +93,7 @@ export default function Navbar() {
                 style={{ position: 'relative' }}
               >
                 <Link to={l.to} style={{
-                  fontFamily: 'var(--font-display, Inter)', fontWeight: 600, fontSize: '0.9rem',
+                  fontFamily: 'var(--font-display, Inter)', fontWeight: 600, fontSize: '0.85rem',
                   color: isServicesActive ? '#B2278C' : '#333333',
                   opacity: isServicesActive ? 1 : 0.8,
                   transition: 'all 0.2s', letterSpacing: '0.01em', textDecoration: 'none',
@@ -131,13 +131,13 @@ export default function Navbar() {
                     onMouseEnter={handleServicesEnter}
                     onMouseLeave={handleServicesLeave}
                     style={{
-                      position: 'absolute', top: 'calc(100% + 18px)', left: '50%',
+                      position: 'absolute', top: 'calc(100% + 12px)', left: '50%',
                       transform: 'translateX(-50%)',
                       background: '#ffffff',
-                      borderRadius: '16px',
+                      borderRadius: '12px',
                       boxShadow: '0 8px 40px rgba(0,0,0,0.13), 0 2px 8px rgba(178,39,140,0.07)',
-                      padding: '0.75rem 0',
-                      minWidth: '260px',
+                      padding: '0.5rem 0',
+                      minWidth: '240px',
                       zIndex: 2000,
                       border: '1px solid rgba(0,0,0,0.06)',
                     }}
@@ -162,16 +162,16 @@ export default function Navbar() {
                         key={item.route}
                         to={item.route}
                         style={{
-                          display: 'flex', alignItems: 'center', gap: '14px',
-                          padding: '0.72rem 1.4rem',
+                          display: 'flex', alignItems: 'center', gap: '12px',
+                          padding: '0.55rem 1.2rem',
                           fontFamily: 'var(--font-display, Inter)',
                           fontWeight: 600,
-                          fontSize: '0.88rem',
+                          fontSize: '0.85rem',
                           color: location.pathname === item.route ? '#B2278C' : '#222',
                           textDecoration: 'none',
                           transition: 'all 0.15s',
-                          borderRadius: '8px',
-                          margin: '0 0.4rem',
+                          borderRadius: '6px',
+                          margin: '0 0.3rem',
                           background: location.pathname === item.route ? 'rgba(178,39,140,0.06)' : 'transparent',
                           borderBottom: idx < serviceItems.length - 1 ? '1px solid rgba(0,0,0,0.045)' : 'none',
                           borderBottomLeftRadius: 0,
@@ -180,19 +180,19 @@ export default function Navbar() {
                         onMouseEnter={e => {
                           e.currentTarget.style.background = 'rgba(178,39,140,0.07)';
                           e.currentTarget.style.color = '#B2278C';
-                          e.currentTarget.style.paddingLeft = '1.65rem';
+                          e.currentTarget.style.paddingLeft = '1.45rem';
                         }}
                         onMouseLeave={e => {
                           e.currentTarget.style.background = location.pathname === item.route ? 'rgba(178,39,140,0.06)' : 'transparent';
                           e.currentTarget.style.color = location.pathname === item.route ? '#B2278C' : '#222';
-                          e.currentTarget.style.paddingLeft = '1.4rem';
+                          e.currentTarget.style.paddingLeft = '1.2rem';
                         }}
                       >
                         <span style={{
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          width: 32, height: 32, borderRadius: '8px',
+                          width: '28px', height: '28px', borderRadius: '6px',
                           background: 'rgba(178,39,140,0.08)',
-                          fontSize: '0.95rem', flexShrink: 0,
+                          fontSize: '0.9rem', flexShrink: 0,
                         }}>
                           {item.icon}
                         </span>
@@ -204,7 +204,7 @@ export default function Navbar() {
               </div>
             ) : (
               <Link key={l.to} to={l.to} style={{
-                fontFamily: 'var(--font-display, Inter)', fontWeight: 600, fontSize: '0.9rem',
+                fontFamily: 'var(--font-display, Inter)', fontWeight: 600, fontSize: '0.85rem',
                 color: location.pathname === l.to ? '#B2278C' : '#333333',
                 opacity: location.pathname === l.to ? 1 : 0.8,
                 transition: 'all 0.2s', letterSpacing: '0.01em', textDecoration: 'none',
@@ -228,7 +228,7 @@ export default function Navbar() {
           ))}
 
           <Link to="/contact" style={{
-            padding: '0.6rem 1.5rem', fontSize: '0.85rem',
+            padding: '0.5rem 1.2rem', fontSize: '0.8rem',
             background: '#B2278C', color: '#fff', borderRadius: '50px',
             fontFamily: 'var(--font-display, Inter)', fontWeight: 700,
             textDecoration: 'none', transition: 'all 0.25s',
@@ -252,7 +252,7 @@ export default function Navbar() {
         >
           {[0, 1, 2].map(i => (
             <span key={i} style={{
-              display: 'block', width: 24, height: 2,
+              display: 'block', width: '22px', height: '2px',
               background: '#333333', borderRadius: 2,
               transition: 'all 0.3s ease',
               transform: menuOpen
@@ -270,7 +270,7 @@ export default function Navbar() {
         <div style={{
           position: 'absolute', top: '100%', left: 0, right: 0,
           background: '#ffffff',
-          padding: '1.5rem 1.5rem 2rem',
+          padding: '1rem 1.5rem 1.5rem',
           display: 'flex', flexDirection: 'column', gap: '0.25rem',
           boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
         }}>
@@ -281,9 +281,9 @@ export default function Navbar() {
                   onClick={() => setMobileServicesOpen(prev => !prev)}
                   style={{
                     width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                    fontFamily: 'var(--font-display, Inter)', fontWeight: 600, fontSize: '1.1rem',
+                    fontFamily: 'var(--font-display, Inter)', fontWeight: 600, fontSize: '1rem',
                     color: isServicesActive ? '#B2278C' : '#333333',
-                    padding: '0.85rem 0',
+                    padding: '0.7rem 0',
                     borderBottom: mobileServicesOpen ? 'none' : '1px solid rgba(0,0,0,0.06)',
                     background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left',
                     borderBottom: '1px solid rgba(0,0,0,0.06)',
@@ -300,9 +300,9 @@ export default function Navbar() {
                     {serviceItems.map(item => (
                       <Link key={item.route} to={item.route} style={{
                         display: 'flex', alignItems: 'center', gap: '10px',
-                        fontFamily: 'var(--font-display, Inter)', fontWeight: 500, fontSize: '0.95rem',
+                        fontFamily: 'var(--font-display, Inter)', fontWeight: 500, fontSize: '0.9rem',
                         color: location.pathname === item.route ? '#B2278C' : '#444',
-                        padding: '0.65rem 0',
+                        padding: '0.55rem 0',
                         borderBottom: '1px solid rgba(0,0,0,0.04)',
                         textDecoration: 'none',
                       }}>
@@ -315,9 +315,9 @@ export default function Navbar() {
               </div>
             ) : (
               <Link key={l.to} to={l.to} style={{
-                fontFamily: 'var(--font-display, Inter)', fontWeight: 600, fontSize: '1.1rem',
+                fontFamily: 'var(--font-display, Inter)', fontWeight: 600, fontSize: '1rem',
                 color: location.pathname === l.to ? '#B2278C' : '#333333',
-                padding: '0.85rem 0',
+                padding: '0.7rem 0',
                 borderBottom: '1px solid rgba(0,0,0,0.06)',
                 textDecoration: 'none',
               }}>
@@ -326,10 +326,10 @@ export default function Navbar() {
             )
           ))}
           <Link to="/contact" style={{
-            textAlign: 'center', marginTop: '1rem',
-            padding: '0.85rem', background: '#B2278C', color: '#fff',
-            borderRadius: '12px', fontFamily: 'var(--font-display, Inter)',
-            fontWeight: 700, textDecoration: 'none', fontSize: '0.95rem',
+            textAlign: 'center', marginTop: '0.75rem',
+            padding: '0.7rem', background: '#B2278C', color: '#fff',
+            borderRadius: '10px', fontFamily: 'var(--font-display, Inter)',
+            fontWeight: 700, textDecoration: 'none', fontSize: '0.9rem',
           }}>
             Get Started
           </Link>
