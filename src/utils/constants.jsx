@@ -42,7 +42,7 @@ export const services = [
   { title: 'SEO & Google Ads', tag: 'SEO / PPC', bg: SOFT_GREEN, accent: '#16a34a', img: '/seo.avif', stat: '8×', statLabel: 'Avg ROAS', icon: <Zap size={20} /> },
   { title: 'Branding & Identity', tag: 'Branding', bg: SOFT_YELLOW, accent: YELLOW, img: '/brand.avif', stat: '150+', statLabel: 'Brands Built', icon: <Sparkles size={20} /> },
   { title: 'NFC Smart Cards', tag: 'Technology', bg: SOFT_TEAL, accent: TEAL, img: '/nfchom.avif', stat: '1 Tap', statLabel: 'Instant Sharing', icon: <MousePointer2 size={20} /> },
-  { title: 'Performance Marketing', tag: 'Paid Ads', bg: SOFT_PINK, accent: PINK, img: '/logo.avif', stat: '$50M+', statLabel: 'Revenue Generated', icon: <Layers size={20} /> },
+  // { title: 'Performance Marketing', tag: 'Paid Ads', bg: SOFT_PINK, accent: PINK, img: '/logo.avif', stat: '$50M+', statLabel: 'Revenue Generated', icon: <Layers size={20} /> },
 ];
 
 export const serviceCategories = [
