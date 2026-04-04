@@ -16,6 +16,9 @@ import { useFetchWorks } from '../hooks/useFetchWorks';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const ROOT_VIDEO_SRC = 'https://pub-6070c66a49144147b12828af75c69a0c.r2.dev/IMG_7029.MP4';
+const LOGO_VIDEO_SRC = 'https://pub-6070c66a49144147b12828af75c69a0c.r2.dev/IMG_6860.MP4';
+
 export default function Home() {
   const wrapRef = useRef(null);
   const [cursorBig, setCursorBig] = useState(false);
@@ -61,14 +64,14 @@ export default function Home() {
   }, []);
 
   return (
-<div ref={wrapRef} style={{ background: WHITE, color: INK }}>
-  
-        <style>{`
+    <div ref={wrapRef} style={{ background: WHITE, color: INK }}>
+
+      <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { background: #fff; margin: 0; overflow-x: hidden; }
-        a, !important; }
+        a { text-decoration: none !important; }
         .cc { position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999; will-change: transform; transition: width 0.2s ease, height 0.2s ease; }
         .cd { position: fixed; width: 6px; height: 6px; border-radius: 50%; pointer-events: none; z-index: 10000; will-change: transform; background: ${ORANGE}; }
         .stack-card { will-change: transform, opacity; }
@@ -89,7 +92,12 @@ export default function Home() {
         </>
       )}
 
-      <HeroSection onEnterBtn={enterBtn} onLeaveBtn={leaveBtn} />
+      <HeroSection
+        onEnterBtn={enterBtn}
+        onLeaveBtn={leaveBtn}
+        rootVideoSrc={ROOT_VIDEO_SRC}
+        logoVideoSrc={LOGO_VIDEO_SRC}
+      />
       <MarqueeBar />
       <ClientsSection />
       <InnovationBanner onEnterBtn={enterBtn} onLeaveBtn={leaveBtn} />
