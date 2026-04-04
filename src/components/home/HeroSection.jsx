@@ -43,7 +43,7 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
         paddingBottom: '4rem'
       }}
     >
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+      {/* <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <video
           autoPlay
           loop
@@ -56,10 +56,10 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: '520px',
-            opacity: 0.07
+            opacity: 0.09 
           }}
         />
-      </div>
+      </div> */}
 
       <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
         <video
