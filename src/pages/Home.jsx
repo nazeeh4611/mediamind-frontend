@@ -16,7 +16,7 @@ import { useFetchWorks } from '../hooks/useFetchWorks';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ROOT_VIDEO_SRC = 'https://pub-6070c66a49144147b12828af75c69a0c.r2.dev/IMG_7029.MP4';
+const ROOT_VIDEO_SRC = 'https://pub-6070c66a49144147b12828af75c69a0c.r2.dev/AgADvB8AAk_LmFY_m2707755_WhatsApp_Video_2026_04_06_at_15_26_07_p%20(1).mp4';
 const LOGO_VIDEO_SRC = 'https://pub-6070c66a49144147b12828af75c69a0c.r2.dev/IMG_6860.MP4';
 
 export default function Home() {

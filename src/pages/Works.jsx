@@ -22,18 +22,18 @@ api.interceptors.response.use(
 );
 
 const FALLBACK_WORKS = [
-  {
-    _id: 'social-brand-launch',
-    category: 'Social Media Creatives',
-    title: 'Multi-Platform Brand Launch',
-    subtitle: 'Instagram · Facebook · TikTok',
-    desc: 'Built an end-to-end social presence for a Dubai lifestyle brand — content strategy, reels, paid promotion and community management.',
-    featuredImage: { url: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80' },
-    result: '3.2x ROAS',
-    resultLabel: 'Return on Ad Spend',
-    color: ORANGE,
-    tags: ['Strategy', 'Content', 'Paid Social'],
-  },
+  // {
+  //   _id: 'social-brand-launch',
+  //   category: 'Social Media Creatives',
+  //   title: 'Multi-Platform Brand Launch',
+  //   subtitle: 'Instagram · Facebook · TikTok',
+  //   desc: 'Built an end-to-end social presence for a Dubai lifestyle brand — content strategy, reels, paid promotion and community management.',
+  //   featuredImage: { url: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80' },
+  //   result: '3.2x ROAS',
+  //   resultLabel: 'Return on Ad Spend',
+  //   color: ORANGE,
+  //   tags: ['Strategy', 'Content', 'Paid Social'],
+  // },
   {
     _id: 'restaurant-social',
     category: 'Social Media Creatives',

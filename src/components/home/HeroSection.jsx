@@ -72,7 +72,7 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
             position: 'absolute',
             left: '8%',
             bottom: '8%',
-            width: '560px',
+            width: '600px',
             opacity: 0.85
           }}
         />
