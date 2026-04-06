@@ -33,49 +33,84 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
     <section
       style={{
         minHeight: '100vh',
-        background: '#ffff',
+        background: '#ffffff',
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        paddingTop: '7rem',
-        paddingBottom: '4rem'
+        paddingTop: '6rem',
+        paddingBottom: '2rem',
+        boxSizing: 'border-box'
       }}
     >
-      {/* <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          src={logoVideoSrc}
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '520px',
-            opacity: 0.09 
-          }}
-        />
-      </div> */}
+      <style>{`
+        .hero-logo-video {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none;
+        }
+        .hero-logo-video video {
+          width: 920px;
+          max-width: 90%;
+          opacity: 0.2;
+        }
+        @media (max-width: 768px) {
+          .hero-logo-video {
+            align-items: flex-start;
+          }
+          .hero-logo-video video {
+            max-width: 90%;
+            margin-top: 5%;
+          }
+        }
+        .hero-robot-wrap {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: 4;
+          pointer-events: none;
+        }
+        .hero-robot-wrap video {
+          display: block;
+          width: 220px;
+          opacity: 0.9;
+        }
+        @media (max-width: 480px) {
+          .hero-robot-wrap video {
+            width: 110px;
+          }
+        }
+        @media (min-width: 481px) and (max-width: 768px) {
+          .hero-robot-wrap video {
+            width: 150px;
+          }
+        }
+        .hero-stats-grid {
+          display: flex;
+          gap: 2rem;
+          justify-content: center;
+          flex-wrap: wrap;
+          padding-top: 2rem;
+        }
+        @media (max-width: 360px) {
+          .hero-stats-grid {
+            gap: 1rem;
+          }
+        }
+      `}</style>
 
-      <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          src={rootVideoSrc}
-          style={{
-            position: 'absolute',
-            left: '8%',
-            bottom: '8%',
-            width: '600px',
-            opacity: 0.85
-          }}
-        />
+      <div className="hero-logo-video">
+        <video autoPlay loop muted playsInline src={logoVideoSrc} />
+      </div>
+
+      <div className="hero-robot-wrap">
+        <video autoPlay loop muted playsInline src={rootVideoSrc} />
       </div>
 
       <div
@@ -84,8 +119,9 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
           position: 'relative',
           zIndex: 5,
           maxWidth: 1000,
-          padding: '0 1.25rem',
-          width: '100%'
+          padding: '0 1.5rem',
+          width: '100%',
+          boxSizing: 'border-box'
         }}
       >
         <div ref={titleRef}>
@@ -93,9 +129,11 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
             style={{
               fontFamily: "'Inter', sans-serif",
               fontWeight: 800,
-              fontSize: 'clamp(2rem,6vw,5.5rem)',
+              fontSize: 'clamp(1.75rem, 5.5vw, 5.5rem)',
               color: INK,
-              lineHeight: 1.1
+              lineHeight: 1.15,
+              margin: 0,
+              wordBreak: 'break-word'
             }}
           >
             Building bold brands with
@@ -106,8 +144,12 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
               fontFamily: "'Inter', sans-serif",
               fontWeight: 700,
               fontStyle: 'italic',
-              fontSize: 'clamp(3rem,7vw,6.5rem)',
-              color: colors[wordIdx % colors.length]
+              fontSize: 'clamp(2.25rem, 7vw, 6.5rem)',
+              color: colors[wordIdx % colors.length],
+              margin: '0.15rem 0 0',
+              lineHeight: 1.1,
+              wordBreak: 'break-word',
+              transition: 'color 0.3s ease'
             }}
           >
             {currentWord}
@@ -117,11 +159,12 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
         <p
           ref={subRef}
           style={{
-            fontSize: '1.05rem',
+            fontSize: 'clamp(0.9rem, 2.5vw, 1.05rem)',
             color: INK60,
             lineHeight: 1.8,
             maxWidth: 580,
-            margin: '1.5rem auto 2.5rem'
+            margin: '1.5rem auto 2.5rem',
+            padding: '0 0.5rem'
           }}
         >
           Our suite of comprehensive services is designed to place your brand front and center in the ever-evolving digital arena.
@@ -135,7 +178,9 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
               background: INK,
               color: WHITE,
               borderRadius: 50,
-              fontWeight: 700
+              fontWeight: 700,
+              fontSize: 'clamp(0.85rem, 2vw, 1rem)',
+              display: 'inline-block'
             }}
             onMouseEnter={() => onEnterBtn('')}
             onMouseLeave={onLeaveBtn}
@@ -146,14 +191,8 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
 
         <div
           ref={statsRef}
-          style={{
-            display: 'flex',
-            gap: '2rem',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            paddingTop: '2rem',
-            borderTop: `1px solid ${INK10}`
-          }}
+          className="hero-stats-grid"
+          style={{ borderTop: `1px solid ${INK10}` }}
         >
           {[
             { v: '200+', l: 'Clients' },
@@ -161,9 +200,19 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
             { v: '8×', l: 'ROAS' },
             { v: '$50M+', l: 'Revenue' }
           ].map((s, i) => (
-            <div key={i} style={{ textAlign: 'center' }}>
-              <div style={{ fontWeight: 800, fontSize: '2rem', color: INK }}>{s.v}</div>
-              <div style={{ fontSize: '0.7rem', color: INK30 }}>{s.l}</div>
+            <div key={i} style={{ textAlign: 'center', minWidth: '56px' }}>
+              <div
+                style={{
+                  fontWeight: 800,
+                  fontSize: 'clamp(1.3rem, 4vw, 2rem)',
+                  color: INK
+                }}
+              >
+                {s.v}
+              </div>
+              <div style={{ fontSize: '0.7rem', color: INK30, marginTop: '0.2rem' }}>
+                {s.l}
+              </div>
             </div>
           ))}
         </div>
@@ -174,7 +223,7 @@ export function HeroSection({ onEnterBtn, onLeaveBtn, rootVideoSrc, logoVideoSrc
         transition={{ duration: 2, repeat: Infinity }}
         style={{
           position: 'absolute',
-          bottom: '2rem',
+          bottom: '1.5rem',
           left: '50%',
           transform: 'translateX(-50%)',
           zIndex: 5
