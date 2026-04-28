@@ -4,13 +4,11 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { MagneticBtn } from './MagneticBtn';
-import { useTranslations } from 'next-intl';
 
 const heroWords = ['Branding', 'Strategy', 'Growth', 'Marketing', 'Content', 'Results'];
 const wordColors = ['#cc44ff', '#f97316', '#22c55e', '#ec4899', '#3b82f6', '#eab308'];
 
 export function HeroSection({ onEnterBtn, onLeaveBtn }) {
-  const t = useTranslations('hero');
   const titleRef = useRef(null);
   const subRef = useRef(null);
   const ctaRef = useRef(null);
