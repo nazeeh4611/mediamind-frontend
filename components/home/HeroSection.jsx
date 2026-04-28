@@ -4,11 +4,13 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { MagneticBtn } from './MagneticBtn';
+import { useTranslations } from 'next-intl';
 
 const heroWords = ['Branding', 'Strategy', 'Growth', 'Marketing', 'Content', 'Results'];
 const wordColors = ['#cc44ff', '#f97316', '#22c55e', '#ec4899', '#3b82f6', '#eab308'];
 
 export function HeroSection({ onEnterBtn, onLeaveBtn }) {
+  const t = useTranslations('hero');
   const titleRef = useRef(null);
   const subRef = useRef(null);
   const ctaRef = useRef(null);
@@ -16,9 +18,9 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    gsap.fromTo(titleRef.current, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
-    gsap.fromTo(subRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.4, ease: 'power3.out' });
-    gsap.fromTo(ctaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.7, ease: 'power3.out' });
+    gsap.to(titleRef.current, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+    gsap.to(subRef.current, { opacity: 1, y: 0, duration: 0.8, delay: 0.4, ease: 'power3.out' });
+    gsap.to(ctaRef.current, { opacity: 1, y: 0, duration: 0.7, delay: 0.7, ease: 'power3.out' });
   }, []);
 
   useEffect(() => {
@@ -138,7 +140,6 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
         }
         .mobile-menu a:hover { color: #cc44ff; }
 
-        /* ── DESKTOP ── */
         .hero-body {
           flex: 1;
           display: flex;
@@ -159,7 +160,6 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
           align-items: flex-start;
         }
 
-        /* Desktop image: nudged slightly more right vs before */
         .hero-right {
           flex: 0 0 62%;
           max-width: 62%;
@@ -266,7 +266,6 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
           .hero-right-img { width: 120%; max-width: 120%; right: -25px; }
         }
 
-        /* ── TABLET ≤900px ── */
         @media (max-width: 900px) {
           .hero-nav { padding: 1.2rem 1.5rem; }
           .hero-nav-links { display: none; }
@@ -302,7 +301,6 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
             overflow: visible;
           }
 
-          /* Tablet: Image perfectly centered */
           .hero-right-img {
             width: auto;
             max-width: 80%;
@@ -320,14 +318,11 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
           .hero-sub { max-width: 100%; }
         }
 
-        /* ── MOBILE ≤600px ── */
         @media (max-width: 600px) {
           .hero-nav { padding: 1rem 1.25rem; }
-        
           .hero-body { padding: 0 0 3.5rem 0; }
-        
           .hero-left { padding: 0 1.25rem; }
-        
+
           .hero-right {
             position: relative;
             width: 100%;
@@ -335,7 +330,7 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
             margin-top: 0.5rem;
             margin-bottom: 2rem;
           }
-        
+
           .hero-right-img {
             display: block;
             width: 160vw;
@@ -343,29 +338,26 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
             margin-left: 65%;
             transform: translateX(-50%);
           }
-        
+
           .hero-title-line,
           .hero-title-line-2 {
             font-size: clamp(2.4rem, 10.5vw, 3.5rem);
             white-space: normal;
           }
-        
+
           .hero-animated-word { font-size: clamp(3.2rem, 13vw, 5rem); }
-        
+
           .hero-sub {
             font-size: 0.62rem;
             letter-spacing: 0.1em;
             line-height: 1.85;
             margin-top: 1rem;
           }
-        
+
           .hero-cta-row { gap: 1rem; margin-top: 1.5rem; }
-        
           .hero-trust-badge { font-size: 0.65rem; }
         }
 
-
-        /* ── SMALL ≤420px ── */
         @media (max-width: 420px) {
           .hero-title-line,
           .hero-title-line-2 { font-size: 2.1rem; }
@@ -378,7 +370,6 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
           }
         }
 
-        /* ── TINY ≤360px ── */
         @media (max-width: 360px) {
           .hero-title-line,
           .hero-title-line-2 { font-size: 1.8rem; }
@@ -388,10 +379,8 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
 
       <nav className="hero-nav">
         <div className="hero-nav-logo">
-          <div className="hero-nav-logo-text">
-          </div>
+          <div className="hero-nav-logo-text"></div>
         </div>
-
         <button
           className={`hamburger ${menuOpen ? 'open' : ''}`}
           onClick={() => setMenuOpen(o => !o)}
@@ -402,7 +391,11 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
       </nav>
 
       <div className="hero-body">
-        <div className="hero-left" ref={titleRef}>
+        <div
+          className="hero-left"
+          ref={titleRef}
+          style={{ opacity: 0, transform: 'translateY(60px)' }}
+        >
           <div className="hero-title-block">
             <span className="hero-title-line">Building Bold</span>
             <span className="hero-title-line-2">Brands With</span>
@@ -422,11 +415,19 @@ export function HeroSection({ onEnterBtn, onLeaveBtn }) {
             </motion.span>
           </AnimatePresence>
 
-          <p className="hero-sub" ref={subRef}>
+          <p
+            className="hero-sub"
+            ref={subRef}
+            style={{ opacity: 0, transform: 'translateY(30px)' }}
+          >
             Our comprehensive services are designed to place your brand front and center in the ever-evolving digital arena.
           </p>
 
-          <div ref={ctaRef} className="hero-cta-row">
+          <div
+            ref={ctaRef}
+            className="hero-cta-row"
+            style={{ opacity: 0, transform: 'translateY(20px)' }}
+          >
             <MagneticBtn
               to="/contact"
               style={{
